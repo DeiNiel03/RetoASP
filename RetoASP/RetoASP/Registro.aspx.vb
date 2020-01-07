@@ -87,11 +87,19 @@ Public Class WebForm1
 						Try
 							sqlConn.Open()
 							Dim sqlReader As MySqlDataReader = sqlComm.ExecuteReader()
-							While sqlReader.Read()
-								Label1.Text = sqlReader("nombre").ToString()
-							End While
+							'While sqlReader.Read()
+							'	Label1.Text = sqlReader("nombre").ToString()
+							'End While
+
+							TBDni.Text = ""
+							TBNombre.Text = ""
+							TBApellido.Text = ""
+							TBPass.Text = ""
+							TBTel.Text = ""
+
+							MsgBox("Registrado correctamente")
 						Catch ex As MySqlException
-							Me.Label1.Text = ex.Message
+							MessageBox.Show(ex.Message, "ERROR CON LA BASE DE DATOS", MessageBoxButtons.OK, MessageBoxIcon.Error)
 						End Try
 					End Using
 				End Using
