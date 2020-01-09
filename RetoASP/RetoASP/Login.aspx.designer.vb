@@ -32,13 +32,22 @@ Partial Public Class WebForm2
 	Protected WithEvents Label1 As Global.System.Web.UI.WebControls.Label
 
 	'''<summary>
-	'''Control TBDni.
+	'''Control TBEmail.
 	'''</summary>
 	'''<remarks>
 	'''Campo generado automáticamente.
 	'''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
 	'''</remarks>
-	Protected WithEvents TBDni As Global.System.Web.UI.WebControls.TextBox
+	Protected WithEvents TBEmail As Global.System.Web.UI.WebControls.TextBox
+
+	'''<summary>
+	'''Control RegularExpressionValidator1.
+	'''</summary>
+	'''<remarks>
+	'''Campo generado automáticamente.
+	'''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+	'''</remarks>
+	Protected WithEvents RegularExpressionValidator1 As Global.System.Web.UI.WebControls.RegularExpressionValidator
 
 	'''<summary>
 	'''Control RequiredFieldValidator1.

@@ -17,7 +17,13 @@
             <asp:Label ID="Label2" runat="server" ForeColor="Red" Text="*"></asp:Label>
             <asp:RegularExpressionValidator ID="RegularExpressionValidator1" runat="server" ControlToValidate="TBDni" ErrorMessage="DNI no valido" ValidationExpression="^(([A-Z]\d{8})|(\d{8}[A-Z]))$" ValidationGroup="grupo" Font-Size="Small" ForeColor="Red"></asp:RegularExpressionValidator>
             <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="TBDni" ErrorMessage="DNI obligatorio" ValidationGroup="grupo" Font-Size="Small" ForeColor="Red"></asp:RequiredFieldValidator>
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            &nbsp;&nbsp;&nbsp;&nbsp;<br />
+            <br />
+            <asp:TextBox ID="TBEmail" runat="server" placeholder="Email"></asp:TextBox>
+            <asp:Label ID="Label10" runat="server" ForeColor="Red" Text="*"></asp:Label>
+            <asp:RegularExpressionValidator ID="RegularExpressionValidator3" runat="server" ControlToValidate="TBEmail" ErrorMessage="Email no valido" Font-Size="Small" ForeColor="Red" ValidationExpression="\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*" ValidationGroup="grupo"></asp:RegularExpressionValidator>
+            <asp:RequiredFieldValidator ID="RequiredFieldValidator7" runat="server" ControlToValidate="TBEmail" ErrorMessage="Email obligatorio" Font-Size="Small" ForeColor="Red" ValidationGroup="grupo"></asp:RequiredFieldValidator>
+            &nbsp;&nbsp;&nbsp;&nbsp;
             <br />
             <br />
             <asp:TextBox ID="TBNombre" runat="server" placeholder="Nombre"></asp:TextBox>

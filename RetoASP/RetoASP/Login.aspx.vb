@@ -19,7 +19,7 @@ Public Class WebForm2
 	Sub Login()
 		Try
 			Dim connString As String = "server=192.168.101.15;Port=3306; user id=ldmj; password=ladamijo; database=prueba"
-			Dim sqlQuery As String = "SELECT contrasena FROM usuarios WHERE dni = @iddni"
+			Dim sqlQuery As String = "SELECT contrasena FROM usuarios WHERE email = @idemail"
 
 			Using sqlConn As New MySqlConnection(connString)
 				Using sqlComm As New MySqlCommand() 'hay que usar un comando por cada select
@@ -27,7 +27,7 @@ Public Class WebForm2
 						.Connection = sqlConn
 						.CommandText = sqlQuery
 						.CommandType = CommandType.Text
-						.Parameters.AddWithValue("@iddni", Me.TBDni.Text)
+						.Parameters.AddWithValue("@idemail", Me.TBEmail.Text)
 					End With
 					Try
 						sqlConn.Open()
@@ -36,7 +36,7 @@ Public Class WebForm2
 							If sqlReader("contrasena").ToString().Equals(getMd5Hash(Me.TBPass.Text)) Then
 								Response.Write("<script>window.alert('Se ha logeado correctamente');</script>" + "<script>window.setTimeout(location.href='Reservar.aspx', 1000);</script>")
 							Else
-								MessageBox.Show("Usuario y/o contraseña incorrectos.", "ERROR DE LOGIN", MessageBoxButtons.OK, MessageBoxIcon.Error)
+								MessageBox.Show("Email y/o contraseña incorrectos.", "ERROR DE LOGIN", MessageBoxButtons.OK, MessageBoxIcon.Error)
 							End If
 						End While
 
@@ -46,20 +46,20 @@ Public Class WebForm2
 				End Using
 
 				'Desde aqui comienza la segunta select
-				Dim sqlQuery2 As String = "SELECT dni FROM usuarios WHERE dni = @idddni"
+				Dim sqlQuery2 As String = "SELECT email FROM usuarios WHERE email = @ideemail"
 
 				Using sqlComm2 As New MySqlCommand()
 					With sqlComm2
 						.Connection = sqlConn
 						.CommandText = sqlQuery2
 						.CommandType = CommandType.Text
-						.Parameters.AddWithValue("@idddni", Me.TBDni.Text)
+						.Parameters.AddWithValue("@ideemail", Me.TBEmail.Text)
 					End With
 					Try
 						'no hace falta "sql.Open()" porque la conexion ya se ha abierto antes
 						Dim sqlReader2 As MySqlDataReader = sqlComm2.ExecuteReader()
 						If Not sqlReader2.HasRows Then
-							MessageBox.Show("Usuario inexistente", "ERROR DE LOGIN", MessageBoxButtons.OK, MessageBoxIcon.Error)
+							MessageBox.Show("Email no registrado", "ERROR DE LOGIN", MessageBoxButtons.OK, MessageBoxIcon.Error)
 
 						End If
 
