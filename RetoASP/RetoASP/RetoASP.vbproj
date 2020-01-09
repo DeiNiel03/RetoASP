@@ -105,6 +105,7 @@
     <Content Include="Web.config" />
     <Content Include="Registro.aspx" />
     <Content Include="Login.aspx" />
+    <Content Include="Reservar.aspx" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="My Project\AssemblyInfo.vb" />
@@ -131,13 +132,20 @@
     </Compile>
     <Compile Include="Registro.aspx.vb">
       <DependentUpon>Registro.aspx</DependentUpon>
-      <SubType>ASPXCodebehind</SubType>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Login.aspx.designer.vb">
       <DependentUpon>Login.aspx</DependentUpon>
     </Compile>
     <Compile Include="Login.aspx.vb">
       <DependentUpon>Login.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="Reservar.aspx.designer.vb">
+      <DependentUpon>Reservar.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Reservar.aspx.vb">
+      <DependentUpon>Reservar.aspx</DependentUpon>
       <SubType>ASPXCodebehind</SubType>
     </Compile>
   </ItemGroup>

@@ -9,12 +9,18 @@
 </head>
 <body>
     <form id="form1" runat="server">
-        <asp:TextBox ID="TextBox1" runat="server" placeholder="Usuario"></asp:TextBox>
+        <asp:Label ID="Label1" runat="server" Font-Size="X-Large" Text="Iniciar Sesión"></asp:Label>
         <br />
         <br />
-        <input id="Pass1" type="password" placeholder="Contraseña"/><br />
+        <asp:TextBox ID="TBDni" runat="server" placeholder="Usuario"></asp:TextBox>
+        &nbsp;&nbsp;&nbsp;
+        <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="TBDni" ErrorMessage="Introduzca un usuario" Font-Size="Small" ForeColor="Red" ValidationGroup="grupo2"></asp:RequiredFieldValidator>
         <br />
-&nbsp;<asp:Button ID="Button1" runat="server" BorderStyle="None" Text="Login" />
+        <br />
+        <asp:TextBox ID="TBPass" runat="server" TextMode="Password" placeholder="Contraseña"></asp:TextBox>
+        <br />
+        <br />
+&nbsp;<asp:Button ID="btnLogin" runat="server" BorderStyle="None" Text="Login" ValidationGroup="grupo2" />
         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
         <asp:Button ID="btRegistro" runat="server" BorderStyle="None" Text="Registrarme" />
         <br />

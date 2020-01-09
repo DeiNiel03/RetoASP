@@ -23,22 +23,49 @@ Partial Public Class WebForm2
 	Protected WithEvents form1 As Global.System.Web.UI.HtmlControls.HtmlForm
 
 	'''<summary>
-	'''Control TextBox1.
+	'''Control Label1.
 	'''</summary>
 	'''<remarks>
 	'''Campo generado automáticamente.
 	'''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
 	'''</remarks>
-	Protected WithEvents TextBox1 As Global.System.Web.UI.WebControls.TextBox
+	Protected WithEvents Label1 As Global.System.Web.UI.WebControls.Label
 
 	'''<summary>
-	'''Control Button1.
+	'''Control TBDni.
 	'''</summary>
 	'''<remarks>
 	'''Campo generado automáticamente.
 	'''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
 	'''</remarks>
-	Protected WithEvents Button1 As Global.System.Web.UI.WebControls.Button
+	Protected WithEvents TBDni As Global.System.Web.UI.WebControls.TextBox
+
+	'''<summary>
+	'''Control RequiredFieldValidator1.
+	'''</summary>
+	'''<remarks>
+	'''Campo generado automáticamente.
+	'''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+	'''</remarks>
+	Protected WithEvents RequiredFieldValidator1 As Global.System.Web.UI.WebControls.RequiredFieldValidator
+
+	'''<summary>
+	'''Control TBPass.
+	'''</summary>
+	'''<remarks>
+	'''Campo generado automáticamente.
+	'''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+	'''</remarks>
+	Protected WithEvents TBPass As Global.System.Web.UI.WebControls.TextBox
+
+	'''<summary>
+	'''Control btnLogin.
+	'''</summary>
+	'''<remarks>
+	'''Campo generado automáticamente.
+	'''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+	'''</remarks>
+	Protected WithEvents btnLogin As Global.System.Web.UI.WebControls.Button
 
 	'''<summary>
 	'''Control btRegistro.

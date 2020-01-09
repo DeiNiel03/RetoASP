@@ -41,6 +41,33 @@ Partial Public Class WebForm1
 	Protected WithEvents TBDni As Global.System.Web.UI.WebControls.TextBox
 
 	'''<summary>
+	'''Control Label2.
+	'''</summary>
+	'''<remarks>
+	'''Campo generado automáticamente.
+	'''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+	'''</remarks>
+	Protected WithEvents Label2 As Global.System.Web.UI.WebControls.Label
+
+	'''<summary>
+	'''Control RegularExpressionValidator1.
+	'''</summary>
+	'''<remarks>
+	'''Campo generado automáticamente.
+	'''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+	'''</remarks>
+	Protected WithEvents RegularExpressionValidator1 As Global.System.Web.UI.WebControls.RegularExpressionValidator
+
+	'''<summary>
+	'''Control RequiredFieldValidator1.
+	'''</summary>
+	'''<remarks>
+	'''Campo generado automáticamente.
+	'''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+	'''</remarks>
+	Protected WithEvents RequiredFieldValidator1 As Global.System.Web.UI.WebControls.RequiredFieldValidator
+
+	'''<summary>
 	'''Control TBNombre.
 	'''</summary>
 	'''<remarks>
@@ -48,6 +75,24 @@ Partial Public Class WebForm1
 	'''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
 	'''</remarks>
 	Protected WithEvents TBNombre As Global.System.Web.UI.WebControls.TextBox
+
+	'''<summary>
+	'''Control Label3.
+	'''</summary>
+	'''<remarks>
+	'''Campo generado automáticamente.
+	'''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+	'''</remarks>
+	Protected WithEvents Label3 As Global.System.Web.UI.WebControls.Label
+
+	'''<summary>
+	'''Control RequiredFieldValidator2.
+	'''</summary>
+	'''<remarks>
+	'''Campo generado automáticamente.
+	'''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+	'''</remarks>
+	Protected WithEvents RequiredFieldValidator2 As Global.System.Web.UI.WebControls.RequiredFieldValidator
 
 	'''<summary>
 	'''Control TBApellido.
@@ -59,6 +104,24 @@ Partial Public Class WebForm1
 	Protected WithEvents TBApellido As Global.System.Web.UI.WebControls.TextBox
 
 	'''<summary>
+	'''Control Label4.
+	'''</summary>
+	'''<remarks>
+	'''Campo generado automáticamente.
+	'''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+	'''</remarks>
+	Protected WithEvents Label4 As Global.System.Web.UI.WebControls.Label
+
+	'''<summary>
+	'''Control RequiredFieldValidator3.
+	'''</summary>
+	'''<remarks>
+	'''Campo generado automáticamente.
+	'''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+	'''</remarks>
+	Protected WithEvents RequiredFieldValidator3 As Global.System.Web.UI.WebControls.RequiredFieldValidator
+
+	'''<summary>
 	'''Control TBPass.
 	'''</summary>
 	'''<remarks>
@@ -66,6 +129,24 @@ Partial Public Class WebForm1
 	'''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
 	'''</remarks>
 	Protected WithEvents TBPass As Global.System.Web.UI.WebControls.TextBox
+
+	'''<summary>
+	'''Control Label5.
+	'''</summary>
+	'''<remarks>
+	'''Campo generado automáticamente.
+	'''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+	'''</remarks>
+	Protected WithEvents Label5 As Global.System.Web.UI.WebControls.Label
+
+	'''<summary>
+	'''Control RequiredFieldValidator4.
+	'''</summary>
+	'''<remarks>
+	'''Campo generado automáticamente.
+	'''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+	'''</remarks>
+	Protected WithEvents RequiredFieldValidator4 As Global.System.Web.UI.WebControls.RequiredFieldValidator
 
 	'''<summary>
 	'''Control TBPass2.
@@ -77,6 +158,24 @@ Partial Public Class WebForm1
 	Protected WithEvents TBPass2 As Global.System.Web.UI.WebControls.TextBox
 
 	'''<summary>
+	'''Control Label6.
+	'''</summary>
+	'''<remarks>
+	'''Campo generado automáticamente.
+	'''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+	'''</remarks>
+	Protected WithEvents Label6 As Global.System.Web.UI.WebControls.Label
+
+	'''<summary>
+	'''Control CompareValidator1.
+	'''</summary>
+	'''<remarks>
+	'''Campo generado automáticamente.
+	'''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+	'''</remarks>
+	Protected WithEvents CompareValidator1 As Global.System.Web.UI.WebControls.CompareValidator
+
+	'''<summary>
 	'''Control TBTel.
 	'''</summary>
 	'''<remarks>
@@ -84,6 +183,51 @@ Partial Public Class WebForm1
 	'''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
 	'''</remarks>
 	Protected WithEvents TBTel As Global.System.Web.UI.WebControls.TextBox
+
+	'''<summary>
+	'''Control Label7.
+	'''</summary>
+	'''<remarks>
+	'''Campo generado automáticamente.
+	'''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+	'''</remarks>
+	Protected WithEvents Label7 As Global.System.Web.UI.WebControls.Label
+
+	'''<summary>
+	'''Control RequiredFieldValidator6.
+	'''</summary>
+	'''<remarks>
+	'''Campo generado automáticamente.
+	'''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+	'''</remarks>
+	Protected WithEvents RequiredFieldValidator6 As Global.System.Web.UI.WebControls.RequiredFieldValidator
+
+	'''<summary>
+	'''Control RegularExpressionValidator2.
+	'''</summary>
+	'''<remarks>
+	'''Campo generado automáticamente.
+	'''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+	'''</remarks>
+	Protected WithEvents RegularExpressionValidator2 As Global.System.Web.UI.WebControls.RegularExpressionValidator
+
+	'''<summary>
+	'''Control Label8.
+	'''</summary>
+	'''<remarks>
+	'''Campo generado automáticamente.
+	'''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+	'''</remarks>
+	Protected WithEvents Label8 As Global.System.Web.UI.WebControls.Label
+
+	'''<summary>
+	'''Control Label9.
+	'''</summary>
+	'''<remarks>
+	'''Campo generado automáticamente.
+	'''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+	'''</remarks>
+	Protected WithEvents Label9 As Global.System.Web.UI.WebControls.Label
 
 	'''<summary>
 	'''Control BtnRegistro.
