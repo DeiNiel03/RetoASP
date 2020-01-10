@@ -48,4 +48,13 @@ Partial Public Class WebForm3
 	'''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
 	'''</remarks>
 	Protected WithEvents DropDownList3 As Global.System.Web.UI.WebControls.DropDownList
+
+	'''<summary>
+	'''Control Image1.
+	'''</summary>
+	'''<remarks>
+	'''Campo generado automáticamente.
+	'''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+	'''</remarks>
+	Protected WithEvents Image1 As Global.System.Web.UI.WebControls.Image
 End Class

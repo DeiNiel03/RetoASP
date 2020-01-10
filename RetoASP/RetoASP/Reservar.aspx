@@ -17,6 +17,13 @@
 &nbsp;&nbsp;&nbsp;
         <asp:DropDownList ID="DropDownList3" runat="server" placeholder="Email">
         </asp:DropDownList>
+        <br />
+        <br />
+        <br />
+        <asp:Image ID="Image1" runat="server" />
+        <br />
+        <br />
+        <br />
     </form>
 </body>
 </html>
