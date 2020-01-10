@@ -1,4 +1,5 @@
-﻿Imports System.Windows.Forms
+﻿Imports System.IO
+Imports System.Windows.Forms
 Imports MySql.Data.MySqlClient
 
 Public Class WebForm1
@@ -145,23 +146,23 @@ Public Class WebForm1
 		Me.TBTel.Text = String.Empty
 	End Sub
 
-	''convertir binario a imágen
-	'Private Function Bytes_Imagen(ByVal Imagen As Byte()) As Image
-	'	Try
-	'		'si hay imagen
-	'		If Not Imagen Is Nothing Then
-	'			'caturar array con memorystream hacia Bin
-	'			Dim Bin As New MemoryStream(Imagen)
-	'			'con el método FroStream de Image obtenemos imagen
-	'			Dim Resultado As Image = Image.FromStream(Bin)
-	'			'y la retornamos
-	'			Return Resultado
-	'		Else
-	'			Return Nothing
-	'		End If
-	'	Catch ex As Exception
-	'		Return Nothing
-	'	End Try
-	'End Function
+	'convertir binario a imágen
+	Private Function bytes_imagen(ByVal imagen As Byte()) As Image
+		Try
+			'si hay imagen
+			If Not imagen Is Nothing Then
+				'caturar array con memorystream hacia bin
+				Dim bin As New MemoryStream(imagen)
+				'con el método frostream de image obtenemos imagen
+				Dim resultado As Image = Image.fromstream(bin)
+				'y la retornamos
+				Return resultado
+			Else
+				Return Nothing
+			End If
+		Catch ex As Exception
+			Return Nothing
+		End Try
+	End Function
 
 End Class

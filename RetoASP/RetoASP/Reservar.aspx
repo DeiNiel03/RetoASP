@@ -9,9 +9,14 @@
 </head>
 <body>
     <form id="form1" runat="server">
-        <div>
-            <asp:Label ID="Label1" runat="server" Text="Hola"></asp:Label>
-        </div>
+        <asp:DropDownList ID="DropDownList1" runat="server" placeholder="Email">
+        </asp:DropDownList>
+&nbsp;&nbsp;&nbsp;
+        <asp:DropDownList ID="DropDownList2" runat="server" placeholder="Email">
+        </asp:DropDownList>
+&nbsp;&nbsp;&nbsp;
+        <asp:DropDownList ID="DropDownList3" runat="server" placeholder="Email">
+        </asp:DropDownList>
     </form>
 </body>
 </html>
