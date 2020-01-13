@@ -18,7 +18,7 @@ Public Class WebForm2
 	'Con la segunda select compruebo que el usuario introducido exista en la BBDD
 	Sub Login()
 		Try
-			Dim connString As String = "server=192.168.101.15;Port=3306; user id=ldmj; password=ladamijo; database=prueba"
+			Dim connString As String = "server=188.213.5.150;Port=3306; user id=ldmj; password=ladamijo; database=prueba"
 			Dim sqlQuery As String = "SELECT contrasena FROM usuarios WHERE email = @idemail"
 
 			Using sqlConn As New MySqlConnection(connString)

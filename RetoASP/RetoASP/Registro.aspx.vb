@@ -34,10 +34,10 @@ Public Class WebForm1
 		tel = TBTel.Text
 
 		Try
-			Dim connString As String = "server=192.168.101.15;Port=3306; user id=ldmj; password=ladamijo; database=prueba"
+			Dim connString As String = "server=188.213.5.150;Port=3306; user id=ldmj; password=ladamijo; database=prueba"
 
 			'la contraseña se incripta en el propio insert
-			Dim sqlQuery As String = "INSERT INTO USUARIOS (DNI, NOMBRE, APELLIDO, EMAIL, CONTRASENA,TELEFONO) VALUES ('" + dni + "','" + nom + "','" + ape + "','" + email + "',MD5('" + contra + "'),'" + tel + "')"
+			Dim sqlQuery As String = "INSERT INTO usuarios (DNI, NOMBRE, APELLIDO, CONTRASENA,TELEFONO, EMAIL, ADMINISTRADOR) VALUES ('" + dni + "','" + nom + "','" + ape + "',MD5('" + contra + "'),'" + tel + "','" + email + "', '0')"
 
 			Using sqlConn As New MySqlConnection(connString)
 				Using sqlComm As New MySqlCommand()
@@ -68,7 +68,7 @@ Public Class WebForm1
 
 	Function comprobarDNI()
 		Try
-			Dim connString As String = "server=192.168.101.15;Port=3306; user id=ldmj; password=ladamijo; database=prueba"
+			Dim connString As String = "server=188.213.5.150;Port=3306; user id=ldmj; password=ladamijo; database=prueba"
 			Dim sqlQuery As String = "SELECT dni FROM usuarios WHERE dni = @idni"
 
 			Using sqlConn As New MySqlConnection(connString)
@@ -103,7 +103,7 @@ Public Class WebForm1
 
 	Function comprobarEmail()
 		Try
-			Dim connString As String = "server=192.168.101.15;Port=3306; user id=ldmj; password=ladamijo; database=prueba"
+			Dim connString As String = "server=188.213.5.150;Port=3306; user id=ldmj; password=ladamijo; database=prueba"
 			Dim sqlQuery As String = "SELECT email FROM usuarios WHERE email = @idemail"
 
 			Using sqlConn As New MySqlConnection(connString)
@@ -145,24 +145,4 @@ Public Class WebForm1
 		Me.TBPass2.Text = String.Empty
 		Me.TBTel.Text = String.Empty
 	End Sub
-
-	'convertir binario a imágen
-	Private Function bytes_imagen(ByVal imagen As Byte()) As Image
-		Try
-			'si hay imagen
-			If Not imagen Is Nothing Then
-				'caturar array con memorystream hacia bin
-				Dim bin As New MemoryStream(imagen)
-				'con el método frostream de image obtenemos imagen
-				Dim resultado As Image = Image.fromstream(bin)
-				'y la retornamos
-				Return resultado
-			Else
-				Return Nothing
-			End If
-		Catch ex As Exception
-			Return Nothing
-		End Try
-	End Function
-
 End Class

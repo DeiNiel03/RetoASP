@@ -23,31 +23,76 @@ Partial Public Class WebForm3
 	Protected WithEvents form1 As Global.System.Web.UI.HtmlControls.HtmlForm
 
 	'''<summary>
-	'''Control DropDownList1.
+	'''Control DropTipo.
 	'''</summary>
 	'''<remarks>
 	'''Campo generado automáticamente.
 	'''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
 	'''</remarks>
-	Protected WithEvents DropDownList1 As Global.System.Web.UI.WebControls.DropDownList
+	Protected WithEvents DropTipo As Global.System.Web.UI.WebControls.DropDownList
 
 	'''<summary>
-	'''Control DropDownList2.
+	'''Control DropProvincia.
 	'''</summary>
 	'''<remarks>
 	'''Campo generado automáticamente.
 	'''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
 	'''</remarks>
-	Protected WithEvents DropDownList2 As Global.System.Web.UI.WebControls.DropDownList
+	Protected WithEvents DropProvincia As Global.System.Web.UI.WebControls.DropDownList
 
 	'''<summary>
-	'''Control DropDownList3.
+	'''Control DropMunicipio.
 	'''</summary>
 	'''<remarks>
 	'''Campo generado automáticamente.
 	'''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
 	'''</remarks>
-	Protected WithEvents DropDownList3 As Global.System.Web.UI.WebControls.DropDownList
+	Protected WithEvents DropMunicipio As Global.System.Web.UI.WebControls.DropDownList
+
+	'''<summary>
+	'''Control RBsi.
+	'''</summary>
+	'''<remarks>
+	'''Campo generado automáticamente.
+	'''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+	'''</remarks>
+	Protected WithEvents RBsi As Global.System.Web.UI.WebControls.RadioButton
+
+	'''<summary>
+	'''Control RBno.
+	'''</summary>
+	'''<remarks>
+	'''Campo generado automáticamente.
+	'''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+	'''</remarks>
+	Protected WithEvents RBno As Global.System.Web.UI.WebControls.RadioButton
+
+	'''<summary>
+	'''Control RBcsi.
+	'''</summary>
+	'''<remarks>
+	'''Campo generado automáticamente.
+	'''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+	'''</remarks>
+	Protected WithEvents RBcsi As Global.System.Web.UI.WebControls.RadioButton
+
+	'''<summary>
+	'''Control RBcno.
+	'''</summary>
+	'''<remarks>
+	'''Campo generado automáticamente.
+	'''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+	'''</remarks>
+	Protected WithEvents RBcno As Global.System.Web.UI.WebControls.RadioButton
+
+	'''<summary>
+	'''Control listNombres.
+	'''</summary>
+	'''<remarks>
+	'''Campo generado automáticamente.
+	'''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+	'''</remarks>
+	Protected WithEvents listNombres As Global.System.Web.UI.WebControls.ListBox
 
 	'''<summary>
 	'''Control Image1.
