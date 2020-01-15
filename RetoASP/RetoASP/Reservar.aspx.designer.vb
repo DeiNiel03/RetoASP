@@ -50,6 +50,15 @@ Partial Public Class WebForm3
 	Protected WithEvents DropMunicipio As Global.System.Web.UI.WebControls.DropDownList
 
 	'''<summary>
+	'''Control LabelRestaurante.
+	'''</summary>
+	'''<remarks>
+	'''Campo generado automáticamente.
+	'''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+	'''</remarks>
+	Protected WithEvents LabelRestaurante As Global.System.Web.UI.WebControls.Label
+
+	'''<summary>
 	'''Control RBsi.
 	'''</summary>
 	'''<remarks>
@@ -66,6 +75,15 @@ Partial Public Class WebForm3
 	'''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
 	'''</remarks>
 	Protected WithEvents RBno As Global.System.Web.UI.WebControls.RadioButton
+
+	'''<summary>
+	'''Control LabelAutocaravana.
+	'''</summary>
+	'''<remarks>
+	'''Campo generado automáticamente.
+	'''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+	'''</remarks>
+	Protected WithEvents LabelAutocaravana As Global.System.Web.UI.WebControls.Label
 
 	'''<summary>
 	'''Control RBcsi.
@@ -86,6 +104,15 @@ Partial Public Class WebForm3
 	Protected WithEvents RBcno As Global.System.Web.UI.WebControls.RadioButton
 
 	'''<summary>
+	'''Control lblNO.
+	'''</summary>
+	'''<remarks>
+	'''Campo generado automáticamente.
+	'''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+	'''</remarks>
+	Protected WithEvents lblNO As Global.System.Web.UI.WebControls.Label
+
+	'''<summary>
 	'''Control listNombres.
 	'''</summary>
 	'''<remarks>
@@ -95,11 +122,119 @@ Partial Public Class WebForm3
 	Protected WithEvents listNombres As Global.System.Web.UI.WebControls.ListBox
 
 	'''<summary>
-	'''Control Image1.
+	'''Control Button1.
 	'''</summary>
 	'''<remarks>
 	'''Campo generado automáticamente.
 	'''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
 	'''</remarks>
-	Protected WithEvents Image1 As Global.System.Web.UI.WebControls.Image
+	Protected WithEvents Button1 As Global.System.Web.UI.WebControls.Button
+
+	'''<summary>
+	'''Control Button2.
+	'''</summary>
+	'''<remarks>
+	'''Campo generado automáticamente.
+	'''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+	'''</remarks>
+	Protected WithEvents Button2 As Global.System.Web.UI.WebControls.Button
+
+	'''<summary>
+	'''Control LabelInfo.
+	'''</summary>
+	'''<remarks>
+	'''Campo generado automáticamente.
+	'''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+	'''</remarks>
+	Protected WithEvents LabelInfo As Global.System.Web.UI.WebControls.Label
+
+	'''<summary>
+	'''Control lblInfo.
+	'''</summary>
+	'''<remarks>
+	'''Campo generado automáticamente.
+	'''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+	'''</remarks>
+	Protected WithEvents lblInfo As Global.System.Web.UI.WebControls.Label
+
+	'''<summary>
+	'''Control LabelDireccion.
+	'''</summary>
+	'''<remarks>
+	'''Campo generado automáticamente.
+	'''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+	'''</remarks>
+	Protected WithEvents LabelDireccion As Global.System.Web.UI.WebControls.Label
+
+	'''<summary>
+	'''Control lblDireccion.
+	'''</summary>
+	'''<remarks>
+	'''Campo generado automáticamente.
+	'''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+	'''</remarks>
+	Protected WithEvents lblDireccion As Global.System.Web.UI.WebControls.Label
+
+	'''<summary>
+	'''Control LabelTelefono.
+	'''</summary>
+	'''<remarks>
+	'''Campo generado automáticamente.
+	'''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+	'''</remarks>
+	Protected WithEvents LabelTelefono As Global.System.Web.UI.WebControls.Label
+
+	'''<summary>
+	'''Control lblTelefono.
+	'''</summary>
+	'''<remarks>
+	'''Campo generado automáticamente.
+	'''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+	'''</remarks>
+	Protected WithEvents lblTelefono As Global.System.Web.UI.WebControls.Label
+
+	'''<summary>
+	'''Control LabelEmail.
+	'''</summary>
+	'''<remarks>
+	'''Campo generado automáticamente.
+	'''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+	'''</remarks>
+	Protected WithEvents LabelEmail As Global.System.Web.UI.WebControls.Label
+
+	'''<summary>
+	'''Control lblEmail.
+	'''</summary>
+	'''<remarks>
+	'''Campo generado automáticamente.
+	'''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+	'''</remarks>
+	Protected WithEvents lblEmail As Global.System.Web.UI.WebControls.Label
+
+	'''<summary>
+	'''Control LabelWeb.
+	'''</summary>
+	'''<remarks>
+	'''Campo generado automáticamente.
+	'''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+	'''</remarks>
+	Protected WithEvents LabelWeb As Global.System.Web.UI.WebControls.Label
+
+	'''<summary>
+	'''Control HyperLinkWeb.
+	'''</summary>
+	'''<remarks>
+	'''Campo generado automáticamente.
+	'''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+	'''</remarks>
+	Protected WithEvents HyperLinkWeb As Global.System.Web.UI.WebControls.HyperLink
+
+	'''<summary>
+	'''Control Imagen.
+	'''</summary>
+	'''<remarks>
+	'''Campo generado automáticamente.
+	'''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+	'''</remarks>
+	Protected WithEvents Imagen As Global.System.Web.UI.WebControls.Image
 End Class
