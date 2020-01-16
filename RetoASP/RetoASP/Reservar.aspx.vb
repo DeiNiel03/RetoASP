@@ -75,36 +75,7 @@ Public Class WebForm3
 		End Try
 
 	End Sub
-	Sub sacarImagen()
-		Try
-			Dim connString As String = "server=188.213.5.150;Port=3306; user id=ldmj; password=ladamijo; database=prueba"
-			Dim sqlQuery As String = "SELECT imagen FROM alojamientos WHERE signatura = @idimagen"
 
-			Using sqlConn As New MySqlConnection(connString)
-				Using sqlComm As New MySqlCommand() 'hay que usar un comando por cada select
-					With sqlComm
-						.Connection = sqlConn
-						.CommandText = sqlQuery
-						.CommandType = CommandType.Text
-						.Parameters.AddWithValue("@idimagen", 2)
-					End With
-					Try
-						sqlConn.Open()
-						Dim sqlReader As MySqlDataReader = sqlComm.ExecuteReader()
-						While sqlReader.Read()
-							Dim imageUrl As String = "data:image/jpg;base64," & Convert.ToBase64String(sqlReader("imagen"))
-							Me.Imagen.ImageUrl = imageUrl
-						End While
-
-					Catch ex As MySqlException
-						MessageBox.Show(ex.Message, "ERROR DE IMAGEN", MessageBoxButtons.OK, MessageBoxIcon.Error)
-					End Try
-				End Using
-			End Using
-		Catch ex As MySql.Data.MySqlClient.MySqlException
-			MessageBox.Show(ex.Message, "ERROR CON LA BASE DE DATOS", MessageBoxButtons.OK, MessageBoxIcon.Error)
-		End Try
-	End Sub
 
 
 
@@ -195,20 +166,14 @@ Public Class WebForm3
 		conexion.Close()
 	End Sub
 
-
-	'Protected Sub DropMunicipio_SelectedIndexChanged(sender As Object, e As EventArgs) Handles DropMunicipio.SelectedIndexChanged, DropTipo.SelectedIndexChanged, DropProvincia.SelectedIndexChanged
-	'	cargarMunicipio()
-	'	sacarNombres()
-	'End Sub
-
-
-
 	Sub deshabilitar()
 		lblDireccion.Visible = False
+		lblCapacidad.Visible = False
+		lblPostal.Visible = False
 		lblEmail.Visible = False
 		lblInfo.Visible = False
 		lblTelefono.Visible = False
-		HyperLinkWeb.Visible = False
+		lblLink.Visible = False
 		Imagen.Visible = False
 
 		LabelDireccion.Visible = False
@@ -216,18 +181,24 @@ Public Class WebForm3
 		LabelEmail.Visible = False
 		LabelTelefono.Visible = False
 		LabelWeb.Visible = False
+		LabelPostal.Visible = False
+		LabelCapacidad.Visible = False
 
 		lblNO.Visible = False
 	End Sub
 
 	Sub habilitar()
 		lblDireccion.Visible = True
+		lblPostal.Visible = True
 		lblEmail.Visible = True
 		lblInfo.Visible = True
 		lblTelefono.Visible = True
-		HyperLinkWeb.Visible = True
+		lblCapacidad.Visible = True
+		lblLink.Visible = True
 		Imagen.Visible = True
 
+		LabelPostal.Visible = True
+		LabelCapacidad.Visible = True
 		LabelDireccion.Visible = True
 		LabelInfo.Visible = True
 		LabelEmail.Visible = True
@@ -293,5 +264,73 @@ Public Class WebForm3
 			sacarNombresSinFiltros()
 		End If
 
+	End Sub
+
+	Protected Sub btnInformacion_Click(sender As Object, e As EventArgs) Handles btnInformacion.Click
+		habilitar()
+		cargarInformacion()
+		sacarImagen()
+	End Sub
+
+	Sub cargarInformacion()
+		Try
+			Dim sqlQuery As String = "SELECT turismdescription, address, phone, tourismemail, web, postalcode, capacity FROM prueba.alojamientos WHERE documentname = @idNombre"
+
+			Using sqlComm As New MySqlCommand()
+				With sqlComm
+					.Connection = conexion
+					.CommandText = sqlQuery
+					.CommandType = CommandType.Text
+					.Parameters.AddWithValue("@idNombre", listNombres.SelectedItem.ToString)
+				End With
+				Try
+					conexion.Open()
+					Dim sqlReader As MySqlDataReader = sqlComm.ExecuteReader()
+					While sqlReader.Read()
+						lblCapacidad.Text = sqlReader("capacity")
+						lblInfo.Text = sqlReader("turismdescription")
+						lblDireccion.Text = sqlReader("address")
+						lblPostal.Text = sqlReader("postalcode")
+						lblTelefono.Text = sqlReader("phone")
+						lblEmail.Text = sqlReader("tourismemail")
+						lblLink.Text = sqlReader("web")
+					End While
+				Catch ex As MySqlException
+					MessageBox.Show(ex.Message, "ERROR DE INFORMACION", MessageBoxButtons.OK, MessageBoxIcon.Error)
+				End Try
+			End Using
+		Catch ex As MySql.Data.MySqlClient.MySqlException
+			MessageBox.Show(ex.Message, "ERROR CON LA BASE DE DATOS", MessageBoxButtons.OK, MessageBoxIcon.Error)
+		End Try
+		conexion.Close()
+	End Sub
+
+	Sub sacarImagen()
+		Try
+			Dim sqlQuery As String = "SELECT imagen FROM prueba.alojamientos WHERE documentname = @idNombre"
+
+
+			Using sqlComm As New MySqlCommand() 'hay que usar un comando por cada select
+				With sqlComm
+					.Connection = conexion
+					.CommandText = sqlQuery
+					.CommandType = CommandType.Text
+					.Parameters.AddWithValue("@idNombre", listNombres.SelectedItem.ToString)
+				End With
+				Try
+					conexion.Open()
+					Dim sqlReader As MySqlDataReader = sqlComm.ExecuteReader()
+					While sqlReader.Read()
+						Dim imageUrl As String = "data:image/jpg;base64," & Convert.ToBase64String(sqlReader("imagen"))
+						Me.Imagen.ImageUrl = imageUrl
+					End While
+
+				Catch ex As MySqlException
+					MessageBox.Show(ex.Message, "ERROR DE IMAGEN", MessageBoxButtons.OK, MessageBoxIcon.Error)
+				End Try
+			End Using
+		Catch ex As MySql.Data.MySqlClient.MySqlException
+			MessageBox.Show(ex.Message, "ERROR CON LA BASE DE DATOS", MessageBoxButtons.OK, MessageBoxIcon.Error)
+		End Try
 	End Sub
 End Class

@@ -42,35 +42,43 @@
         <br />
         <asp:Label ID="lblNO" runat="server" Font-Bold="True" ForeColor="Red" Text="Sin Resultados De Busqueda"></asp:Label>
         <br />
-        <asp:ListBox ID="listNombres" runat="server" Height="68px" Width="269px"></asp:ListBox>
+        <asp:ListBox ID="listNombres" runat="server" Height="75px" Width="338px"></asp:ListBox>
         <br />
         <br />
-        <asp:Button ID="Button1" runat="server" Text="Información" />
+        <asp:Button ID="btnInformacion" runat="server" Text="Información" />
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
         <asp:Button ID="Button2" runat="server" Text="Reservar" />
         <br />
         <br />
         <br />
         <br />
-        <asp:Label ID="LabelInfo" runat="server" Text="Descripción:"></asp:Label>
+        <asp:Label ID="LabelInfo" runat="server" Text="Descripción:" Font-Bold="True" Font-Italic="True"></asp:Label>
         <br />
-        <asp:Label ID="lblInfo" runat="server" Height="109px" Text="Label" Width="427px"></asp:Label>
-        <br />
-        <br />
-        <asp:Label ID="LabelDireccion" runat="server" Text="Dirección:"></asp:Label>
-&nbsp;<asp:Label ID="lblDireccion" runat="server" Height="20px" Text="Label" Width="120px"></asp:Label>
+        <asp:Label ID="lblInfo" runat="server" Height="78px" Width="286px"></asp:Label>
         <br />
         <br />
-        <asp:Label ID="LabelTelefono" runat="server" Text="Teléfono:"></asp:Label>
-&nbsp;<asp:Label ID="lblTelefono" runat="server" Text="Label"></asp:Label>
+        <asp:Label ID="LabelCapacidad" runat="server" Font-Bold="True" Font-Italic="True" Text="Capacidad"></asp:Label>
+&nbsp;<asp:Label ID="lblCapacidad" runat="server"></asp:Label>
         <br />
         <br />
-        <asp:Label ID="LabelEmail" runat="server" Text="Email:"></asp:Label>
-&nbsp;<asp:Label ID="lblEmail" runat="server" Text="Label"></asp:Label>
+        <asp:Label ID="LabelDireccion" runat="server" Text="Dirección:" Font-Bold="True" Font-Italic="True"></asp:Label>
+&nbsp;<asp:Label ID="lblDireccion" runat="server" Height="20px" Width="120px"></asp:Label>
         <br />
         <br />
-        <asp:Label ID="LabelWeb" runat="server" Text="Pagina Web:"></asp:Label>
-&nbsp;<asp:HyperLink ID="HyperLinkWeb" runat="server">HyperLink</asp:HyperLink>
+        <asp:Label ID="LabelPostal" runat="server" Font-Bold="True" Font-Italic="True" Text="Código Postal:"></asp:Label>
+&nbsp;<asp:Label ID="lblPostal" runat="server"></asp:Label>
+        <br />
+        <br />
+        <asp:Label ID="LabelTelefono" runat="server" Text="Teléfono:" Font-Bold="True" Font-Italic="True"></asp:Label>
+&nbsp;<asp:Label ID="lblTelefono" runat="server"></asp:Label>
+        <br />
+        <br />
+        <asp:Label ID="LabelEmail" runat="server" Text="Email:" Font-Bold="True" Font-Italic="True"></asp:Label>
+&nbsp;<asp:Label ID="lblEmail" runat="server"></asp:Label>
+        <br />
+        <br />
+        <asp:Label ID="LabelWeb" runat="server" Text="Pagina Web:" Font-Bold="True" Font-Italic="True"></asp:Label>
+&nbsp;<asp:Label ID="lblLink" runat="server"></asp:Label>
         <br />
         <br />
         <br />
