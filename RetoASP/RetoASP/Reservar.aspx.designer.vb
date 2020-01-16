@@ -50,6 +50,24 @@ Partial Public Class WebForm3
 	Protected WithEvents DropMunicipio As Global.System.Web.UI.WebControls.DropDownList
 
 	'''<summary>
+	'''Control btnMasfiltros.
+	'''</summary>
+	'''<remarks>
+	'''Campo generado automáticamente.
+	'''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+	'''</remarks>
+	Protected WithEvents btnMasfiltros As Global.System.Web.UI.WebControls.Button
+
+	'''<summary>
+	'''Control btnMenosfiltros.
+	'''</summary>
+	'''<remarks>
+	'''Campo generado automáticamente.
+	'''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+	'''</remarks>
+	Protected WithEvents btnMenosfiltros As Global.System.Web.UI.WebControls.Button
+
+	'''<summary>
 	'''Control LabelRestaurante.
 	'''</summary>
 	'''<remarks>
@@ -102,6 +120,33 @@ Partial Public Class WebForm3
 	'''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
 	'''</remarks>
 	Protected WithEvents RBcno As Global.System.Web.UI.WebControls.RadioButton
+
+	'''<summary>
+	'''Control LabelTienda.
+	'''</summary>
+	'''<remarks>
+	'''Campo generado automáticamente.
+	'''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+	'''</remarks>
+	Protected WithEvents LabelTienda As Global.System.Web.UI.WebControls.Label
+
+	'''<summary>
+	'''Control RBtsi.
+	'''</summary>
+	'''<remarks>
+	'''Campo generado automáticamente.
+	'''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+	'''</remarks>
+	Protected WithEvents RBtsi As Global.System.Web.UI.WebControls.RadioButton
+
+	'''<summary>
+	'''Control RBtno.
+	'''</summary>
+	'''<remarks>
+	'''Campo generado automáticamente.
+	'''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+	'''</remarks>
+	Protected WithEvents RBtno As Global.System.Web.UI.WebControls.RadioButton
 
 	'''<summary>
 	'''Control lblNO.
@@ -237,4 +282,13 @@ Partial Public Class WebForm3
 	'''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
 	'''</remarks>
 	Protected WithEvents Imagen As Global.System.Web.UI.WebControls.Image
+
+	'''<summary>
+	'''Control labelFiltros.
+	'''</summary>
+	'''<remarks>
+	'''Campo generado automáticamente.
+	'''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+	'''</remarks>
+	Protected WithEvents labelFiltros As Global.System.Web.UI.WebControls.Label
 End Class

@@ -15,24 +15,34 @@
         <asp:DropDownList ID="DropProvincia" runat="server" placeholder="Email" Height="20px" Width="140px" AutoPostBack="True">
         </asp:DropDownList>
         &nbsp;&nbsp;&nbsp;
-        <asp:DropDownList ID="DropMunicipio" runat="server" placeholder="Email" Height="20px" Width="140px">
+        <asp:DropDownList ID="DropMunicipio" runat="server" placeholder="Email" Height="20px" Width="140px" AutoPostBack="True">
         </asp:DropDownList>
         <br />
         <br />
+        <asp:Button ID="btnMasfiltros" runat="server" Text="Más filtros" />
+        <br />
+        <asp:Button ID="btnMenosfiltros" runat="server" Enabled="False" Text="Menos filtros" Visible="False" />
+        <br />
+        <br />
         <asp:Label ID="LabelRestaurante" runat="server" Text="Restaurante:"></asp:Label>
-        <asp:RadioButton ID="RBsi" runat="server" GroupName="restaurante" Text="Si" />
+        <asp:RadioButton ID="RBsi" runat="server" GroupName="restaurante" Text="Si" AutoPostBack="True" />
         &nbsp;
-        <asp:RadioButton ID="RBno" runat="server" Checked="True" GroupName="restaurante" Text="No" />
+        <asp:RadioButton ID="RBno" runat="server" Checked="True" GroupName="restaurante" Text="No" AutoPostBack="True" />
         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
         <asp:Label ID="LabelAutocaravana" runat="server" Text="Parking para autocaravana:"></asp:Label>
-        <asp:RadioButton ID="RBcsi" runat="server" GroupName="caravana" Text="Si" />
+        <asp:RadioButton ID="RBcsi" runat="server" GroupName="caravana" Text="Si" AutoPostBack="True" />
         &nbsp;
-        <asp:RadioButton ID="RBcno" runat="server" Checked="True" GroupName="caravana" Text="No" />
+        <asp:RadioButton ID="RBcno" runat="server" Checked="True" GroupName="caravana" Text="No" AutoPostBack="True" />
+        <br />
+        <br />
+        <asp:Label ID="LabelTienda" runat="server" Text="Tienda:"></asp:Label>
+&nbsp;<asp:RadioButton ID="RBtsi" runat="server" AutoPostBack="True" GroupName="tienda" Text="Si" />
+&nbsp;<asp:RadioButton ID="RBtno" runat="server" AutoPostBack="True" Checked="True" GroupName="tienda" Text="No" />
         <br />
         <br />
         <asp:Label ID="lblNO" runat="server" Font-Bold="True" ForeColor="Red" Text="Sin Resultados De Busqueda"></asp:Label>
         <br />
-        <asp:ListBox ID="listNombres" runat="server" Height="68px" Width="269px" AutoPostBack="True"></asp:ListBox>
+        <asp:ListBox ID="listNombres" runat="server" Height="68px" Width="269px"></asp:ListBox>
         <br />
         <br />
         <asp:Button ID="Button1" runat="server" Text="Información" />
@@ -65,6 +75,8 @@
         <br />
         <br />
         <asp:Image ID="Imagen" runat="server" Height="134px" Width="215px" />
+        <br />
+        <asp:Label ID="labelFiltros" runat="server" Text="0" Visible="False"></asp:Label>
         <br />
         <br />
         <br />
