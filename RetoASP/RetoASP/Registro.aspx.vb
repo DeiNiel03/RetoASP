@@ -34,7 +34,7 @@ Public Class WebForm1
 		tel = TBTel.Text
 
 		Try
-			Dim connString As String = "server=188.213.5.150;Port=3306; user id=ldmj; password=ladamijo; database=prueba"
+			Dim connString As String = "server=188.213.5.150;Port=3306; user id=ldmj; password=ladamijo; database=alojamientos_fac"
 
 			'la contraseña se incripta en el propio insert
 			Dim sqlQuery As String = "INSERT INTO usuarios (DNI, NOMBRE, APELLIDO, CONTRASENA,TELEFONO, EMAIL, ADMINISTRADOR) VALUES ('" + dni + "','" + nom + "','" + ape + "',MD5('" + contra + "'),'" + tel + "','" + email + "', '0')"
@@ -68,7 +68,7 @@ Public Class WebForm1
 
 	Function comprobarDNI()
 		Try
-			Dim connString As String = "server=188.213.5.150;Port=3306; user id=ldmj; password=ladamijo; database=prueba"
+			Dim connString As String = "server=188.213.5.150;Port=3306; user id=ldmj; password=ladamijo; database=alojamientos_fac"
 			Dim sqlQuery As String = "SELECT dni FROM usuarios WHERE dni = @idni"
 
 			Using sqlConn As New MySqlConnection(connString)
@@ -103,7 +103,7 @@ Public Class WebForm1
 
 	Function comprobarEmail()
 		Try
-			Dim connString As String = "server=188.213.5.150;Port=3306; user id=ldmj; password=ladamijo; database=prueba"
+			Dim connString As String = "server=188.213.5.150;Port=3306; user id=ldmj; password=ladamijo; database=alojamientos_fac"
 			Dim sqlQuery As String = "SELECT email FROM usuarios WHERE email = @idemail"
 
 			Using sqlConn As New MySqlConnection(connString)

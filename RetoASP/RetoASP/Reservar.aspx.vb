@@ -4,7 +4,9 @@ Imports MySql.Data.MySqlClient
 
 Public Class WebForm3
 	Inherits System.Web.UI.Page
-	Dim conexion As New MySqlConnection("datasource=188.213.5.150;port=3306;username=ldmj;password=ladamijo")
+	Dim conexion As New MySqlConnection("datasource=188.213.5.150;port=3306;username=ldmj;password=ladamijo;CharSet=UTF8")
+	Dim miPanel
+
 	Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
 
 		deshabilitar()
@@ -25,7 +27,7 @@ Public Class WebForm3
 
 	Sub cargarTipo()
 
-		Dim sqlQuery As String = "SELECT DISTINCT `lodgingtype` FROM prueba.alojamientos"
+		Dim sqlQuery As String = "SELECT DISTINCT `lodgingtype` FROM alojamientos_fac.alojamientos"
 
 		Try
 			Dim adapter As New MySqlDataAdapter(sqlQuery, conexion)
@@ -42,7 +44,7 @@ Public Class WebForm3
 	End Sub
 
 	Sub cargarProvincias()
-		Dim sqlQuery As String = "SELECT `nombre`, `id` FROM prueba.provincias"
+		Dim sqlQuery As String = "SELECT `nombre`, `id` FROM alojamientos_fac.provincias"
 
 		Try
 
@@ -63,7 +65,7 @@ Public Class WebForm3
 	Sub cargarMunicipio()
 		Try
 
-			Dim adapter As New MySqlDataAdapter("SELECT DISTINCT `municipality` FROM prueba.alojamientos WHERE territory = " + DropProvincia.SelectedValue + " AND lodgingtype = '" + DropTipo.SelectedItem.Text + "' ORDER BY `municipality` ASC", conexion)
+			Dim adapter As New MySqlDataAdapter("SELECT DISTINCT `municipality` FROM alojamientos_fac.alojamientos WHERE territory = " + DropProvincia.SelectedValue + " AND lodgingtype = '" + DropTipo.SelectedItem.Text + "' ORDER BY `municipality` ASC", conexion)
 			Dim tabla As New DataTable()
 			adapter.Fill(tabla)
 
@@ -82,7 +84,7 @@ Public Class WebForm3
 	Sub sacarNombres()
 
 		Try
-			Dim sqlQuery As String = "SELECT documentname FROM prueba.alojamientos WHERE lodgingtype = @idTipo AND municipality = @idMuni AND territory = @idPro AND restaurant = @idRest AND autocaravana = @idCaravan AND store = @idTienda"
+			Dim sqlQuery As String = "SELECT documentname, FROM alojamientos_fac.alojamientos WHERE lodgingtype = @idTipo AND municipality = @idMuni AND territory = @idPro AND restaurant = @idRest AND autocaravana = @idCaravan AND store = @idTienda"
 
 			Using sqlComm As New MySqlCommand()
 				With sqlComm
@@ -116,11 +118,11 @@ Public Class WebForm3
 					Dim sqlReader As MySqlDataReader = sqlComm.ExecuteReader()
 					If Not sqlReader.HasRows Then
 						lblNO.Visible = True
-						listNombres.Visible = False
+						'listNombres.Visible = False
 					End If
 					While sqlReader.Read()
-						listNombres.Visible = True
-						listNombres.Items.Add(sqlReader("documentname"))
+						'listNombres.Visible = True
+						'listNombres.Items.Add(sqlReader("documentname"))
 					End While
 				Catch ex As MySqlException
 					MessageBox.Show(ex.Message, "ERROR NOMBRE DE ALOJAMIENTOS", MessageBoxButtons.OK, MessageBoxIcon.Error)
@@ -132,9 +134,31 @@ Public Class WebForm3
 		conexion.Close()
 	End Sub
 
+	'Sub sacarNombresSinfiltros()
+	'	Try
+
+	'		Dim comando As New MySqlCommand("SELECT `documentname` as 'Nombre', `address` as 'Dirección', `phone` as 'Numero de teléfono', `tourismemail` as 'Correo electrónico', `web` as 'Página Web', `postalcode` as 'Código postal', `capacity` as 'Capacidad' FROM alojamientos_fac.alojamientos WHERE lodgingtype = @idTipo AND municipality = @idMuni AND territory = @idPro", conexion)
+	'		comando.Parameters.Add("@idTipo", MySqlDbType.VarChar).Value = DropTipo.SelectedItem
+	'		comando.Parameters.Add("idMuni", MySqlDbType.VarChar).Value = DropMunicipio.SelectedItem
+	'		comando.Parameters.Add("idPro", MySqlDbType.Int16).Value = DropProvincia.SelectedValue
+
+	'		Dim tabla As New DataTable()
+	'		Dim adapter As New MySqlDataAdapter(comando)
+
+	'		adapter.Fill(tabla)
+
+	'		If tabla.Rows.Count = 0 Then
+	'			lblNO.Visible = True
+	'		End If
+
+	'	Catch ex As MySqlException
+	'		MessageBox.Show(ex.Message, "ERROR NOMBRE SIN FILTROS", MessageBoxButtons.OK, MessageBoxIcon.Error)
+	'	End Try
+	'End Sub
+
 	Sub sacarNombresSinFiltros()
 		Try
-			Dim sqlQuery As String = "SELECT documentname FROM prueba.alojamientos WHERE lodgingtype = @idTipo AND municipality = @idMuni AND territory = @idPro"
+			Dim sqlQuery As String = "SELECT documentname, address, phone, tourismemail, web, postalcode, capacity FROM prueba.alojamientos WHERE lodgingtype = @idTipo AND municipality = @idMuni AND territory = @idPro"
 
 			Using sqlComm As New MySqlCommand()
 				With sqlComm
@@ -150,11 +174,11 @@ Public Class WebForm3
 					Dim sqlReader As MySqlDataReader = sqlComm.ExecuteReader()
 					If Not sqlReader.HasRows Then
 						lblNO.Visible = True
-						listNombres.Visible = False
+						'listNombres.Visible = False
 					End If
 					While sqlReader.Read()
-						listNombres.Visible = True
-						listNombres.Items.Add(sqlReader("documentname"))
+						lblNombre.Text = sqlReader("documentname")
+						lblDireccion.Text = sqlReader("address")
 					End While
 				Catch ex As MySqlException
 					MessageBox.Show(ex.Message, "ERROR NOMBRE DE ALOJAMIENTOS", MessageBoxButtons.OK, MessageBoxIcon.Error)
@@ -256,11 +280,11 @@ Public Class WebForm3
 	Protected Sub DropMunicipio_SelectedIndexChanged(sender As Object, e As EventArgs) Handles DropMunicipio.SelectedIndexChanged, RBsi.CheckedChanged, RBno.CheckedChanged, DropProvincia.SelectedIndexChanged, DropTipo.SelectedIndexChanged, RBcsi.CheckedChanged, RBcno.CheckedChanged, RBtsi.CheckedChanged, RBtno.CheckedChanged, btnMenosfiltros.Click, btnMasfiltros.Click
 
 		If labelFiltros.Text = 1 Then
-			listNombres.Items.Clear()
+			'listNombres.Items.Clear()
 			sacarNombres()
 		ElseIf labelFiltros.Text = 0 Then
 			deshabilitarFiltros()
-			listNombres.Items.Clear()
+			'listNombres.Items.Clear()
 			sacarNombresSinFiltros()
 		End If
 
@@ -281,7 +305,7 @@ Public Class WebForm3
 					.Connection = conexion
 					.CommandText = sqlQuery
 					.CommandType = CommandType.Text
-					.Parameters.AddWithValue("@idNombre", listNombres.SelectedItem.ToString)
+					'.Parameters.AddWithValue("@idNombre", listNombres.SelectedItem.ToString)
 				End With
 				Try
 					conexion.Open()
@@ -315,7 +339,7 @@ Public Class WebForm3
 					.Connection = conexion
 					.CommandText = sqlQuery
 					.CommandType = CommandType.Text
-					.Parameters.AddWithValue("@idNombre", listNombres.SelectedItem.ToString)
+					'.Parameters.AddWithValue("@idNombre", listNombres.SelectedItem.ToString)
 				End With
 				Try
 					conexion.Open()

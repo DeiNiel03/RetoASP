@@ -18,7 +18,7 @@ Public Class WebForm2
 	'Con la segunda select compruebo que el usuario introducido exista en la BBDD
 	Sub Login()
 		Try
-			Dim connString As String = "server=188.213.5.150;Port=3306; user id=ldmj; password=ladamijo; database=prueba"
+			Dim connString As String = "server=188.213.5.150;Port=3306; user id=ldmj; password=ladamijo; database=alojamientos_fac"
 			Dim sqlQuery As String = "SELECT contrasena FROM usuarios WHERE email = @idemail"
 
 			Using sqlConn As New MySqlConnection(connString)
@@ -34,8 +34,8 @@ Public Class WebForm2
 						Dim sqlReader As MySqlDataReader = sqlComm.ExecuteReader()
 						While sqlReader.Read()
 							If sqlReader("contrasena").ToString().Equals(getMd5Hash(Me.TBPass.Text)) Then
-								Response.Write("<script>window.alert('Se ha logeado correctamente');</script>" + "<script>window.setTimeout(location.href='Reservar.aspx', 1000);</script>")
-
+								'Response.Write("<script>window.alert('Se ha logeado correctamente');</script>" + "<script>window.setTimeout(location.href='Reservar.aspx', 1000);</script>")
+								Response.Write("<script>window.alert('Se ha logeado correctamente');</script>" + "<script>window.setTimeout(location.href='Prueba.aspx', 1000);</script>")
 							Else
 								MessageBox.Show("Email y/o contraseña incorrectos.", "ERROR DE LOGIN", MessageBoxButtons.OK, MessageBoxIcon.Error)
 							End If

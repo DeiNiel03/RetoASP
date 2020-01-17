@@ -6,9 +6,17 @@
 <head runat="server">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <title></title>
+    <style type="text/css">
+        .auto-style1 {
+            height: 334px;
+        }
+        .auto-style2 {
+            height: 210px;
+        }
+    </style>
 </head>
 <body>
-    <form id="form1" runat="server">
+    <form id="form1" runat="server" class="auto-style1">
         <asp:DropDownList ID="DropTipo" runat="server" placeholder="Email" Height="20px" Width="140px" AutoPostBack="True">
         </asp:DropDownList>
 &nbsp;&nbsp;&nbsp;&nbsp;
@@ -42,7 +50,7 @@
         <br />
         <asp:Label ID="lblNO" runat="server" Font-Bold="True" ForeColor="Red" Text="Sin Resultados De Busqueda"></asp:Label>
         <br />
-        <asp:ListBox ID="listNombres" runat="server" Height="75px" Width="338px"></asp:ListBox>
+        <asp:ListBox ID="listNombres" runat="server" Height="66px" Width="205px"></asp:ListBox>
         <br />
         <br />
         <asp:Button ID="btnInformacion" runat="server" Text="Información" />
@@ -50,39 +58,59 @@
         <asp:Button ID="Button2" runat="server" Text="Reservar" />
         <br />
         <br />
-        <br />
-        <br />
+    <div id="listaalojamientos" class="auto-style2">
+
+        <asp:Label ID="LabelNombre" runat="server" Font-Bold="True" Font-Italic="True" Text="Nombre"></asp:Label>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
         <asp:Label ID="LabelInfo" runat="server" Text="Descripción:" Font-Bold="True" Font-Italic="True"></asp:Label>
-        <br />
-        <asp:Label ID="lblInfo" runat="server" Height="78px" Width="286px"></asp:Label>
-        <br />
-        <br />
-        <asp:Label ID="LabelCapacidad" runat="server" Font-Bold="True" Font-Italic="True" Text="Capacidad"></asp:Label>
-&nbsp;<asp:Label ID="lblCapacidad" runat="server"></asp:Label>
-        <br />
-        <br />
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
         <asp:Label ID="LabelDireccion" runat="server" Text="Dirección:" Font-Bold="True" Font-Italic="True"></asp:Label>
-&nbsp;<asp:Label ID="lblDireccion" runat="server" Height="20px" Width="120px"></asp:Label>
-        <br />
-        <br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
         <asp:Label ID="LabelPostal" runat="server" Font-Bold="True" Font-Italic="True" Text="Código Postal:"></asp:Label>
-&nbsp;<asp:Label ID="lblPostal" runat="server"></asp:Label>
-        <br />
-        <br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
         <asp:Label ID="LabelTelefono" runat="server" Text="Teléfono:" Font-Bold="True" Font-Italic="True"></asp:Label>
-&nbsp;<asp:Label ID="lblTelefono" runat="server"></asp:Label>
-        <br />
-        <br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
         <asp:Label ID="LabelEmail" runat="server" Text="Email:" Font-Bold="True" Font-Italic="True"></asp:Label>
-&nbsp;<asp:Label ID="lblEmail" runat="server"></asp:Label>
-        <br />
-        <br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
         <asp:Label ID="LabelWeb" runat="server" Text="Pagina Web:" Font-Bold="True" Font-Italic="True"></asp:Label>
-&nbsp;<asp:Label ID="lblLink" runat="server"></asp:Label>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <asp:Label ID="LabelCapacidad" runat="server" Font-Bold="True" Font-Italic="True" Text="Capacidad:"></asp:Label>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <asp:Label ID="LabelImagen" runat="server" Font-Bold="True" Font-Italic="True" Text="Imagen:"></asp:Label>
+        <br />
+        <asp:Label ID="lblNombre" runat="server"></asp:Label>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <asp:Label ID="lblInfo" runat="server"></asp:Label>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <asp:Label ID="lblDireccion" runat="server" Height="20px" Width="120px"></asp:Label>
+        &nbsp;&nbsp;&nbsp;&nbsp; <asp:Label ID="lblPostal" runat="server"></asp:Label>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <asp:Label ID="lblTelefono" runat="server"></asp:Label>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <asp:Label ID="lblEmail" runat="server"></asp:Label>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <asp:Label ID="lblLink" runat="server"></asp:Label>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <asp:Label ID="lblCapacidad" runat="server"></asp:Label>
+        <br />
+        <br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <asp:Image ID="Imagen" runat="server" Height="134px" Width="214px" />
+
+    </div>
         <br />
         <br />
         <br />
-        <asp:Image ID="Imagen" runat="server" Height="134px" Width="215px" />
+        <br />
+        <br />
+&nbsp;<br />
+        <br />
+&nbsp;<br />
+        <br />
+&nbsp;<br />
+        <br />
+&nbsp;<br />
+        <br />
+&nbsp;<br />
+        <br />
+&nbsp;<br />
+        <br />
+        <br />
         <br />
         <asp:Label ID="labelFiltros" runat="server" Text="0" Visible="False"></asp:Label>
         <br />
@@ -92,5 +120,5 @@
         <br />
         <br />
     </form>
-</body>
+    </body>
 </html>

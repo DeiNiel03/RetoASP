@@ -185,6 +185,15 @@ Partial Public Class WebForm3
 	Protected WithEvents Button2 As Global.System.Web.UI.WebControls.Button
 
 	'''<summary>
+	'''Control LabelNombre.
+	'''</summary>
+	'''<remarks>
+	'''Campo generado automáticamente.
+	'''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+	'''</remarks>
+	Protected WithEvents LabelNombre As Global.System.Web.UI.WebControls.Label
+
+	'''<summary>
 	'''Control LabelInfo.
 	'''</summary>
 	'''<remarks>
@@ -192,33 +201,6 @@ Partial Public Class WebForm3
 	'''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
 	'''</remarks>
 	Protected WithEvents LabelInfo As Global.System.Web.UI.WebControls.Label
-
-	'''<summary>
-	'''Control lblInfo.
-	'''</summary>
-	'''<remarks>
-	'''Campo generado automáticamente.
-	'''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-	'''</remarks>
-	Protected WithEvents lblInfo As Global.System.Web.UI.WebControls.Label
-
-	'''<summary>
-	'''Control LabelCapacidad.
-	'''</summary>
-	'''<remarks>
-	'''Campo generado automáticamente.
-	'''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-	'''</remarks>
-	Protected WithEvents LabelCapacidad As Global.System.Web.UI.WebControls.Label
-
-	'''<summary>
-	'''Control lblCapacidad.
-	'''</summary>
-	'''<remarks>
-	'''Campo generado automáticamente.
-	'''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-	'''</remarks>
-	Protected WithEvents lblCapacidad As Global.System.Web.UI.WebControls.Label
 
 	'''<summary>
 	'''Control LabelDireccion.
@@ -230,15 +212,6 @@ Partial Public Class WebForm3
 	Protected WithEvents LabelDireccion As Global.System.Web.UI.WebControls.Label
 
 	'''<summary>
-	'''Control lblDireccion.
-	'''</summary>
-	'''<remarks>
-	'''Campo generado automáticamente.
-	'''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-	'''</remarks>
-	Protected WithEvents lblDireccion As Global.System.Web.UI.WebControls.Label
-
-	'''<summary>
 	'''Control LabelPostal.
 	'''</summary>
 	'''<remarks>
@@ -246,15 +219,6 @@ Partial Public Class WebForm3
 	'''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
 	'''</remarks>
 	Protected WithEvents LabelPostal As Global.System.Web.UI.WebControls.Label
-
-	'''<summary>
-	'''Control lblPostal.
-	'''</summary>
-	'''<remarks>
-	'''Campo generado automáticamente.
-	'''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-	'''</remarks>
-	Protected WithEvents lblPostal As Global.System.Web.UI.WebControls.Label
 
 	'''<summary>
 	'''Control LabelTelefono.
@@ -266,15 +230,6 @@ Partial Public Class WebForm3
 	Protected WithEvents LabelTelefono As Global.System.Web.UI.WebControls.Label
 
 	'''<summary>
-	'''Control lblTelefono.
-	'''</summary>
-	'''<remarks>
-	'''Campo generado automáticamente.
-	'''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-	'''</remarks>
-	Protected WithEvents lblTelefono As Global.System.Web.UI.WebControls.Label
-
-	'''<summary>
 	'''Control LabelEmail.
 	'''</summary>
 	'''<remarks>
@@ -282,15 +237,6 @@ Partial Public Class WebForm3
 	'''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
 	'''</remarks>
 	Protected WithEvents LabelEmail As Global.System.Web.UI.WebControls.Label
-
-	'''<summary>
-	'''Control lblEmail.
-	'''</summary>
-	'''<remarks>
-	'''Campo generado automáticamente.
-	'''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-	'''</remarks>
-	Protected WithEvents lblEmail As Global.System.Web.UI.WebControls.Label
 
 	'''<summary>
 	'''Control LabelWeb.
@@ -302,6 +248,78 @@ Partial Public Class WebForm3
 	Protected WithEvents LabelWeb As Global.System.Web.UI.WebControls.Label
 
 	'''<summary>
+	'''Control LabelCapacidad.
+	'''</summary>
+	'''<remarks>
+	'''Campo generado automáticamente.
+	'''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+	'''</remarks>
+	Protected WithEvents LabelCapacidad As Global.System.Web.UI.WebControls.Label
+
+	'''<summary>
+	'''Control LabelImagen.
+	'''</summary>
+	'''<remarks>
+	'''Campo generado automáticamente.
+	'''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+	'''</remarks>
+	Protected WithEvents LabelImagen As Global.System.Web.UI.WebControls.Label
+
+	'''<summary>
+	'''Control lblNombre.
+	'''</summary>
+	'''<remarks>
+	'''Campo generado automáticamente.
+	'''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+	'''</remarks>
+	Protected WithEvents lblNombre As Global.System.Web.UI.WebControls.Label
+
+	'''<summary>
+	'''Control lblInfo.
+	'''</summary>
+	'''<remarks>
+	'''Campo generado automáticamente.
+	'''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+	'''</remarks>
+	Protected WithEvents lblInfo As Global.System.Web.UI.WebControls.Label
+
+	'''<summary>
+	'''Control lblDireccion.
+	'''</summary>
+	'''<remarks>
+	'''Campo generado automáticamente.
+	'''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+	'''</remarks>
+	Protected WithEvents lblDireccion As Global.System.Web.UI.WebControls.Label
+
+	'''<summary>
+	'''Control lblPostal.
+	'''</summary>
+	'''<remarks>
+	'''Campo generado automáticamente.
+	'''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+	'''</remarks>
+	Protected WithEvents lblPostal As Global.System.Web.UI.WebControls.Label
+
+	'''<summary>
+	'''Control lblTelefono.
+	'''</summary>
+	'''<remarks>
+	'''Campo generado automáticamente.
+	'''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+	'''</remarks>
+	Protected WithEvents lblTelefono As Global.System.Web.UI.WebControls.Label
+
+	'''<summary>
+	'''Control lblEmail.
+	'''</summary>
+	'''<remarks>
+	'''Campo generado automáticamente.
+	'''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+	'''</remarks>
+	Protected WithEvents lblEmail As Global.System.Web.UI.WebControls.Label
+
+	'''<summary>
 	'''Control lblLink.
 	'''</summary>
 	'''<remarks>
@@ -309,6 +327,15 @@ Partial Public Class WebForm3
 	'''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
 	'''</remarks>
 	Protected WithEvents lblLink As Global.System.Web.UI.WebControls.Label
+
+	'''<summary>
+	'''Control lblCapacidad.
+	'''</summary>
+	'''<remarks>
+	'''Campo generado automáticamente.
+	'''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+	'''</remarks>
+	Protected WithEvents lblCapacidad As Global.System.Web.UI.WebControls.Label
 
 	'''<summary>
 	'''Control Imagen.
