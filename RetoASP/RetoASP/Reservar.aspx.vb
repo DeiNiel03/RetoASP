@@ -2,20 +2,20 @@
 Imports System.Windows.Forms
 Imports MySql.Data.MySqlClient
 
+
 Public Class WebForm3
 	Inherits System.Web.UI.Page
+	Dim panel
 	Dim conexion As New MySqlConnection("datasource=188.213.5.150;port=3306;username=ldmj;password=ladamijo;CharSet=UTF8")
-	Dim miPanel
+
 
 	Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
-
+		panel = Panel1
 		deshabilitar()
 		If Not IsPostBack Then
 			cargarDatos()
 			deshabilitarFiltros()
 		End If
-
-
 	End Sub
 
 	Sub cargarDatos()
@@ -78,10 +78,7 @@ Public Class WebForm3
 
 	End Sub
 
-
-
-
-	Sub sacarNombres()
+	Sub sacarNombresConFiltros()
 
 		Try
 			Dim sqlQuery As String = "SELECT documentname, FROM alojamientos_fac.alojamientos WHERE lodgingtype = @idTipo AND municipality = @idMuni AND territory = @idPro AND restaurant = @idRest AND autocaravana = @idCaravan AND store = @idTienda"
@@ -134,63 +131,91 @@ Public Class WebForm3
 		conexion.Close()
 	End Sub
 
-	'Sub sacarNombresSinfiltros()
-	'	Try
-
-	'		Dim comando As New MySqlCommand("SELECT `documentname` as 'Nombre', `address` as 'Dirección', `phone` as 'Numero de teléfono', `tourismemail` as 'Correo electrónico', `web` as 'Página Web', `postalcode` as 'Código postal', `capacity` as 'Capacidad' FROM alojamientos_fac.alojamientos WHERE lodgingtype = @idTipo AND municipality = @idMuni AND territory = @idPro", conexion)
-	'		comando.Parameters.Add("@idTipo", MySqlDbType.VarChar).Value = DropTipo.SelectedItem
-	'		comando.Parameters.Add("idMuni", MySqlDbType.VarChar).Value = DropMunicipio.SelectedItem
-	'		comando.Parameters.Add("idPro", MySqlDbType.Int16).Value = DropProvincia.SelectedValue
-
-	'		Dim tabla As New DataTable()
-	'		Dim adapter As New MySqlDataAdapter(comando)
-
-	'		adapter.Fill(tabla)
-
-	'		If tabla.Rows.Count = 0 Then
-	'			lblNO.Visible = True
-	'		End If
-
-	'	Catch ex As MySqlException
-	'		MessageBox.Show(ex.Message, "ERROR NOMBRE SIN FILTROS", MessageBoxButtons.OK, MessageBoxIcon.Error)
-	'	End Try
-	'End Sub
-
-	Sub sacarNombresSinFiltros()
+	Sub sacarNombresSinfiltros()
 		Try
-			Dim sqlQuery As String = "SELECT documentname, address, phone, tourismemail, web, postalcode, capacity FROM prueba.alojamientos WHERE lodgingtype = @idTipo AND municipality = @idMuni AND territory = @idPro"
 
-			Using sqlComm As New MySqlCommand()
-				With sqlComm
-					.Connection = conexion
-					.CommandText = sqlQuery
-					.CommandType = CommandType.Text
-					.Parameters.AddWithValue("@idTipo", DropTipo.SelectedItem)
-					.Parameters.AddWithValue("@idMuni", DropMunicipio.SelectedItem)
-					.Parameters.AddWithValue("@idPro", CInt(DropProvincia.SelectedValue))
-				End With
-				Try
-					conexion.Open()
-					Dim sqlReader As MySqlDataReader = sqlComm.ExecuteReader()
-					If Not sqlReader.HasRows Then
-						lblNO.Visible = True
-						'listNombres.Visible = False
-					End If
-					While sqlReader.Read()
-						lblNombre.Text = sqlReader("documentname")
-						lblDireccion.Text = sqlReader("address")
-					End While
-				Catch ex As MySqlException
-					MessageBox.Show(ex.Message, "ERROR NOMBRE DE ALOJAMIENTOS", MessageBoxButtons.OK, MessageBoxIcon.Error)
-				End Try
-			End Using
-		Catch ex As MySql.Data.MySqlClient.MySqlException
-			MessageBox.Show(ex.Message, "ERROR CON LA BASE DE DATOS", MessageBoxButtons.OK, MessageBoxIcon.Error)
+			Dim comando As New MySqlCommand("SELECT `documentname` as 'Nombre', `address` as 'Dirección', `phone` as 'Numero de teléfono', `tourismemail` as 'Correo electrónico', `web` as 'Página Web', `postalcode` as 'Código postal', `capacity` as 'Capacidad' FROM alojamientos_fac.alojamientos WHERE lodgingtype = @idTipo AND municipality = @idMuni AND territory = @idPro", conexion)
+			comando.Parameters.Add("@idTipo", MySqlDbType.VarChar).Value = DropTipo.SelectedItem
+			comando.Parameters.Add("@idMuni", MySqlDbType.VarChar).Value = DropMunicipio.SelectedItem
+			comando.Parameters.Add("@idPro", MySqlDbType.Int16).Value = DropProvincia.SelectedValue
+
+			Dim tabla As New DataTable()
+			Dim adapter As New MySqlDataAdapter(comando)
+
+			adapter.Fill(tabla)
+
+			If tabla.Rows.Count = 0 Then
+				lblNO.Visible = True
+			Else
+				'Dim div As New HtmlGenericControl("div")
+				'div.Attributes.Add("class", "item")
+				'Dim html As String = ""
+				'html = html + "<label class='nombre'>" + tabla + "</label>"
+				'form1.Controls.Add(div)
+
+				GridView1.DataSource = tabla
+				GridView1.DataBind()
+				lblNombre.Text = "documentname"
+			End If
+
+		Catch ex As MySqlException
+			MessageBox.Show(ex.Message, "ERROR NOMBRE SIN FILTROS", MessageBoxButtons.OK, MessageBoxIcon.Error)
 		End Try
-		conexion.Close()
 	End Sub
 
+	'Sub sacarNombresSinFiltros()
+	'	Try
+	'		Dim sqlQuery As String = "SELECT documentname, address, phone, tourismemail, web, postalcode, capacity FROM alojamientos_fac.alojamientos WHERE lodgingtype = @idTipo AND municipality = @idMuni AND territory = @idPro AND activo = @idactivo"
+
+	'		Using sqlComm As New MySqlCommand()
+	'			With sqlComm
+	'				.Connection = conexion
+	'				.CommandText = sqlQuery
+	'				.CommandType = CommandType.Text
+	'				.Parameters.AddWithValue("@idTipo", DropTipo.SelectedItem)
+	'				.Parameters.AddWithValue("@idMuni", DropMunicipio.SelectedItem)
+	'				.Parameters.AddWithValue("@idPro", CInt(DropProvincia.SelectedValue))
+	'				.Parameters.AddWithValue("@idactivo", 1)
+	'			End With
+	'			Try
+	'				conexion.Open()
+	'				Dim sqlReader As MySqlDataReader = sqlComm.ExecuteReader()
+
+	'				While sqlReader.Read()
+	'					habilitar()
+
+	'					Dim div As New HtmlGenericControl("div")
+	'					div.Attributes.Add("class", "item")
+	'					Dim html As String = ""
+	'					html = html + "<label class='nombre'>" + sqlReader("documentname") + "</label>"
+	'					html = html + "<p class='direccion'>" + sqlReader("address") + "</p>"
+
+	'					div.InnerText = html
+	'					Me.Controls.Add(div)
+
+	'					'lblNombre.Text = sqlReader("documentname")
+	'					'lblDireccion.Text = sqlReader("address")
+	'					'lblTelefono.Text = sqlReader("phone")
+	'					'lblEmail.Text = sqlReader("tourismemail")
+	'					'lblLink.Text = sqlReader("web")
+	'					'lblPostal.Text = sqlReader("postalcode")
+	'					'lblCapacidad.Text = sqlReader("capacity")
+	'				End While
+	'				If Not sqlReader.HasRows Then
+	'					lblNO.Visible = True
+	'				End If
+	'			Catch ex As MySqlException
+	'				MessageBox.Show(ex.Message, "ERROR NOMBRE DE ALOJAMIENTOS", MessageBoxButtons.OK, MessageBoxIcon.Error)
+	'			End Try
+	'		End Using
+	'	Catch ex As MySql.Data.MySqlClient.MySqlException
+	'		MessageBox.Show(ex.Message, "ERROR CON LA BASE DE DATOS", MessageBoxButtons.OK, MessageBoxIcon.Error)
+	'	End Try
+	'	conexion.Close()
+	'End Sub
+
 	Sub deshabilitar()
+		lblNombre.Visible = False
 		lblDireccion.Visible = False
 		lblCapacidad.Visible = False
 		lblPostal.Visible = False
@@ -200,6 +225,7 @@ Public Class WebForm3
 		lblLink.Visible = False
 		Imagen.Visible = False
 
+		LabelNombre.Visible = False
 		LabelDireccion.Visible = False
 		LabelInfo.Visible = False
 		LabelEmail.Visible = False
@@ -207,11 +233,13 @@ Public Class WebForm3
 		LabelWeb.Visible = False
 		LabelPostal.Visible = False
 		LabelCapacidad.Visible = False
+		LabelImagen.Visible = False
 
 		lblNO.Visible = False
 	End Sub
 
 	Sub habilitar()
+		lblNombre.Visible = True
 		lblDireccion.Visible = True
 		lblPostal.Visible = True
 		lblEmail.Visible = True
@@ -221,6 +249,8 @@ Public Class WebForm3
 		lblLink.Visible = True
 		Imagen.Visible = True
 
+		LabelNombre.Visible = True
+		LabelImagen.Visible = True
 		LabelPostal.Visible = True
 		LabelCapacidad.Visible = True
 		LabelDireccion.Visible = True
@@ -281,7 +311,7 @@ Public Class WebForm3
 
 		If labelFiltros.Text = 1 Then
 			'listNombres.Items.Clear()
-			sacarNombres()
+			sacarNombresSinFiltros()
 		ElseIf labelFiltros.Text = 0 Then
 			deshabilitarFiltros()
 			'listNombres.Items.Clear()
@@ -289,16 +319,9 @@ Public Class WebForm3
 		End If
 
 	End Sub
-
-	Protected Sub btnInformacion_Click(sender As Object, e As EventArgs) Handles btnInformacion.Click
-		habilitar()
-		cargarInformacion()
-		sacarImagen()
-	End Sub
-
 	Sub cargarInformacion()
 		Try
-			Dim sqlQuery As String = "SELECT turismdescription, address, phone, tourismemail, web, postalcode, capacity FROM prueba.alojamientos WHERE documentname = @idNombre"
+			Dim sqlQuery As String = "SELECT turismdescription, address, phone, tourismemail, web, postalcode, capacity FROM alojamientos_fac.alojamientos WHERE documentname = @idNombre"
 
 			Using sqlComm As New MySqlCommand()
 				With sqlComm
@@ -331,7 +354,7 @@ Public Class WebForm3
 
 	Sub sacarImagen()
 		Try
-			Dim sqlQuery As String = "SELECT imagen FROM prueba.alojamientos WHERE documentname = @idNombre"
+			Dim sqlQuery As String = "SELECT imagen FROM alojamientos_fac.alojamientos WHERE documentname = @idNombre"
 
 
 			Using sqlComm As New MySqlCommand() 'hay que usar un comando por cada select

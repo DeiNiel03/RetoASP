@@ -158,33 +158,6 @@ Partial Public Class WebForm3
 	Protected WithEvents lblNO As Global.System.Web.UI.WebControls.Label
 
 	'''<summary>
-	'''Control listNombres.
-	'''</summary>
-	'''<remarks>
-	'''Campo generado automáticamente.
-	'''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-	'''</remarks>
-	Protected WithEvents listNombres As Global.System.Web.UI.WebControls.ListBox
-
-	'''<summary>
-	'''Control btnInformacion.
-	'''</summary>
-	'''<remarks>
-	'''Campo generado automáticamente.
-	'''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-	'''</remarks>
-	Protected WithEvents btnInformacion As Global.System.Web.UI.WebControls.Button
-
-	'''<summary>
-	'''Control Button2.
-	'''</summary>
-	'''<remarks>
-	'''Campo generado automáticamente.
-	'''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-	'''</remarks>
-	Protected WithEvents Button2 As Global.System.Web.UI.WebControls.Button
-
-	'''<summary>
 	'''Control LabelNombre.
 	'''</summary>
 	'''<remarks>
@@ -246,24 +219,6 @@ Partial Public Class WebForm3
 	'''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
 	'''</remarks>
 	Protected WithEvents LabelWeb As Global.System.Web.UI.WebControls.Label
-
-	'''<summary>
-	'''Control LabelCapacidad.
-	'''</summary>
-	'''<remarks>
-	'''Campo generado automáticamente.
-	'''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-	'''</remarks>
-	Protected WithEvents LabelCapacidad As Global.System.Web.UI.WebControls.Label
-
-	'''<summary>
-	'''Control LabelImagen.
-	'''</summary>
-	'''<remarks>
-	'''Campo generado automáticamente.
-	'''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-	'''</remarks>
-	Protected WithEvents LabelImagen As Global.System.Web.UI.WebControls.Label
 
 	'''<summary>
 	'''Control lblNombre.
@@ -329,6 +284,24 @@ Partial Public Class WebForm3
 	Protected WithEvents lblLink As Global.System.Web.UI.WebControls.Label
 
 	'''<summary>
+	'''Control GridView1.
+	'''</summary>
+	'''<remarks>
+	'''Campo generado automáticamente.
+	'''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+	'''</remarks>
+	Protected WithEvents GridView1 As Global.System.Web.UI.WebControls.GridView
+
+	'''<summary>
+	'''Control LabelCapacidad.
+	'''</summary>
+	'''<remarks>
+	'''Campo generado automáticamente.
+	'''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+	'''</remarks>
+	Protected WithEvents LabelCapacidad As Global.System.Web.UI.WebControls.Label
+
+	'''<summary>
 	'''Control lblCapacidad.
 	'''</summary>
 	'''<remarks>
@@ -336,6 +309,15 @@ Partial Public Class WebForm3
 	'''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
 	'''</remarks>
 	Protected WithEvents lblCapacidad As Global.System.Web.UI.WebControls.Label
+
+	'''<summary>
+	'''Control LabelImagen.
+	'''</summary>
+	'''<remarks>
+	'''Campo generado automáticamente.
+	'''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+	'''</remarks>
+	Protected WithEvents LabelImagen As Global.System.Web.UI.WebControls.Label
 
 	'''<summary>
 	'''Control Imagen.
@@ -354,4 +336,13 @@ Partial Public Class WebForm3
 	'''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
 	'''</remarks>
 	Protected WithEvents labelFiltros As Global.System.Web.UI.WebControls.Label
+
+	'''<summary>
+	'''Control Panel1.
+	'''</summary>
+	'''<remarks>
+	'''Campo generado automáticamente.
+	'''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+	'''</remarks>
+	Protected WithEvents Panel1 As Global.System.Web.UI.WebControls.Panel
 End Class

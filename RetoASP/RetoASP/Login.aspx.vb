@@ -35,7 +35,7 @@ Public Class WebForm2
 						While sqlReader.Read()
 							If sqlReader("contrasena").ToString().Equals(getMd5Hash(Me.TBPass.Text)) Then
 								'Response.Write("<script>window.alert('Se ha logeado correctamente');</script>" + "<script>window.setTimeout(location.href='Reservar.aspx', 1000);</script>")
-								Response.Write("<script>window.alert('Se ha logeado correctamente');</script>" + "<script>window.setTimeout(location.href='Prueba.aspx', 1000);</script>")
+								Response.Write("<script>window.alert('Se ha logeado correctamente');</script>" + "<script>window.setTimeout(location.href='Reservar.aspx', 1000);</script>")
 							Else
 								MessageBox.Show("Email y/o contraseña incorrectos.", "ERROR DE LOGIN", MessageBoxButtons.OK, MessageBoxIcon.Error)
 							End If

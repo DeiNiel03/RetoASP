@@ -13,9 +13,9 @@
 		boton.InnerText = "Botón"
 		boton.Attributes.Add("onClick", "alert('Hola')")
 		Panel1.Controls.Add(boton)
+
+
 		Dim texto As String = "Mi texto"
-
-
 		Dim div = New HtmlGenericControl("div")
 		div.InnerHtml = "<Label>" + texto + "</Label>"
 
