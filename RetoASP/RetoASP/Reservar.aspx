@@ -8,11 +8,11 @@
     <title></title>
     <style type="text/css">
         .auto-style1 {
-            height: 627px;
+            height: 848px;
         }
         </style>
 </head>
-<body>
+<body style="height: 977px">
     <form id="form1" runat="server" class="auto-style1">
         <asp:DropDownList ID="DropTipo" runat="server" placeholder="Email" Height="20px" Width="140px" AutoPostBack="True">
         </asp:DropDownList>
@@ -47,69 +47,19 @@
         <br />
         <asp:Label ID="lblNO" runat="server" Font-Bold="True" ForeColor="Red" Text="Sin Resultados De Busqueda"></asp:Label>
         <br />
+        <asp:ListBox ID="listNombres" runat="server" AutoPostBack="True" Height="143px" Width="171px"></asp:ListBox>
         <br />
+        <br />
+        <br />
+        <br />
+        <asp:Image ID="Imagen" runat="server" Height="134px" Width="214px" />
 
-        <asp:Label ID="LabelNombre" runat="server" Font-Bold="True" Font-Italic="True" Text="Nombre:"></asp:Label>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        <asp:Label ID="LabelInfo" runat="server" Text="Descripción:" Font-Bold="True" Font-Italic="True"></asp:Label>
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        <asp:Label ID="LabelDireccion" runat="server" Text="Dirección:" Font-Bold="True" Font-Italic="True"></asp:Label>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        <asp:Label ID="LabelPostal" runat="server" Font-Bold="True" Font-Italic="True" Text="Código Postal:"></asp:Label>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        <asp:Label ID="LabelTelefono" runat="server" Text="Teléfono:" Font-Bold="True" Font-Italic="True"></asp:Label>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        <asp:Label ID="LabelEmail" runat="server" Text="Email:" Font-Bold="True" Font-Italic="True"></asp:Label>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        <asp:Label ID="LabelWeb" runat="server" Text="Pagina Web:" Font-Bold="True" Font-Italic="True"></asp:Label>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        <br />
-        <br />
-        <asp:Label ID="lblNombre" runat="server"></asp:Label>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        <asp:Label ID="lblInfo" runat="server"></asp:Label>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <asp:Label ID="lblDireccion" runat="server" Height="20px" Width="120px"></asp:Label>
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <asp:Label ID="lblPostal" runat="server"></asp:Label>
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <asp:Label ID="lblTelefono" runat="server"></asp:Label>
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <asp:Label ID="lblEmail" runat="server"></asp:Label>
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <asp:Label ID="lblLink" runat="server"></asp:Label>
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        <br />
-        <br />
-        <br />
-        <asp:GridView ID="GridView1" runat="server">
-         
-        </asp:GridView>
-        <br />
-        <br />
-        <br />
-        <asp:Label ID="LabelCapacidad" runat="server" Font-Bold="True" Font-Italic="True" Text="Capacidad:"></asp:Label>
-        <br />
-        <asp:Label ID="lblCapacidad" runat="server"></asp:Label>
-        <br />
-        <br />
-        <br />
-&nbsp;<asp:Label ID="LabelImagen" runat="server" Font-Bold="True" Font-Italic="True" Text="Imagen:"></asp:Label>
-        <br />
-        <br />
-&nbsp;<asp:Image ID="Imagen" runat="server" Height="134px" Width="214px" />
-
-        <br />
-        <br />
-&nbsp;<br />
-        <br />
-&nbsp;<br />
-        <br />
-        <br />
         <br />
         <asp:Label ID="labelFiltros" runat="server" Text="0" Visible="False"></asp:Label>
         <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
     </form>
-    <asp:Panel ID="Panel1" runat="server"></asp:Panel>
-    </body>
+     <asp:Panel ID="Panel1" runat="server">
+     </asp:Panel>
+
+</body>
 </html>

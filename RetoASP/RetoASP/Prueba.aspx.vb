@@ -17,7 +17,8 @@
 
 		Dim texto As String = "Mi texto"
 		Dim div = New HtmlGenericControl("div")
-		div.InnerHtml = "<Label>" + texto + "</Label>"
+		Dim tex As String = "<Label>" + texto + "</Label>"
+		div.InnerHtml = tex
 
 		Panel1.Controls.Add(div)
 
