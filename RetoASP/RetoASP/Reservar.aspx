@@ -8,7 +8,7 @@
     <title></title>
     <style type="text/css">
         .auto-style1 {
-            height: 848px;
+            height: 280px;
         }
         </style>
 </head>
@@ -47,12 +47,7 @@
         <br />
         <asp:Label ID="lblNO" runat="server" Font-Bold="True" ForeColor="Red" Text="Sin Resultados De Busqueda"></asp:Label>
         <br />
-        <asp:ListBox ID="listNombres" runat="server" AutoPostBack="True" Height="143px" Width="171px"></asp:ListBox>
         <br />
-        <br />
-        <br />
-        <br />
-        <asp:Image ID="Imagen" runat="server" Height="134px" Width="214px" />
 
         <br />
         <asp:Label ID="labelFiltros" runat="server" Text="0" Visible="False"></asp:Label>

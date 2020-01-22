@@ -80,7 +80,7 @@ Public Class WebForm3
 	Sub sacarNombresConFiltros()
 
 		Try
-			Dim sqlQuery As String = "SELECT documentname, FROM alojamientos_fac.alojamientos WHERE lodgingtype = @idTipo AND municipality = @idMuni AND territory = @idPro AND restaurant = @idRest AND autocaravana = @idCaravan AND store = @idTienda"
+			Dim sqlQuery As String = "SELECT documentname, address, postalcode, phone, tourismemail, web, capacity, imagen FROM alojamientos_fac.alojamientos WHERE lodgingtype = @idTipo AND municipality = @idMuni AND territory = @idPro AND restaurant = @idRest AND autocaravana = @idCaravan AND store = @idTienda AND activo = @idActivo"
 
 			Using sqlComm As New MySqlCommand()
 				With sqlComm
@@ -90,6 +90,7 @@ Public Class WebForm3
 					.Parameters.AddWithValue("@idTipo", DropTipo.SelectedItem)
 					.Parameters.AddWithValue("@idMuni", DropMunicipio.SelectedItem)
 					.Parameters.AddWithValue("@idPro", CInt(DropProvincia.SelectedValue))
+					.Parameters.AddWithValue("@idActivo", 1)
 
 					If RBsi.Checked Then
 						.Parameters.AddWithValue("@idRest", 1)
@@ -114,14 +115,48 @@ Public Class WebForm3
 					Dim sqlReader As MySqlDataReader = sqlComm.ExecuteReader()
 					If Not sqlReader.HasRows Then
 						lblNO.Visible = True
-						listNombres.Visible = False
 					End If
 					While sqlReader.Read()
-						listNombres.Visible = True
-						listNombres.Items.Add(sqlReader("documentname"))
+						Dim div As New HtmlGenericControl("div")
+						div.Attributes.Add("class", "item")
+						Dim html As String = ""
+						html = html + "<img src='" + "data:image/jpg;base64," & Convert.ToBase64String(sqlReader("imagen")) + "'>"
+						html = html + "<label class='lblnombre'>" + sqlReader("documentname").ToString + "</label>"
+						html = html + "<label class='lbldescripcion'>" + sqlReader("turismdescription") + "</label>"
+						html = html + "<label class='lbldireccion'>" + sqlReader("address").ToString + "</label>"
+						html = html + "<label class='lblcodpostal'>" + sqlReader("postalcode").ToString + "</label>"
+						html = html + "<label class='lbltelefono'>" + sqlReader("phone").ToString + "</label>"
+						html = html + "<label class='lblemail'>" + sqlReader("tourismemail").ToString + "</label>"
+						html = html + "<label class='lblweb'>" + sqlReader("web").ToString + "</label>"
+						html = html + "<label class='lblrestaurante'>"
+						If sqlReader("restaurant") = 1 Then
+							html = html + "Si"
+						Else
+							html = html + "No"
+						End If
+						html = html + "</label>"
+
+						html = html + "<label class='lblautocaravana'>"
+						If sqlReader("autocaravana") = 1 Then
+							html = html + "Si"
+						Else
+							html = html + "No"
+						End If
+
+						html = html + "<label class='lblstore'>"
+						If sqlReader("store") = 1 Then
+							html = html + "Si"
+						Else
+							html = html + "No"
+						End If
+						html = html + "</label>"
+						html = html + "<label class='lblcapacidad'>" + sqlReader("capacity").ToString + "</label>"
+
+						div.InnerHtml = html
+						Panel1.Controls.Add(div)
 					End While
 				Catch ex As MySqlException
-					MessageBox.Show(ex.Message, "ERROR NOMBRE DE ALOJAMIENTOS", MessageBoxButtons.OK, MessageBoxIcon.Error)
+					MessageBox.Show("El alojamiento no esta disponible", "ERROR DE ALOJAMIENTO", MessageBoxButtons.OK, MessageBoxIcon.Error)
 				End Try
 			End Using
 		Catch ex As MySql.Data.MySqlClient.MySqlException
@@ -133,11 +168,11 @@ Public Class WebForm3
 	Sub sacarNombresSinfiltros()
 		Try
 
-			Dim comando As New MySqlCommand("SELECT `documentname`, `address`, `phone`, `tourismemail`, `web`, `postalcode`, `capacity`, `imagen` FROM alojamientos_fac.alojamientos WHERE lodgingtype = @idTipo AND municipality = @idMuni AND territory = @idPro", conexion)
+			Dim comando As New MySqlCommand("SELECT `documentname`,`turismdescription`, `address`, `phone`, `tourismemail`, `web`, `postalcode`, `capacity`, `imagen`, `restaurant`, `store`, `autocaravana` FROM alojamientos_fac.alojamientos WHERE lodgingtype = @idTipo AND municipality = @idMuni AND territory = @idPro AND activo = @idActivo", conexion)
 			comando.Parameters.Add("@idTipo", MySqlDbType.VarChar).Value = DropTipo.SelectedItem
 			comando.Parameters.Add("@idMuni", MySqlDbType.VarChar).Value = DropMunicipio.SelectedItem
 			comando.Parameters.Add("@idPro", MySqlDbType.Int16).Value = DropProvincia.SelectedValue
-			'comando.Parameters.Add("@idactivo", 0)
+			comando.Parameters.Add("@idActivo", MySqlDbType.Int16).Value = 1
 
 			conexion.Open()
 			Dim sqlReader As MySqlDataReader = comando.ExecuteReader()
@@ -147,59 +182,47 @@ Public Class WebForm3
 				div.Attributes.Add("class", "item")
 				Dim html As String = ""
 				html = html + "<img src='" + "data:image/jpg;base64," & Convert.ToBase64String(sqlReader("imagen")) + "'>"
-				html = html + "<label class='nombre'>" + sqlReader("documentname").ToString + "&nbsp;&nbsp;&nbsp;&nbsp" + "</label>"
-				html = html + "<label class='direccion'>" + sqlReader("address").ToString + "&nbsp;&nbsp;&nbsp;&nbsp" + "</label>"
-				html = html + "<label class='codpostal'>" + sqlReader("postalcode").ToString + "&nbsp;&nbsp;&nbsp;&nbsp" + "</label>"
-				html = html + "<label class='telefono'>" + sqlReader("phone").ToString + "&nbsp;&nbsp;&nbsp;&nbsp" + "</label>"
-				html = html + "<label class='email'>" + sqlReader("tourismemail").ToString + "&nbsp;&nbsp;&nbsp;&nbsp" + "</label>"
-				html = html + "<label class='web'>" + sqlReader("web").ToString + "&nbsp;&nbsp;&nbsp;&nbsp" + "</label>"
-				html = html + "<label class='capacidad'>" + sqlReader("capacity").ToString + "&nbsp;&nbsp;&nbsp;&nbsp" + "</label>"
+				html = html + "<label class='lblnombre'>" + sqlReader("documentname").ToString + "</label>"
+				html = html + "<label class='lbldescripcion'>" + sqlReader("turismdescription") + "</label>"
+				html = html + "<label class='lbldireccion'>" + sqlReader("address").ToString + "</label>"
+				html = html + "<label class='lblcodpostal'>" + sqlReader("postalcode").ToString + "</label>"
+				html = html + "<label class='lbltelefono'>" + sqlReader("phone").ToString + "</label>"
+				html = html + "<label class='lblemail'>" + sqlReader("tourismemail").ToString + "</label>"
+				html = html + "<label class='lblweb'>" + sqlReader("web").ToString + "</label>"
+				html = html + "<label class='lblrestaurante'>"
+				If sqlReader("restaurant") = 1 Then
+					html = html + "Si"
+				Else
+					html = html + "No"
+				End If
+				html = html + "</label>"
+
+				html = html + "<label class='lblautocaravana'>"
+				If sqlReader("autocaravana") = 1 Then
+					html = html + "Si"
+				Else
+					html = html + "No"
+				End If
+
+				html = html + "<label class='lblstore'>"
+				If sqlReader("store") = 1 Then
+					html = html + "Si"
+				Else
+					html = html + "No"
+				End If
+				html = html + "</label>"
+				html = html + "<label class='lblcapacidad'>" + sqlReader("capacity").ToString + "</label>"
 
 				div.InnerHtml = html
 				Panel1.Controls.Add(div)
 			End While
 			If Not sqlReader.HasRows Then
-				listNombres.Visible = False
 				lblNO.Visible = True
 			End If
 		Catch ex As MySqlException
-			MessageBox.Show(ex.Message, "ERROR NOMBRE SIN FILTROS", MessageBoxButtons.OK, MessageBoxIcon.Error)
+			MessageBox.Show("El alojamiento no esta disponible", "ERROR DE ALOJAMIENTO", MessageBoxButtons.OK, MessageBoxIcon.Error)
 		End Try
 	End Sub
-
-	'Sub sacarNombresSinFiltros()
-	'	Try
-	'		Dim sqlQuery As String = "SELECT documentname, address, phone, tourismemail, web, postalcode, capacity FROM alojamientos_fac.alojamientos WHERE lodgingtype = @idTipo AND municipality = @idMuni AND territory = @idPro AND activo = @idactivo"
-
-	'		Using sqlComm As New MySqlCommand()
-	'			With sqlComm
-	'				.Connection = conexion
-	'				.CommandText = sqlQuery
-	'				.CommandType = CommandType.Text
-	'				.Parameters.AddWithValue("@idTipo", DropTipo.SelectedItem)
-	'				.Parameters.AddWithValue("@idMuni", DropMunicipio.SelectedItem)
-	'				.Parameters.AddWithValue("@idPro", CInt(DropProvincia.SelectedValue))
-	'				.Parameters.AddWithValue("@idactivo", 1)
-	'			End With
-	'			Try
-	'				conexion.Open()
-	'				Dim sqlReader As MySqlDataReader = sqlComm.ExecuteReader()
-
-	'				While sqlReader.Read()
-	'					listNombres.Items.Add(sqlReader("documentname"))
-	'				End While
-	'				If Not sqlReader.HasRows Then
-	'					lblNO.Visible = True
-	'				End If
-	'			Catch ex As MySqlException
-	'				MessageBox.Show(ex.Message, "ERROR NOMBRE DE ALOJAMIENTOS", MessageBoxButtons.OK, MessageBoxIcon.Error)
-	'			End Try
-	'		End Using
-	'	Catch ex As MySql.Data.MySqlClient.MySqlException
-	'		MessageBox.Show(ex.Message, "ERROR CON LA BASE DE DATOS", MessageBoxButtons.OK, MessageBoxIcon.Error)
-	'	End Try
-	'	conexion.Close()
-	'End Sub
 
 	Sub sinResultados()
 		lblNO.Visible = False
@@ -255,43 +278,12 @@ Public Class WebForm3
 	Protected Sub DropMunicipio_SelectedIndexChanged(sender As Object, e As EventArgs) Handles DropMunicipio.SelectedIndexChanged, RBsi.CheckedChanged, RBno.CheckedChanged, DropProvincia.SelectedIndexChanged, DropTipo.SelectedIndexChanged, RBcsi.CheckedChanged, RBcno.CheckedChanged, RBtsi.CheckedChanged, RBtno.CheckedChanged, btnMenosfiltros.Click, btnMasfiltros.Click
 
 		If labelFiltros.Text = 1 Then
-			listNombres.Items.Clear()
 			sacarNombresConFiltros()
 		ElseIf labelFiltros.Text = 0 Then
 			deshabilitarFiltros()
-			listNombres.Items.Clear()
-			sacarNombresSinFiltros()
+			sacarNombresSinfiltros()
 		End If
 
-	End Sub
-	Protected Sub btnInformacion_Click(sender As Object, e As EventArgs) Handles btnInformacion.Click
-		cargarInformacion()
-	End Sub
-	Sub cargarInformacion()
-		Try
-			Dim sqlQuery As String = "SELECT turismdescription, address, phone, tourismemail, web, postalcode, capacity FROM alojamientos_fac.alojamientos WHERE documentname = @idNombre"
-
-			Using sqlComm As New MySqlCommand()
-				With sqlComm
-					.Connection = conexion
-					.CommandText = sqlQuery
-					.CommandType = CommandType.Text
-					.Parameters.AddWithValue("@idNombre", listNombres.SelectedItem.ToString)
-				End With
-				Try
-					conexion.Open()
-					Dim sqlReader As MySqlDataReader = sqlComm.ExecuteReader()
-					While sqlReader.Read()
-
-					End While
-				Catch ex As MySqlException
-					MessageBox.Show(ex.Message, "ERROR DE INFORMACION", MessageBoxButtons.OK, MessageBoxIcon.Error)
-				End Try
-			End Using
-		Catch ex As MySql.Data.MySqlClient.MySqlException
-			MessageBox.Show(ex.Message, "ERROR CON LA BASE DE DATOS", MessageBoxButtons.OK, MessageBoxIcon.Error)
-		End Try
-		conexion.Close()
 	End Sub
 	'Sub sacarImagen()
 	'	Try

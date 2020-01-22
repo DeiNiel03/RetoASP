@@ -158,24 +158,6 @@ Partial Public Class WebForm3
 	Protected WithEvents lblNO As Global.System.Web.UI.WebControls.Label
 
 	'''<summary>
-	'''Control listNombres.
-	'''</summary>
-	'''<remarks>
-	'''Campo generado automáticamente.
-	'''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-	'''</remarks>
-	Protected WithEvents listNombres As Global.System.Web.UI.WebControls.ListBox
-
-	'''<summary>
-	'''Control Imagen.
-	'''</summary>
-	'''<remarks>
-	'''Campo generado automáticamente.
-	'''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-	'''</remarks>
-	Protected WithEvents Imagen As Global.System.Web.UI.WebControls.Image
-
-	'''<summary>
 	'''Control labelFiltros.
 	'''</summary>
 	'''<remarks>
