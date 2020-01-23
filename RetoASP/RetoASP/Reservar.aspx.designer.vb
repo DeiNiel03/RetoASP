@@ -158,6 +158,24 @@ Partial Public Class WebForm3
 	Protected WithEvents lblNO As Global.System.Web.UI.WebControls.Label
 
 	'''<summary>
+	'''Control RBAsc.
+	'''</summary>
+	'''<remarks>
+	'''Campo generado automáticamente.
+	'''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+	'''</remarks>
+	Protected WithEvents RBAsc As Global.System.Web.UI.WebControls.RadioButton
+
+	'''<summary>
+	'''Control RBDesc.
+	'''</summary>
+	'''<remarks>
+	'''Campo generado automáticamente.
+	'''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+	'''</remarks>
+	Protected WithEvents RBDesc As Global.System.Web.UI.WebControls.RadioButton
+
+	'''<summary>
 	'''Control labelFiltros.
 	'''</summary>
 	'''<remarks>

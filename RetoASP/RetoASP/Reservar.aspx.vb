@@ -44,7 +44,7 @@ Public Class WebForm3
 	End Sub
 
 	Sub cargarProvincias()
-		Dim sqlQuery As String = "SELECT `nombre`, `id` FROM alojamientos_fac.provincias"
+		Dim sqlQuery As String = "SELECT `nombre`, `id` FROM alojamientos_fac.provincias ORDER BY `nombre` ASC"
 
 		Try
 
@@ -62,6 +62,7 @@ Public Class WebForm3
 		'DropProvincia_SelectedIndexChanged(DropProvincia,)
 	End Sub
 
+
 	Sub cargarMunicipio()
 		Try
 			Dim adapter As New MySqlDataAdapter("SELECT DISTINCT `municipality` FROM alojamientos_fac.alojamientos WHERE territory = " + DropProvincia.SelectedValue + " AND lodgingtype = '" + DropTipo.SelectedItem.Text + "' ORDER BY `municipality` ASC", conexion)
@@ -76,11 +77,24 @@ Public Class WebForm3
 		End Try
 
 	End Sub
-
+	Sub mostrarOrden()
+		RBAsc.Visible = True
+		RBDesc.Visible = True
+	End Sub
+	Sub ocultarOrden()
+		RBAsc.Visible = False
+		RBDesc.Visible = False
+	End Sub
 	Sub sacarNombresConFiltros()
-
+		mostrarOrden()
 		Try
-			Dim sqlQuery As String = "SELECT documentname, address, postalcode, phone, tourismemail, web, capacity, imagen FROM alojamientos_fac.alojamientos WHERE lodgingtype = @idTipo AND municipality = @idMuni AND territory = @idPro AND restaurant = @idRest AND autocaravana = @idCaravan AND store = @idTienda AND activo = @idActivo"
+			Dim sqlQuery As String
+
+			If RBAsc.Checked = True Then
+				sqlQuery = "SELECT documentname,turismdescription, address, postalcode, phone, tourismemail, web, capacity,restaurant,autocaravana,store, imagen FROM alojamientos_fac.alojamientos WHERE lodgingtype = @idTipo AND municipality = @idMuni AND territory = @idPro AND restaurant = @idRest AND autocaravana = @idCaravan AND store = @idTienda AND activo = @idActivo ORDER BY documentname ASC"
+			Else
+				sqlQuery = "SELECT documentname,turismdescription, address, postalcode, phone, tourismemail, web, capacity,restaurant,autocaravana,store, imagen FROM alojamientos_fac.alojamientos WHERE lodgingtype = @idTipo AND municipality = @idMuni AND territory = @idPro AND restaurant = @idRest AND autocaravana = @idCaravan AND store = @idTienda AND activo = @idActivo ORDER BY documentname DESC"
+			End If
 
 			Using sqlComm As New MySqlCommand()
 				With sqlComm
@@ -115,6 +129,7 @@ Public Class WebForm3
 					Dim sqlReader As MySqlDataReader = sqlComm.ExecuteReader()
 					If Not sqlReader.HasRows Then
 						lblNO.Visible = True
+						ocultarOrden()
 					End If
 					While sqlReader.Read()
 						Dim div As New HtmlGenericControl("div")
@@ -122,7 +137,7 @@ Public Class WebForm3
 						Dim html As String = ""
 						html = html + "<img src='" + "data:image/jpg;base64," & Convert.ToBase64String(sqlReader("imagen")) + "'>"
 						html = html + "<label class='lblnombre'>" + sqlReader("documentname").ToString + "</label>"
-						html = html + "<label class='lbldescripcion'>" + sqlReader("turismdescription") + "</label>"
+						html = html + "<label class='lbldescripcion'>" + sqlReader("turismdescription").ToString + "</label>"
 						html = html + "<label class='lbldireccion'>" + sqlReader("address").ToString + "</label>"
 						html = html + "<label class='lblcodpostal'>" + sqlReader("postalcode").ToString + "</label>"
 						html = html + "<label class='lbltelefono'>" + sqlReader("phone").ToString + "</label>"
@@ -166,59 +181,73 @@ Public Class WebForm3
 	End Sub
 
 	Sub sacarNombresSinfiltros()
+		mostrarOrden()
 		Try
-
-			Dim comando As New MySqlCommand("SELECT `documentname`,`turismdescription`, `address`, `phone`, `tourismemail`, `web`, `postalcode`, `capacity`, `imagen`, `restaurant`, `store`, `autocaravana` FROM alojamientos_fac.alojamientos WHERE lodgingtype = @idTipo AND municipality = @idMuni AND territory = @idPro AND activo = @idActivo", conexion)
-			comando.Parameters.Add("@idTipo", MySqlDbType.VarChar).Value = DropTipo.SelectedItem
-			comando.Parameters.Add("@idMuni", MySqlDbType.VarChar).Value = DropMunicipio.SelectedItem
-			comando.Parameters.Add("@idPro", MySqlDbType.Int16).Value = DropProvincia.SelectedValue
-			comando.Parameters.Add("@idActivo", MySqlDbType.Int16).Value = 1
-
-			conexion.Open()
-			Dim sqlReader As MySqlDataReader = comando.ExecuteReader()
-
-			While sqlReader.Read()
-				Dim div As New HtmlGenericControl("div")
-				div.Attributes.Add("class", "item")
-				Dim html As String = ""
-				html = html + "<img src='" + "data:image/jpg;base64," & Convert.ToBase64String(sqlReader("imagen")) + "'>"
-				html = html + "<label class='lblnombre'>" + sqlReader("documentname").ToString + "</label>"
-				html = html + "<label class='lbldescripcion'>" + sqlReader("turismdescription") + "</label>"
-				html = html + "<label class='lbldireccion'>" + sqlReader("address").ToString + "</label>"
-				html = html + "<label class='lblcodpostal'>" + sqlReader("postalcode").ToString + "</label>"
-				html = html + "<label class='lbltelefono'>" + sqlReader("phone").ToString + "</label>"
-				html = html + "<label class='lblemail'>" + sqlReader("tourismemail").ToString + "</label>"
-				html = html + "<label class='lblweb'>" + sqlReader("web").ToString + "</label>"
-				html = html + "<label class='lblrestaurante'>"
-				If sqlReader("restaurant") = 1 Then
-					html = html + "Si"
-				Else
-					html = html + "No"
-				End If
-				html = html + "</label>"
-
-				html = html + "<label class='lblautocaravana'>"
-				If sqlReader("autocaravana") = 1 Then
-					html = html + "Si"
-				Else
-					html = html + "No"
-				End If
-
-				html = html + "<label class='lblstore'>"
-				If sqlReader("store") = 1 Then
-					html = html + "Si"
-				Else
-					html = html + "No"
-				End If
-				html = html + "</label>"
-				html = html + "<label class='lblcapacidad'>" + sqlReader("capacity").ToString + "</label>"
-
-				div.InnerHtml = html
-				Panel1.Controls.Add(div)
-			End While
-			If Not sqlReader.HasRows Then
-				lblNO.Visible = True
+			Dim comando As String
+			If RBAsc.Checked = True Then
+				comando = "SELECT documentname, turismdescription, address, phone, tourismemail, web, postalcode, capacity, imagen, restaurant, store, autocaravana FROM alojamientos_fac.alojamientos WHERE lodgingtype = @idTipo AND municipality = @idMuni AND territory = @idPro AND activo = @idActivo ORDER BY documentname ASC"
+			ElseIf RBDesc.Checked = True Then
+				comando = "SELECT documentname, turismdescription, address, phone, tourismemail, web, postalcode, capacity, imagen, restaurant, store, autocaravana FROM alojamientos_fac.alojamientos WHERE lodgingtype = @idTipo AND municipality = @idMuni AND territory = @idPro AND activo = @idActivo ORDER BY documentname DESC"
 			End If
+			Using sqlComm As New MySqlCommand()
+				With sqlComm
+					.Connection = conexion
+					.CommandText = comando
+					.CommandType = CommandType.Text
+					.Parameters.Add("@idTipo", MySqlDbType.VarChar).Value = DropTipo.SelectedItem
+					.Parameters.Add("@idMuni", MySqlDbType.VarChar).Value = DropMunicipio.SelectedItem
+					.Parameters.Add("@idPro", MySqlDbType.Int16).Value = DropProvincia.SelectedValue
+					.Parameters.Add("@idActivo", MySqlDbType.Int16).Value = 1
+				End With
+				conexion.Open()
+				Dim sqlReader As MySqlDataReader = sqlComm.ExecuteReader()
+
+				While sqlReader.Read()
+					Dim div As New HtmlGenericControl("div")
+					div.Attributes.Add("class", "item")
+					Dim html As String = ""
+					html = html + "<img src='" + "data:image/jpg;base64," & Convert.ToBase64String(sqlReader("imagen")) + "'>"
+					html = html + "<label class='lblnombre'>" + sqlReader("documentname").ToString + "</label>"
+					html = html + "<label class='lbldescripcion'>" + sqlReader("turismdescription") + "</label>"
+					html = html + "<label class='lbldireccion'>" + sqlReader("address").ToString + "</label>"
+					html = html + "<label class='lblcodpostal'>" + sqlReader("postalcode").ToString + "</label>"
+					html = html + "<label class='lbltelefono'>" + sqlReader("phone").ToString + "</label>"
+					html = html + "<label class='lblemail'>" + sqlReader("tourismemail").ToString + "</label>"
+					html = html + "<label class='lblweb'>" + sqlReader("web").ToString + "</label>"
+					html = html + "<label class='lblrestaurante'>"
+					'html = html + "<button class='botonReservar'>" + "Reservar" + "</button>"
+
+					If sqlReader("restaurant") = 1 Then
+						html = html + "Si"
+					Else
+						html = html + "No"
+					End If
+					html = html + "</label>"
+
+					html = html + "<label class='lblautocaravana'>"
+					If sqlReader("autocaravana") = 1 Then
+						html = html + "Si"
+					Else
+						html = html + "No"
+					End If
+
+					html = html + "<label class='lblstore'>"
+					If sqlReader("store") = 1 Then
+						html = html + "Si"
+					Else
+						html = html + "No"
+					End If
+					html = html + "</label>"
+					html = html + "<label class='lblcapacidad'>" + sqlReader("capacity").ToString + "</label>"
+
+					div.InnerHtml = html
+					Panel1.Controls.Add(div)
+				End While
+				If Not sqlReader.HasRows Then
+					lblNO.Visible = True
+					ocultarOrden()
+				End If
+			End Using
 		Catch ex As MySqlException
 			MessageBox.Show("El alojamiento no esta disponible", "ERROR DE ALOJAMIENTO", MessageBoxButtons.OK, MessageBoxIcon.Error)
 		End Try
@@ -276,14 +305,20 @@ Public Class WebForm3
 	End Sub
 
 	Protected Sub DropMunicipio_SelectedIndexChanged(sender As Object, e As EventArgs) Handles DropMunicipio.SelectedIndexChanged, RBsi.CheckedChanged, RBno.CheckedChanged, DropProvincia.SelectedIndexChanged, DropTipo.SelectedIndexChanged, RBcsi.CheckedChanged, RBcno.CheckedChanged, RBtsi.CheckedChanged, RBtno.CheckedChanged, btnMenosfiltros.Click, btnMasfiltros.Click
+		metodosAEjecutar()
+	End Sub
 
+	Protected Sub Ordenacion_CheckedChanged(sender As Object, e As EventArgs) Handles RBAsc.CheckedChanged, RBDesc.CheckedChanged
+		metodosAEjecutar()
+	End Sub
+
+	Sub metodosAEjecutar()
 		If labelFiltros.Text = 1 Then
 			sacarNombresConFiltros()
 		ElseIf labelFiltros.Text = 0 Then
 			deshabilitarFiltros()
 			sacarNombresSinfiltros()
 		End If
-
 	End Sub
 	'Sub sacarImagen()
 	'	Try
