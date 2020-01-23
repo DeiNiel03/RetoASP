@@ -14,6 +14,12 @@
 </head>
 <body style="height: 977px">
     <form id="form1" runat="server" class="auto-style1">
+        <asp:Label ID="Label1" runat="server" Text="Tipo de alojamieto"></asp:Label>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <asp:Label ID="Label2" runat="server" Text="Provincia"></asp:Label>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <asp:Label ID="Label3" runat="server" Text="Municipio"></asp:Label>
+        <br />
         <asp:DropDownList ID="DropTipo" runat="server" placeholder="Email" Height="20px" Width="140px" AutoPostBack="True">
         </asp:DropDownList>
 &nbsp;&nbsp;&nbsp;&nbsp;
@@ -56,9 +62,10 @@
         <br />
         <asp:Label ID="labelFiltros" runat="server" Text="0" Visible="False"></asp:Label>
         <br />
-    </form>
      <asp:Panel ID="Panel1" runat="server">
      </asp:Panel>
 
+    </form>
+     
 </body>
 </html>
