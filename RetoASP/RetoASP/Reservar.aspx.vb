@@ -214,8 +214,6 @@ Public Class WebForm3
 					html = html + "<label class='lbltelefono'>" + sqlReader("phone").ToString + "</label>"
 					html = html + "<label class='lblemail'>" + sqlReader("tourismemail").ToString + "</label>"
 					html = html + "<label class='lblweb'>" + sqlReader("web").ToString + "</label>"
-					html = html + "<label class='lblrestaurante'>"
-					'html = html + "<button class='botonReservar'>" + "Reservar" + "</button>"
 
 					If sqlReader("restaurant") = 1 Then
 						html = html + "Si"
@@ -239,6 +237,7 @@ Public Class WebForm3
 					End If
 					html = html + "</label>"
 					html = html + "<label class='lblcapacidad'>" + sqlReader("capacity").ToString + "</label>"
+					html = html + "<button class='botonReservar'>" + "Reservar" + "</button>"
 
 					div.InnerHtml = html
 					Panel1.Controls.Add(div)
