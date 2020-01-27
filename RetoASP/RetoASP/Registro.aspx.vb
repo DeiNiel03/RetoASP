@@ -37,7 +37,7 @@ Public Class WebForm1
 			Dim connString As String = "server=188.213.5.150;Port=3306; user id=ldmj; password=ladamijo; database=alojamientos_fac"
 
 			'la contraseña se incripta en el propio insert
-			Dim sqlQuery As String = "INSERT INTO usuarios (DNI, NOMBRE, APELLIDO, CONTRASENA,TELEFONO, EMAIL, ADMINISTRADOR) VALUES ('" + dni + "','" + nom + "','" + ape + "',MD5('" + contra + "'),'" + tel + "','" + email + "', '0')"
+			Dim sqlQuery As String = "INSERT INTO usuarios (DNI, NOMBRE, APELLIDO, CONTRASENA,TELEFONO, EMAIL, ADMINISTRADOR, ACTIVO) VALUES ('" + dni + "','" + nom + "','" + ape + "',MD5('" + contra + "'),'" + tel + "','" + email + "', '0', 'activo')"
 
 			Using sqlConn As New MySqlConnection(connString)
 				Using sqlComm As New MySqlCommand()

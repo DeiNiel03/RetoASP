@@ -98,9 +98,9 @@ Public Class WebForm3
 			Dim sqlQuery As String
 
 			If RBAsc.Checked = True Then
-				sqlQuery = "SELECT documentname,turismdescription, address, postalcode, phone, tourismemail, web, capacity,restaurant,autocaravana,store, imagen FROM alojamientos_fac.alojamientos WHERE lodgingtype = @idTipo AND municipality = @idMuni AND territory = @idPro AND restaurant = @idRest AND autocaravana = @idCaravan AND store = @idTienda AND activo = @idActivo ORDER BY documentname ASC"
+				sqlQuery = "SELECT signatura, documentname,turismdescription, address, postalcode, phone, tourismemail, web, capacity,restaurant,autocaravana,store, imagen FROM alojamientos_fac.alojamientos WHERE lodgingtype = @idTipo AND municipality = @idMuni AND territory = @idPro AND restaurant = @idRest AND autocaravana = @idCaravan AND store = @idTienda AND activo = @idActivo ORDER BY documentname ASC"
 			Else
-				sqlQuery = "SELECT documentname,turismdescription, address, postalcode, phone, tourismemail, web, capacity,restaurant,autocaravana,store, imagen FROM alojamientos_fac.alojamientos WHERE lodgingtype = @idTipo AND municipality = @idMuni AND territory = @idPro AND restaurant = @idRest AND autocaravana = @idCaravan AND store = @idTienda AND activo = @idActivo ORDER BY documentname DESC"
+				sqlQuery = "SELECT signatura, documentname,turismdescription, address, postalcode, phone, tourismemail, web, capacity,restaurant,autocaravana,store, imagen FROM alojamientos_fac.alojamientos WHERE lodgingtype = @idTipo AND municipality = @idMuni AND territory = @idPro AND restaurant = @idRest AND autocaravana = @idCaravan AND store = @idTienda AND activo = @idActivo ORDER BY documentname DESC"
 			End If
 
 			Using sqlComm As New MySqlCommand()
@@ -138,6 +138,8 @@ Public Class WebForm3
 						ocultarOrden()
 					End If
 					While sqlReader.Read()
+						id = sqlReader("signatura")
+
 						Dim div As New HtmlGenericControl("div")
 						div.Attributes.Add("class", "item")
 						Dim html As String = ""
@@ -174,8 +176,20 @@ Public Class WebForm3
 						html = html + "<label class='lblcapacidad'>" + sqlReader("capacity").ToString + "</label>"
 
 						div.InnerHtml = html
+
+						Dim boton As New Button
+						boton.ID = id
+						boton.Text = "Reservar"
+						AddHandler boton.Click, AddressOf irAReservar
 						Panel1.Controls.Add(div)
+						Panel1.Controls.Add(boton)
 					End While
+					If Not sqlReader.HasRows Then
+						lblNO.Visible = True
+						ocultarOrden()
+					Else
+						lblNO.Visible = False
+					End If
 				Catch ex As MySqlException
 					'MessageBox.Show("El alojamiento no esta disponible", "ERROR DE ALOJAMIENTO", MessageBoxButtons.OK, MessageBoxIcon.Error)
 				End Try
@@ -183,7 +197,6 @@ Public Class WebForm3
 		Catch ex As MySql.Data.MySqlClient.MySqlException
 			'MessageBox.Show(ex.Message, "ERROR CON LA BASE DE DATOS", MessageBoxButtons.OK, MessageBoxIcon.Error)
 		End Try
-		conexion.Close()
 	End Sub
 
 	Sub sacarNombresSinfiltros()
@@ -272,11 +285,9 @@ Public Class WebForm3
 	End Sub
 	Sub irAReservar(sender As Object, e As EventArgs)
 		Dim btn As Button = CType(sender, Button)
-		Response.Redirect("Realizar.aspx?usuario=" + lblUsuario.Text + "?id=" + btn.ID)
+		Dim s As String = "?usuario=" + lblUsuario.Text + "&id=" + btn.ID
+		Response.Redirect("Realizar.aspx" + s)
 		conexion.Close()
-	End Sub
-	Sub sinResultados()
-
 	End Sub
 
 	Protected Sub btnMasfiltros_Click(sender As Object, e As EventArgs) Handles btnMasfiltros.Click
