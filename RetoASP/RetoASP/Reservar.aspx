@@ -14,6 +14,9 @@
 </head>
 <body style="height: 977px">
     <form id="form1" runat="server" class="auto-style1">
+        <asp:Label ID="lblUsuario" runat="server"></asp:Label>
+        <br />
+        <br />
         <asp:Label ID="Label1" runat="server" Text="Tipo de alojamieto"></asp:Label>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
         <asp:Label ID="Label2" runat="server" Text="Provincia"></asp:Label>
@@ -63,6 +66,7 @@
         <asp:Label ID="labelFiltros" runat="server" Text="0" Visible="False"></asp:Label>
         <br />
      <asp:Panel ID="Panel1" runat="server">
+         <asp:Button ID="Button1" runat="server" Text="Button" />
      </asp:Panel>
 
     </form>

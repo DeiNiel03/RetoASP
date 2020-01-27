@@ -4,12 +4,14 @@ Imports MySql.Data.MySqlClient
 
 Public Class WebForm2
 	Inherits System.Web.UI.Page
+	Dim usuario As String
 
 	Protected Sub btRegistro_Click(sender As Object, e As EventArgs) Handles btRegistro.Click
 		Response.Redirect("Registro.aspx")
 	End Sub
 
 	Protected Sub btnLogin_Click(sender As Object, e As EventArgs) Handles btnLogin.Click
+		usuario = TBEmail.Text
 		Login()
 	End Sub
 
@@ -35,7 +37,8 @@ Public Class WebForm2
 						While sqlReader.Read()
 							If sqlReader("contrasena").ToString().Equals(getMd5Hash(Me.TBPass.Text)) Then
 								'Response.Write("<script>window.alert('Se ha logeado correctamente');</script>" + "<script>window.setTimeout(location.href='Reservar.aspx', 1000);</script>")
-								Response.Write("<script>window.alert('Se ha logeado correctamente');</script>" + "<script>window.setTimeout(location.href='Reservar.aspx', 1000);</script>")
+								Response.Write("<script>window.alert('Se ha logeado correctamente');</script>")
+								Response.Redirect("Elejir.aspx?usuario=" + usuario)
 							Else
 								MessageBox.Show("Email y/o contraseña incorrectos.", "ERROR DE LOGIN", MessageBoxButtons.OK, MessageBoxIcon.Error)
 							End If

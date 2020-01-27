@@ -1,5 +1,5 @@
 ﻿Imports System.IO
-Imports System.Windows.Forms
+'Imports System.Windows.Forms
 Imports MySql.Data.MySqlClient
 
 
@@ -7,14 +7,22 @@ Public Class WebForm3
 	Inherits System.Web.UI.Page
 	Dim panel
 	Dim conexion As New MySqlConnection("datasource=188.213.5.150;port=3306;username=ldmj;password=ladamijo;CharSet=UTF8")
+	Dim id As String
 
 
 	Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
+		lblUsuario.Text = Request.Params("usuario")
 		panel = Panel1
-		sinResultados()
+		lblNO.Visible = False
+		If conexion.State = ConnectionState.Closed Then
+			conexion.Open()
+		End If
 		If Not IsPostBack Then
 			cargarDatos()
+			sacarNombresSinfiltros()
 			deshabilitarFiltros()
+		Else
+			sacarNombresSinfiltros()
 		End If
 	End Sub
 
@@ -22,7 +30,6 @@ Public Class WebForm3
 		cargarTipo()
 		cargarProvincias()
 		cargarMunicipio()
-		sacarNombresSinFiltros()
 	End Sub
 
 	Sub cargarTipo()
@@ -38,7 +45,7 @@ Public Class WebForm3
 			DropTipo.DataTextField = "lodgingtype"
 			DropTipo.DataBind()
 		Catch ex As MySqlException
-			MessageBox.Show(ex.Message, "ERROR TIPO", MessageBoxButtons.OK, MessageBoxIcon.Error)
+			'MessageBox.Show(ex.Message, "ERROR TIPO", MessageBoxButtons.OK, MessageBoxIcon.Error)
 		End Try
 
 	End Sub
@@ -57,7 +64,7 @@ Public Class WebForm3
 			DropProvincia.DataValueField = "id"
 			DropProvincia.DataBind()
 		Catch ex As MySqlException
-			MessageBox.Show(ex.Message, "ERROR PROVINCIAS", MessageBoxButtons.OK, MessageBoxIcon.Error)
+			'MessageBox.Show(ex.Message, "ERROR PROVINCIAS", MessageBoxButtons.OK, MessageBoxIcon.Error)
 		End Try
 		'DropProvincia_SelectedIndexChanged(DropProvincia,)
 	End Sub
@@ -73,7 +80,7 @@ Public Class WebForm3
 			DropMunicipio.DataTextField = "municipality"
 			DropMunicipio.DataBind()
 		Catch ex As MySqlException
-			MessageBox.Show(ex.Message, "ERROR MUNICIPIOS", MessageBoxButtons.OK, MessageBoxIcon.Error)
+			'MessageBox.Show(ex.Message, "ERROR MUNICIPIOS", MessageBoxButtons.OK, MessageBoxIcon.Error)
 		End Try
 
 	End Sub
@@ -125,7 +132,6 @@ Public Class WebForm3
 					End If
 				End With
 				Try
-					conexion.Open()
 					Dim sqlReader As MySqlDataReader = sqlComm.ExecuteReader()
 					If Not sqlReader.HasRows Then
 						lblNO.Visible = True
@@ -171,11 +177,11 @@ Public Class WebForm3
 						Panel1.Controls.Add(div)
 					End While
 				Catch ex As MySqlException
-					MessageBox.Show("El alojamiento no esta disponible", "ERROR DE ALOJAMIENTO", MessageBoxButtons.OK, MessageBoxIcon.Error)
+					'MessageBox.Show("El alojamiento no esta disponible", "ERROR DE ALOJAMIENTO", MessageBoxButtons.OK, MessageBoxIcon.Error)
 				End Try
 			End Using
 		Catch ex As MySql.Data.MySqlClient.MySqlException
-			MessageBox.Show(ex.Message, "ERROR CON LA BASE DE DATOS", MessageBoxButtons.OK, MessageBoxIcon.Error)
+			'MessageBox.Show(ex.Message, "ERROR CON LA BASE DE DATOS", MessageBoxButtons.OK, MessageBoxIcon.Error)
 		End Try
 		conexion.Close()
 	End Sub
@@ -185,9 +191,9 @@ Public Class WebForm3
 		Try
 			Dim comando As String
 			If RBAsc.Checked = True Then
-				comando = "SELECT documentname, turismdescription, address, phone, tourismemail, web, postalcode, capacity, imagen, restaurant, store, autocaravana FROM alojamientos_fac.alojamientos WHERE lodgingtype = @idTipo AND municipality = @idMuni AND territory = @idPro AND activo = @idActivo ORDER BY documentname ASC"
+				comando = "SELECT signatura, documentname, turismdescription, address, phone, tourismemail, web, postalcode, capacity, imagen, restaurant, store, autocaravana FROM alojamientos_fac.alojamientos WHERE lodgingtype = @idTipo AND municipality = @idMuni AND territory = @idPro AND activo = @idActivo ORDER BY documentname ASC"
 			ElseIf RBDesc.Checked = True Then
-				comando = "SELECT documentname, turismdescription, address, phone, tourismemail, web, postalcode, capacity, imagen, restaurant, store, autocaravana FROM alojamientos_fac.alojamientos WHERE lodgingtype = @idTipo AND municipality = @idMuni AND territory = @idPro AND activo = @idActivo ORDER BY documentname DESC"
+				comando = "SELECT signatura, documentname, turismdescription, address, phone, tourismemail, web, postalcode, capacity, imagen, restaurant, store, autocaravana FROM alojamientos_fac.alojamientos WHERE lodgingtype = @idTipo AND municipality = @idMuni AND territory = @idPro AND activo = @idActivo ORDER BY documentname DESC"
 			End If
 			Using sqlComm As New MySqlCommand()
 				With sqlComm
@@ -199,10 +205,14 @@ Public Class WebForm3
 					.Parameters.Add("@idPro", MySqlDbType.Int16).Value = DropProvincia.SelectedValue
 					.Parameters.Add("@idActivo", MySqlDbType.Int16).Value = 1
 				End With
-				conexion.Open()
 				Dim sqlReader As MySqlDataReader = sqlComm.ExecuteReader()
 
+				Panel1.Controls.Clear()
+
 				While sqlReader.Read()
+
+					id = sqlReader("signatura")
+
 					Dim div As New HtmlGenericControl("div")
 					div.Attributes.Add("class", "item")
 					Dim html As String = ""
@@ -237,23 +247,36 @@ Public Class WebForm3
 					End If
 					html = html + "</label>"
 					html = html + "<label class='lblcapacidad'>" + sqlReader("capacity").ToString + "</label>"
-					html = html + "<button class='botonReservar'>" + "Reservar" + "</button>"
+
 
 					div.InnerHtml = html
+
+					Dim boton As New Button
+					boton.ID = id
+					boton.Text = "Reservar"
+					AddHandler boton.Click, AddressOf irAReservar
 					Panel1.Controls.Add(div)
+					Panel1.Controls.Add(boton)
+
 				End While
 				If Not sqlReader.HasRows Then
 					lblNO.Visible = True
 					ocultarOrden()
+				Else
+					lblNO.Visible = False
 				End If
 			End Using
 		Catch ex As MySqlException
-			MessageBox.Show("El alojamiento no esta disponible", "ERROR DE ALOJAMIENTO", MessageBoxButtons.OK, MessageBoxIcon.Error)
+			'MessageBox.Show("El alojamiento no esta disponible", "ERROR DE ALOJAMIENTO", MessageBoxButtons.OK, MessageBoxIcon.Error)
 		End Try
 	End Sub
-
+	Sub irAReservar(sender As Object, e As EventArgs)
+		Dim btn As Button = CType(sender, Button)
+		Response.Redirect("Realizar.aspx?usuario=" + lblUsuario.Text + "?id=" + btn.ID)
+		conexion.Close()
+	End Sub
 	Sub sinResultados()
-		lblNO.Visible = False
+
 	End Sub
 
 	Protected Sub btnMasfiltros_Click(sender As Object, e As EventArgs) Handles btnMasfiltros.Click
@@ -303,7 +326,7 @@ Public Class WebForm3
 		cargarMunicipio()
 	End Sub
 
-	Protected Sub DropMunicipio_SelectedIndexChanged(sender As Object, e As EventArgs) Handles DropMunicipio.SelectedIndexChanged, RBsi.CheckedChanged, RBno.CheckedChanged, DropProvincia.SelectedIndexChanged, DropTipo.SelectedIndexChanged, RBcsi.CheckedChanged, RBcno.CheckedChanged, RBtsi.CheckedChanged, RBtno.CheckedChanged, btnMenosfiltros.Click, btnMasfiltros.Click
+	Protected Sub SelectedIndexChanged(sender As Object, e As EventArgs) Handles DropMunicipio.SelectedIndexChanged, RBsi.CheckedChanged, RBno.CheckedChanged, DropProvincia.SelectedIndexChanged, DropTipo.SelectedIndexChanged, RBcsi.CheckedChanged, RBcno.CheckedChanged, RBtsi.CheckedChanged, RBtno.CheckedChanged, btnMenosfiltros.Click, btnMasfiltros.Click
 		metodosAEjecutar()
 	End Sub
 
