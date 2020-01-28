@@ -8,7 +8,7 @@
     <title></title>
     <style type="text/css">
         .auto-style1 {
-            height: 280px;
+            height: 500px;
         }
         </style>
 </head>
@@ -54,19 +54,17 @@
 &nbsp;<asp:RadioButton ID="RBtno" runat="server" AutoPostBack="True" Checked="True" GroupName="tienda" Text="No" />
         <br />
         <br />
-        <asp:Label ID="lblNO" runat="server" Font-Bold="True" ForeColor="Red" Text="Sin Resultados De Busqueda"></asp:Label>
+        <asp:Label ID="lblNO" runat="server" Font-Bold="True" ForeColor="Red" Text="Sin Resultados De Busqueda" Font-Size="XX-Large"></asp:Label>
         <br />
         <br />
         <asp:RadioButton ID="RBAsc" runat="server" AutoPostBack="True" Checked="True" GroupName="orden" Text="Orden ascendente" />
         <asp:RadioButton ID="RBDesc" runat="server" AutoPostBack="True" GroupName="orden" Text="Orden descendente" />
         <br />
         <br />
-
         <br />
         <asp:Label ID="labelFiltros" runat="server" Text="0" Visible="False"></asp:Label>
         <br />
      <asp:Panel ID="Panel1" runat="server">
-         <asp:Button ID="Button1" runat="server" Text="Button" />
      </asp:Panel>
 
     </form>

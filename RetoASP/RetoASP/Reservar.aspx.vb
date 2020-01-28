@@ -84,14 +84,7 @@ Public Class WebForm3
 		End Try
 
 	End Sub
-	Sub mostrarOrden()
-		RBAsc.Visible = True
-		RBDesc.Visible = True
-	End Sub
-	Sub ocultarOrden()
-		RBAsc.Visible = False
-		RBDesc.Visible = False
-	End Sub
+
 	Sub sacarNombresConFiltros()
 		mostrarOrden()
 		Try
@@ -289,6 +282,14 @@ Public Class WebForm3
 		Response.Redirect("Realizar.aspx" + s)
 		conexion.Close()
 	End Sub
+	Sub mostrarOrden()
+		RBAsc.Visible = True
+		RBDesc.Visible = True
+	End Sub
+	Sub ocultarOrden()
+		RBAsc.Visible = False
+		RBDesc.Visible = False
+	End Sub
 
 	Protected Sub btnMasfiltros_Click(sender As Object, e As EventArgs) Handles btnMasfiltros.Click
 		labelFiltros.Text = 1
@@ -308,6 +309,15 @@ Public Class WebForm3
 
 		btnMenosfiltros.Visible = True
 		btnMenosfiltros.Enabled = True
+	End Sub
+	Sub metodosAEjecutar()
+		If labelFiltros.Text = 1 Then
+			Panel1.Controls.Clear()
+			sacarNombresConFiltros()
+		ElseIf labelFiltros.Text = 0 Then
+			deshabilitarFiltros()
+			sacarNombresSinfiltros()
+		End If
 	End Sub
 
 	Protected Sub btnMenosfiltros_Click(sender As Object, e As EventArgs) Handles btnMenosfiltros.Click
@@ -345,14 +355,90 @@ Public Class WebForm3
 		metodosAEjecutar()
 	End Sub
 
-	Sub metodosAEjecutar()
-		If labelFiltros.Text = 1 Then
-			sacarNombresConFiltros()
-		ElseIf labelFiltros.Text = 0 Then
-			deshabilitarFiltros()
-			sacarNombresSinfiltros()
-		End If
-	End Sub
+
+	'Protected Sub btnBuscar_Click(sender As Object, e As EventArgs) Handles btnBuscar.Click
+	'	mostrarOrden()
+	'	Try
+	'		Dim comando As String
+	'		If RBAsc.Checked = True Then
+	'			comando = "SELECT signatura, documentname, turismdescription, address, phone, tourismemail, web, postalcode, capacity, imagen, restaurant, store, autocaravana FROM alojamientos_fac.alojamientos WHERE UPPER(documentname) = UPPER(@idNombre) ORDER BY documentname ASC"
+	'		ElseIf RBDesc.Checked = True Then
+	'			comando = "SELECT signatura, documentname, turismdescription, address, phone, tourismemail, web, postalcode, capacity, imagen, restaurant, store, autocaravana FROM alojamientos_fac.alojamientos WHERE UPPER(documentname) = UPPER(@idNombre) ORDER BY documentname DESC"
+	'		End If
+	'		Using sqlComm As New MySqlCommand()
+	'			With sqlComm
+	'				.Connection = conexion
+	'				.CommandText = comando
+	'				.CommandType = CommandType.Text
+	'				.Parameters.Add("@idNombre", MySqlDbType.VarChar).Value = TBBuscar.Text
+
+	'			End With
+	'			Dim sqlReader As MySqlDataReader = sqlComm.ExecuteReader()
+
+	'			Panel1.Controls.Clear()
+
+	'			While sqlReader.Read()
+
+	'				id = sqlReader("signatura")
+
+	'				Dim div As New HtmlGenericControl("div")
+	'				div.Attributes.Add("class", "item")
+	'				Dim html As String = ""
+	'				html = html + "<img src='" + "data:image/jpg;base64," & Convert.ToBase64String(sqlReader("imagen")) + "'>"
+	'				html = html + "<label class='lblnombre'>" + sqlReader("documentname").ToString + "</label>"
+	'				html = html + "<label class='lbldescripcion'>" + sqlReader("turismdescription") + "</label>"
+	'				html = html + "<label class='lbldireccion'>" + sqlReader("address").ToString + "</label>"
+	'				html = html + "<label class='lblcodpostal'>" + sqlReader("postalcode").ToString + "</label>"
+	'				html = html + "<label class='lbltelefono'>" + sqlReader("phone").ToString + "</label>"
+	'				html = html + "<label class='lblemail'>" + sqlReader("tourismemail").ToString + "</label>"
+	'				html = html + "<label class='lblweb'>" + sqlReader("web").ToString + "</label>"
+
+	'				If sqlReader("restaurant") = 1 Then
+	'					html = html + "Si"
+	'				Else
+	'					html = html + "No"
+	'				End If
+	'				html = html + "</label>"
+
+	'				html = html + "<label class='lblautocaravana'>"
+	'				If sqlReader("autocaravana") = 1 Then
+	'					html = html + "Si"
+	'				Else
+	'					html = html + "No"
+	'				End If
+
+	'				html = html + "<label class='lblstore'>"
+	'				If sqlReader("store") = 1 Then
+	'					html = html + "Si"
+	'				Else
+	'					html = html + "No"
+	'				End If
+	'				html = html + "</label>"
+	'				html = html + "<label class='lblcapacidad'>" + sqlReader("capacity").ToString + "</label>"
+
+
+	'				div.InnerHtml = html
+
+	'				Dim boton As New Button
+	'				boton.ID = id
+	'				boton.Text = "Reservar"
+	'				'boton.Attributes.Add("onclick", "return false")
+	'				AddHandler boton.Click, AddressOf irAReservar
+	'				Panel1.Controls.Add(div)
+	'				Panel1.Controls.Add(boton)
+	'			End While
+	'			If Not sqlReader.HasRows Then
+	'				lblNO.Visible = True
+	'				ocultarOrden()
+	'			Else
+	'				lblNO.Visible = False
+	'			End If
+	'		End Using
+	'	Catch ex As MySqlException
+	'		'MessageBox.Show("El alojamiento no esta disponible", "ERROR DE ALOJAMIENTO", MessageBoxButtons.OK, MessageBoxIcon.Error)
+	'	End Try
+	'End Sub
+
 	'Sub sacarImagen()
 	'	Try
 	'		Dim sqlQuery As String = "SELECT imagen FROM alojamientos_fac.alojamientos WHERE documentname = @idNombre"

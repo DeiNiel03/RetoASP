@@ -32,31 +32,94 @@ Partial Public Class WebForm4
 	Protected WithEvents lblUsuario As Global.System.Web.UI.WebControls.Label
 
 	'''<summary>
-	'''Control TBNumeroDePers.
+	'''Control lblid.
 	'''</summary>
 	'''<remarks>
 	'''Campo generado automáticamente.
 	'''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
 	'''</remarks>
-	Protected WithEvents TBNumeroDePers As Global.System.Web.UI.WebControls.TextBox
+	Protected WithEvents lblid As Global.System.Web.UI.WebControls.Label
 
 	'''<summary>
-	'''Control Calendar1.
+	'''Control Label1.
 	'''</summary>
 	'''<remarks>
 	'''Campo generado automáticamente.
 	'''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
 	'''</remarks>
-	Protected WithEvents Calendar1 As Global.System.Web.UI.WebControls.Calendar
+	Protected WithEvents Label1 As Global.System.Web.UI.WebControls.Label
 
 	'''<summary>
-	'''Control Calendar2.
+	'''Control Label2.
 	'''</summary>
 	'''<remarks>
 	'''Campo generado automáticamente.
 	'''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
 	'''</remarks>
-	Protected WithEvents Calendar2 As Global.System.Web.UI.WebControls.Calendar
+	Protected WithEvents Label2 As Global.System.Web.UI.WebControls.Label
+
+	'''<summary>
+	'''Control Label3.
+	'''</summary>
+	'''<remarks>
+	'''Campo generado automáticamente.
+	'''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+	'''</remarks>
+	Protected WithEvents Label3 As Global.System.Web.UI.WebControls.Label
+
+	'''<summary>
+	'''Control lblNombre.
+	'''</summary>
+	'''<remarks>
+	'''Campo generado automáticamente.
+	'''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+	'''</remarks>
+	Protected WithEvents lblNombre As Global.System.Web.UI.WebControls.Label
+
+	'''<summary>
+	'''Control lblDirecion.
+	'''</summary>
+	'''<remarks>
+	'''Campo generado automáticamente.
+	'''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+	'''</remarks>
+	Protected WithEvents lblDirecion As Global.System.Web.UI.WebControls.Label
+
+	'''<summary>
+	'''Control lblCapacidad.
+	'''</summary>
+	'''<remarks>
+	'''Campo generado automáticamente.
+	'''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+	'''</remarks>
+	Protected WithEvents lblCapacidad As Global.System.Web.UI.WebControls.Label
+
+	'''<summary>
+	'''Control CalendarEntrada.
+	'''</summary>
+	'''<remarks>
+	'''Campo generado automáticamente.
+	'''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+	'''</remarks>
+	Protected WithEvents CalendarEntrada As Global.System.Web.UI.WebControls.Calendar
+
+	'''<summary>
+	'''Control CalendarSalida.
+	'''</summary>
+	'''<remarks>
+	'''Campo generado automáticamente.
+	'''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+	'''</remarks>
+	Protected WithEvents CalendarSalida As Global.System.Web.UI.WebControls.Calendar
+
+	'''<summary>
+	'''Control TextBox1.
+	'''</summary>
+	'''<remarks>
+	'''Campo generado automáticamente.
+	'''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+	'''</remarks>
+	Protected WithEvents TextBox1 As Global.System.Web.UI.WebControls.TextBox
 
 	'''<summary>
 	'''Control btnRealizar.
