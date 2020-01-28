@@ -1,19 +1,9 @@
-﻿<%@ Page Language="vb" AutoEventWireup="false" CodeBehind="Reservar.aspx.vb" Inherits="RetoASP.WebForm3" %>
+﻿<%@ Page Title="" Language="vb" AutoEventWireup="false" MasterPageFile="~/Main.Master" CodeBehind="Reservar.aspx.vb" Inherits="RetoASP.WebForm3" %>
 
-<!DOCTYPE html>
+<asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+</asp:Content>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head runat="server">
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-    <title></title>
-    <style type="text/css">
-        .auto-style1 {
-            height: 500px;
-        }
-        </style>
-</head>
-<body style="height: 977px">
-    <form id="form1" runat="server" class="auto-style1">
+<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
         <asp:Label ID="lblUsuario" runat="server"></asp:Label>
         <br />
         <br />
@@ -66,8 +56,4 @@
         <br />
      <asp:Panel ID="Panel1" runat="server">
      </asp:Panel>
-
-    </form>
-     
-</body>
-</html>
+</asp:Content>
