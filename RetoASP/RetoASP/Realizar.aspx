@@ -46,7 +46,9 @@
     <br />
     <br />
     <br />
-    <asp:TextBox ID="TextBox1" runat="server" placeholder="Numero de personas"></asp:TextBox>
+    <asp:TextBox ID="TBPersonas" runat="server" placeholder="Numero de personas"></asp:TextBox>
+    <asp:Label ID="Label4" runat="server" ForeColor="Red" Text="*"></asp:Label>
+    <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="TBPersonas" Font-Size="Small" ForeColor="Red">El campo no puede quedar vacio</asp:RequiredFieldValidator>
     <br />
     <br />
     <asp:Button ID="btnRealizar" runat="server" Text="Realizar la reserva" />
