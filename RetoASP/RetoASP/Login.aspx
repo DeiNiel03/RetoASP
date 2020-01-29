@@ -6,7 +6,7 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div class="container space">
         <div class="row">
-            <div class="col-sm-4 offset-sm-3">
+            <div class="login-wrap">
                 <asp:Label ID="Label1" runat="server" Font-Size="X-Large" Text="Iniciar Sesión"></asp:Label>
                 <div class="login">
                     <asp:TextBox ID="TBEmail" runat="server" placeholder="Email" CssClass="form-control"></asp:TextBox>

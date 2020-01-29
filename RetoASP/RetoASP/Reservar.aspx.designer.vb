@@ -12,7 +12,25 @@ Option Explicit On
 
 
 Partial Public Class WebForm3
-
+    
+    '''<summary>
+    '''Control btnSearch.
+    '''</summary>
+    '''<remarks>
+    '''Campo generado automáticamente.
+    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    '''</remarks>
+    Protected WithEvents btnSearch As Global.System.Web.UI.WebControls.Button
+    
+    '''<summary>
+    '''Control Search.
+    '''</summary>
+    '''<remarks>
+    '''Campo generado automáticamente.
+    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    '''</remarks>
+    Protected WithEvents Search As Global.System.Web.UI.WebControls.TextBox
+    
     '''<summary>
     '''Control lblUsuario.
     '''</summary>
@@ -21,7 +39,7 @@ Partial Public Class WebForm3
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
     Protected WithEvents lblUsuario As Global.System.Web.UI.WebControls.Label
-
+    
     '''<summary>
     '''Control Label1.
     '''</summary>
@@ -30,7 +48,7 @@ Partial Public Class WebForm3
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
     Protected WithEvents Label1 As Global.System.Web.UI.WebControls.Label
-
+    
     '''<summary>
     '''Control Label2.
     '''</summary>
@@ -39,7 +57,7 @@ Partial Public Class WebForm3
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
     Protected WithEvents Label2 As Global.System.Web.UI.WebControls.Label
-
+    
     '''<summary>
     '''Control Label3.
     '''</summary>
@@ -48,7 +66,7 @@ Partial Public Class WebForm3
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
     Protected WithEvents Label3 As Global.System.Web.UI.WebControls.Label
-
+    
     '''<summary>
     '''Control DropTipo.
     '''</summary>
@@ -57,7 +75,7 @@ Partial Public Class WebForm3
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
     Protected WithEvents DropTipo As Global.System.Web.UI.WebControls.DropDownList
-
+    
     '''<summary>
     '''Control DropProvincia.
     '''</summary>
@@ -66,7 +84,7 @@ Partial Public Class WebForm3
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
     Protected WithEvents DropProvincia As Global.System.Web.UI.WebControls.DropDownList
-
+    
     '''<summary>
     '''Control DropMunicipio.
     '''</summary>
@@ -75,7 +93,7 @@ Partial Public Class WebForm3
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
     Protected WithEvents DropMunicipio As Global.System.Web.UI.WebControls.DropDownList
-
+    
     '''<summary>
     '''Control btnMasfiltros.
     '''</summary>
@@ -84,7 +102,7 @@ Partial Public Class WebForm3
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
     Protected WithEvents btnMasfiltros As Global.System.Web.UI.WebControls.Button
-
+    
     '''<summary>
     '''Control btnMenosfiltros.
     '''</summary>
@@ -93,7 +111,7 @@ Partial Public Class WebForm3
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
     Protected WithEvents btnMenosfiltros As Global.System.Web.UI.WebControls.Button
-
+    
     '''<summary>
     '''Control LabelRestaurante.
     '''</summary>
@@ -102,7 +120,7 @@ Partial Public Class WebForm3
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
     Protected WithEvents LabelRestaurante As Global.System.Web.UI.WebControls.Label
-
+    
     '''<summary>
     '''Control RBsi.
     '''</summary>
@@ -111,7 +129,7 @@ Partial Public Class WebForm3
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
     Protected WithEvents RBsi As Global.System.Web.UI.WebControls.RadioButton
-
+    
     '''<summary>
     '''Control RBno.
     '''</summary>
@@ -120,7 +138,7 @@ Partial Public Class WebForm3
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
     Protected WithEvents RBno As Global.System.Web.UI.WebControls.RadioButton
-
+    
     '''<summary>
     '''Control LabelAutocaravana.
     '''</summary>
@@ -129,7 +147,7 @@ Partial Public Class WebForm3
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
     Protected WithEvents LabelAutocaravana As Global.System.Web.UI.WebControls.Label
-
+    
     '''<summary>
     '''Control RBcsi.
     '''</summary>
@@ -138,7 +156,7 @@ Partial Public Class WebForm3
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
     Protected WithEvents RBcsi As Global.System.Web.UI.WebControls.RadioButton
-
+    
     '''<summary>
     '''Control RBcno.
     '''</summary>
@@ -147,7 +165,7 @@ Partial Public Class WebForm3
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
     Protected WithEvents RBcno As Global.System.Web.UI.WebControls.RadioButton
-
+    
     '''<summary>
     '''Control LabelTienda.
     '''</summary>
@@ -156,7 +174,7 @@ Partial Public Class WebForm3
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
     Protected WithEvents LabelTienda As Global.System.Web.UI.WebControls.Label
-
+    
     '''<summary>
     '''Control RBtsi.
     '''</summary>
@@ -165,7 +183,7 @@ Partial Public Class WebForm3
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
     Protected WithEvents RBtsi As Global.System.Web.UI.WebControls.RadioButton
-
+    
     '''<summary>
     '''Control RBtno.
     '''</summary>
@@ -174,7 +192,7 @@ Partial Public Class WebForm3
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
     Protected WithEvents RBtno As Global.System.Web.UI.WebControls.RadioButton
-
+    
     '''<summary>
     '''Control lblNO.
     '''</summary>
@@ -183,7 +201,7 @@ Partial Public Class WebForm3
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
     Protected WithEvents lblNO As Global.System.Web.UI.WebControls.Label
-
+    
     '''<summary>
     '''Control RBAsc.
     '''</summary>
@@ -192,7 +210,7 @@ Partial Public Class WebForm3
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
     Protected WithEvents RBAsc As Global.System.Web.UI.WebControls.RadioButton
-
+    
     '''<summary>
     '''Control RBDesc.
     '''</summary>
@@ -201,7 +219,7 @@ Partial Public Class WebForm3
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
     Protected WithEvents RBDesc As Global.System.Web.UI.WebControls.RadioButton
-
+    
     '''<summary>
     '''Control labelFiltros.
     '''</summary>
@@ -210,7 +228,7 @@ Partial Public Class WebForm3
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
     Protected WithEvents labelFiltros As Global.System.Web.UI.WebControls.Label
-
+    
     '''<summary>
     '''Control Panel1.
     '''</summary>
