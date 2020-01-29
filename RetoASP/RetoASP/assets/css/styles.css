@@ -6,9 +6,13 @@
     box-sizing: border-box;
 }
 
+html {
+    font-size: 62.5%;
+}
+
 body {
     font-family: "Lato", Helvetica;
-    font-size: 1.4rem;
+    font-size: 1.6rem;
     color: #333;
 }
 
@@ -29,30 +33,103 @@ img {
     border: 0;
 }
 
+@media (min-width: 1500px) {
+    .container, .container-lg, .container-md, .container-sm, .container-xl {
+        max-width: 1450px;
+    }
+}
+
+.login {
+    padding: 30px 0;
+}
+
+.space {
+    padding: 50px 0;
+}
+
+.searchbox {
+    background: #eee;
+    height: auto;
+    overflow: hidden;
+}
+
+.searchbox .left {
+    float: none;
+    width: auto;
+    overflow: hidden;
+}
+
+.searchbox .right {
+    width: 185px;
+    float: right;
+}
+
+.searchbox .form-control {
+    padding: 10px 15px;
+    font-size: 2.4rem;
+    height: 50px;
+}
+
+.searchbox .btn {
+    padding: 10px 25px;
+    height: 50px;
+    font-size: 1.8rem;
+    margin-left: 20px;
+}
+
+
 /*=======================================================================
   NAVBAR
 ========================================================================*/
 
 header {
-    background: #008688;
+    background: #003580;
 }
 
 header a {
     color: #fff;
 }
 
+nav {
+    height: 70px;
+}
+
 .navbar-brand {
     color: #fff;
+    font-size: 1.8rem;
 }
 
 nav a {
-    font-size: 1.2rem;
     font-weight: 600;
     letter-spacing: 2px;
     text-transform: uppercase;
     color: #fff;
-    padding: 20px 10%;
     display: block;
+    font-size: 1.4rem;
+}
+
+nav a:hover {
+    color: #fc7b03;
+}
+
+/*=======================================================================
+  FORMS
+========================================================================*/
+
+.form-control {
+    font-size: 1.6rem;
+    padding: 8px 10px;
+    border-radius: 1px;
+}
+
+.btn {
+    background: #fc7b03;
+    color: #fff;
+    text-transform: uppercase;
+    border-radius: 1px;
+    padding: 8px 20px;
+    font-size: 1.4rem;
+    margin-right: 20px;
 }
 
 /*===================================================================================
