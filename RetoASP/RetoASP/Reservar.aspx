@@ -21,29 +21,20 @@
                     <asp:Label ID="lblUsuario" runat="server"></asp:Label>
                     <!-- tipo de alojamiento -->
                     <asp:Label ID="Label1" runat="server" Text="Tipo de alojamiento"></asp:Label>
-                    <asp:CheckBoxList ID="CheckBoxList1" runat="server"></asp:CheckBoxList>
+                    <asp:CheckBoxList ID="CheckBoxTipo" runat="server" AutoPostBack="True"></asp:CheckBoxList>
                     <!-- provincias -->
                     <asp:Label ID="Label2" runat="server" Text="Provincia"></asp:Label>
-                    <asp:DropDownList ID="DropProvincia" runat="server" placeholder="Email" Height="20px" Width="140px" AutoPostBack="True">
-                    </asp:DropDownList>
-                    <!-- municipios -->
-                    <asp:Label ID="Label3" runat="server" Text="Municipio"></asp:Label>
-                    <asp:DropDownList ID="DropMunicipio" runat="server" placeholder="Email" Height="20px" Width="140px" AutoPostBack="True">
-                    </asp:DropDownList>
+                    <asp:CheckBoxList ID="CheckBoxProvincia" runat="server" AutoPostBack="True"></asp:CheckBoxList>
                     <!-- caracteristicas -->
-                    <asp:Label ID="LabelRestaurante" runat="server" Text="Restaurante:"></asp:Label>
-                    <asp:RadioButton ID="RBsi" runat="server" GroupName="restaurante" Text="Si" AutoPostBack="True" />
-                    <asp:RadioButton ID="RBno" runat="server" Checked="True" GroupName="restaurante" Text="No" AutoPostBack="True" />
-                    <asp:Label ID="LabelAutocaravana" runat="server" Text="Parking para autocaravana:"></asp:Label>
-                    <asp:RadioButton ID="RBcsi" runat="server" GroupName="caravana" Text="Si" AutoPostBack="True" />
-                    <asp:RadioButton ID="RBcno" runat="server" Checked="True" GroupName="caravana" Text="No" AutoPostBack="True" />
-                    <asp:Label ID="LabelTienda" runat="server" Text="Tienda:"></asp:Label>
-                    <asp:RadioButton ID="RBtsi" runat="server" AutoPostBack="True" GroupName="tienda" Text="Si" />
-                    <asp:RadioButton ID="RBtno" runat="server" AutoPostBack="True" Checked="True" GroupName="tienda" Text="No" />
+                    <asp:Label ID="Label3" runat="server" Text="Caracteristicas"></asp:Label>
+                    <asp:CheckBoxList ID="CheckBoxCarac" runat="server" AutoPostBack="True">
+                        <asp:ListItem Value="restaurante">Restaurante</asp:ListItem>
+                        <asp:ListItem Value="autocarava">Autocaravana</asp:ListItem>
+                        <asp:ListItem Value="tienda">Tienda</asp:ListItem>
+                    </asp:CheckBoxList>
                     <!-- orden -->
                     <asp:RadioButton ID="RBAsc" runat="server" AutoPostBack="True" Checked="True" GroupName="orden" Text="Orden ascendente" />
                     <asp:RadioButton ID="RBDesc" runat="server" AutoPostBack="True" GroupName="orden" Text="Orden descendente" />
-                    <asp:Label ID="labelFiltros" runat="server" Text="0" Visible="False"></asp:Label>
                 </asp:Panel>
             </div>
             <div class="col-sm-9">

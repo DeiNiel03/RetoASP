@@ -59,13 +59,13 @@ Partial Public Class WebForm3
     Protected WithEvents Label1 As Global.System.Web.UI.WebControls.Label
 
     '''<summary>
-    '''Control CheckBoxList1.
+    '''Control CheckBoxTipo.
     '''</summary>
     '''<remarks>
     '''Campo generado automáticamente.
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
-    Protected WithEvents CheckBoxList1 As Global.System.Web.UI.WebControls.CheckBoxList
+    Protected WithEvents CheckBoxTipo As Global.System.Web.UI.WebControls.CheckBoxList
 
     '''<summary>
     '''Control Label2.
@@ -77,13 +77,13 @@ Partial Public Class WebForm3
     Protected WithEvents Label2 As Global.System.Web.UI.WebControls.Label
 
     '''<summary>
-    '''Control DropProvincia.
+    '''Control CheckBoxProvincia.
     '''</summary>
     '''<remarks>
     '''Campo generado automáticamente.
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
-    Protected WithEvents DropProvincia As Global.System.Web.UI.WebControls.DropDownList
+    Protected WithEvents CheckBoxProvincia As Global.System.Web.UI.WebControls.CheckBoxList
 
     '''<summary>
     '''Control Label3.
@@ -95,94 +95,13 @@ Partial Public Class WebForm3
     Protected WithEvents Label3 As Global.System.Web.UI.WebControls.Label
 
     '''<summary>
-    '''Control DropMunicipio.
+    '''Control CheckBoxCarac.
     '''</summary>
     '''<remarks>
     '''Campo generado automáticamente.
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
-    Protected WithEvents DropMunicipio As Global.System.Web.UI.WebControls.DropDownList
-
-    '''<summary>
-    '''Control LabelRestaurante.
-    '''</summary>
-    '''<remarks>
-    '''Campo generado automáticamente.
-    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-    '''</remarks>
-    Protected WithEvents LabelRestaurante As Global.System.Web.UI.WebControls.Label
-
-    '''<summary>
-    '''Control RBsi.
-    '''</summary>
-    '''<remarks>
-    '''Campo generado automáticamente.
-    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-    '''</remarks>
-    Protected WithEvents RBsi As Global.System.Web.UI.WebControls.RadioButton
-
-    '''<summary>
-    '''Control RBno.
-    '''</summary>
-    '''<remarks>
-    '''Campo generado automáticamente.
-    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-    '''</remarks>
-    Protected WithEvents RBno As Global.System.Web.UI.WebControls.RadioButton
-
-    '''<summary>
-    '''Control LabelAutocaravana.
-    '''</summary>
-    '''<remarks>
-    '''Campo generado automáticamente.
-    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-    '''</remarks>
-    Protected WithEvents LabelAutocaravana As Global.System.Web.UI.WebControls.Label
-
-    '''<summary>
-    '''Control RBcsi.
-    '''</summary>
-    '''<remarks>
-    '''Campo generado automáticamente.
-    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-    '''</remarks>
-    Protected WithEvents RBcsi As Global.System.Web.UI.WebControls.RadioButton
-
-    '''<summary>
-    '''Control RBcno.
-    '''</summary>
-    '''<remarks>
-    '''Campo generado automáticamente.
-    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-    '''</remarks>
-    Protected WithEvents RBcno As Global.System.Web.UI.WebControls.RadioButton
-
-    '''<summary>
-    '''Control LabelTienda.
-    '''</summary>
-    '''<remarks>
-    '''Campo generado automáticamente.
-    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-    '''</remarks>
-    Protected WithEvents LabelTienda As Global.System.Web.UI.WebControls.Label
-
-    '''<summary>
-    '''Control RBtsi.
-    '''</summary>
-    '''<remarks>
-    '''Campo generado automáticamente.
-    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-    '''</remarks>
-    Protected WithEvents RBtsi As Global.System.Web.UI.WebControls.RadioButton
-
-    '''<summary>
-    '''Control RBtno.
-    '''</summary>
-    '''<remarks>
-    '''Campo generado automáticamente.
-    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-    '''</remarks>
-    Protected WithEvents RBtno As Global.System.Web.UI.WebControls.RadioButton
+    Protected WithEvents CheckBoxCarac As Global.System.Web.UI.WebControls.CheckBoxList
 
     '''<summary>
     '''Control RBAsc.
@@ -201,15 +120,6 @@ Partial Public Class WebForm3
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
     Protected WithEvents RBDesc As Global.System.Web.UI.WebControls.RadioButton
-
-    '''<summary>
-    '''Control labelFiltros.
-    '''</summary>
-    '''<remarks>
-    '''Campo generado automáticamente.
-    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-    '''</remarks>
-    Protected WithEvents labelFiltros As Global.System.Web.UI.WebControls.Label
 
     '''<summary>
     '''Control Panel1.

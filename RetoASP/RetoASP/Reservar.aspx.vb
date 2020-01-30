@@ -5,6 +5,7 @@ Public Class WebForm3
 	Inherits System.Web.UI.Page
 	Dim panel
     Dim conexion As New MySqlConnection("datasource=188.213.5.150;port=3306;username=ldmj;password=ladamijo;CharSet=UTF8")
+    Dim modelo = New Modelo()
 
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
         lblUsuario.Text = Request.Params("usuario")
@@ -16,7 +17,8 @@ Public Class WebForm3
         If Not IsPostBack Then
             cargarDatos()
         End If
-        mostrarAlojamientos()
+        Response.Write("<script>window.alert('" & crearQuery() & "');</script>")
+        sacarNombresConFiltros()
     End Sub
 
     Sub irAReservar(sender As Object, e As EventArgs)
@@ -26,22 +28,14 @@ Public Class WebForm3
         conexion.Close()
     End Sub
 
-    Protected Sub DropProvincia_SelectedIndexChanged(sender As Object, e As EventArgs) Handles DropProvincia.SelectedIndexChanged, DropTipo.SelectedIndexChanged
-        cargarMunicipio()
-    End Sub
-
-    Protected Sub SelectedIndexChanged(sender As Object, e As EventArgs) Handles DropMunicipio.SelectedIndexChanged, RBsi.CheckedChanged, RBno.CheckedChanged, DropProvincia.SelectedIndexChanged, DropTipo.SelectedIndexChanged, RBcsi.CheckedChanged, RBcno.CheckedChanged, RBtsi.CheckedChanged, RBtno.CheckedChanged
-        mostrarAlojamientos()
-    End Sub
-
-    Protected Sub Ordenacion_CheckedChanged(sender As Object, e As EventArgs) Handles RBAsc.CheckedChanged, RBDesc.CheckedChanged
+    Protected Sub SelectedIndexChanged(sender As Object, e As EventArgs) Handles CheckBoxProvincia.SelectedIndexChanged, CheckBoxTipo.SelectedIndexChanged, CheckBoxCarac.SelectedIndexChanged, RBAsc.CheckedChanged, RBDesc.CheckedChanged
+        Response.Write("<script>window.alert('" & crearQuery() & "');</script>")
         mostrarAlojamientos()
     End Sub
 
     Sub cargarDatos()
         cargarTipo()
         cargarProvincias()
-        cargarMunicipio()
     End Sub
 
     Sub cargarTipo()
@@ -50,9 +44,9 @@ Public Class WebForm3
             Dim adapter As New MySqlDataAdapter(sqlQuery, conexion)
             Dim tabla As New DataTable
             adapter.Fill(tabla)
-            DropTipo.DataSource = tabla
-            DropTipo.DataTextField = "lodgingtype"
-            DropTipo.DataBind()
+            CheckBoxTipo.DataSource = tabla
+            CheckBoxTipo.DataTextField = "lodgingtype"
+            CheckBoxTipo.DataBind()
         Catch ex As MySqlException
             'MessageBox.Show(ex.Message, "ERROR TIPO", MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
@@ -64,27 +58,14 @@ Public Class WebForm3
             Dim adapter As New MySqlDataAdapter(sqlQuery, conexion)
             Dim tabla As New DataTable
             adapter.Fill(tabla)
-            DropProvincia.DataSource = tabla
-            DropProvincia.DataTextField = "nombre"
-            DropProvincia.DataValueField = "id"
-            DropProvincia.DataBind()
+            CheckBoxProvincia.DataSource = tabla
+            CheckBoxProvincia.DataTextField = "nombre"
+            CheckBoxProvincia.DataValueField = "id"
+            CheckBoxProvincia.DataBind()
         Catch ex As MySqlException
             'MessageBox.Show(ex.Message, "ERROR PROVINCIAS", MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
         'DropProvincia_SelectedIndexChanged(DropProvincia,)
-    End Sub
-
-    Sub cargarMunicipio()
-        Try
-            Dim adapter As New MySqlDataAdapter("SELECT DISTINCT `municipality` FROM alojamientos_fac.alojamientos WHERE territory = " + DropProvincia.SelectedValue + " AND lodgingtype = '" + DropTipo.SelectedItem.Text + "' ORDER BY `municipality` ASC", conexion)
-            Dim tabla As New DataTable()
-            adapter.Fill(tabla)
-            DropMunicipio.DataSource = tabla
-            DropMunicipio.DataTextField = "municipality"
-            DropMunicipio.DataBind()
-        Catch ex As MySqlException
-            'MessageBox.Show(ex.Message, "ERROR MUNICIPIOS", MessageBoxButtons.OK, MessageBoxIcon.Error)
-        End Try
     End Sub
 
     Sub mostrarOrden()
@@ -98,12 +79,8 @@ Public Class WebForm3
     End Sub
 
     Sub mostrarAlojamientos()
-        If labelFiltros.Text = 1 Then
-            Panel1.Controls.Clear()
-            sacarNombresConFiltros()
-        ElseIf labelFiltros.Text = 0 Then
-            sacarNombresSinfiltros()
-        End If
+        Panel1.Controls.Clear()
+        sacarNombresConFiltros()
     End Sub
 
     Sub sacarNombresSinfiltros()
@@ -112,18 +89,17 @@ Public Class WebForm3
         mostrarOrden()
         Try
             If RBAsc.Checked = True Then
-                comando = "SELECT signatura, documentname, turismdescription, address, phone, tourismemail, web, postalcode, capacity, imagen, restaurant, store, autocaravana FROM alojamientos_fac.alojamientos WHERE lodgingtype = @idTipo AND municipality = @idMuni AND territory = @idPro AND activo = @idActivo ORDER BY documentname ASC"
+                comando = "SELECT signatura, documentname, turismdescription, address, phone, tourismemail, web, postalcode, capacity, imagen, restaurant, store, autocaravana FROM alojamientos_fac.alojamientos WHERE lodgingtype = @idTipo AND territory = @idPro AND activo = @idActivo ORDER BY documentname ASC"
             ElseIf RBDesc.Checked = True Then
-                comando = "SELECT signatura, documentname, turismdescription, address, phone, tourismemail, web, postalcode, capacity, imagen, restaurant, store, autocaravana FROM alojamientos_fac.alojamientos WHERE lodgingtype = @idTipo AND municipality = @idMuni AND territory = @idPro AND activo = @idActivo ORDER BY documentname DESC"
+                comando = "SELECT signatura, documentname, turismdescription, address, phone, tourismemail, web, postalcode, capacity, imagen, restaurant, store, autocaravana FROM alojamientos_fac.alojamientos WHERE lodgingtype = @idTipo AND territory = @idPro AND activo = @idActivo ORDER BY documentname DESC"
             End If
             Using sqlComm As New MySqlCommand()
                 With sqlComm
                     .Connection = conexion
                     .CommandText = comando
                     .CommandType = CommandType.Text
-                    .Parameters.Add("@idTipo", MySqlDbType.VarChar).Value = DropTipo.SelectedItem
-                    .Parameters.Add("@idMuni", MySqlDbType.VarChar).Value = DropMunicipio.SelectedItem
-                    .Parameters.Add("@idPro", MySqlDbType.Int16).Value = DropProvincia.SelectedValue
+                    .Parameters.Add("@idTipo", MySqlDbType.VarChar).Value = CheckBoxTipo.SelectedItem
+                    .Parameters.Add("@idPro", MySqlDbType.Int16).Value = CheckBoxProvincia.SelectedValue
                     .Parameters.Add("@idActivo", MySqlDbType.Int16).Value = 1
                 End With
                 sqlReader = sqlComm.ExecuteReader()
@@ -137,36 +113,12 @@ Public Class WebForm3
     Sub sacarNombresConFiltros()
         mostrarOrden()
         Try
-            Dim sqlQuery As String
-            If RBAsc.Checked = True Then
-                sqlQuery = "SELECT signatura, documentname,turismdescription, address, postalcode, phone, tourismemail, web, capacity,restaurant,autocaravana,store, imagen FROM alojamientos_fac.alojamientos WHERE lodgingtype = @idTipo AND municipality = @idMuni AND territory = @idPro AND restaurant = @idRest AND autocaravana = @idCaravan AND store = @idTienda AND activo = @idActivo ORDER BY documentname ASC"
-            Else
-                sqlQuery = "SELECT signatura, documentname,turismdescription, address, postalcode, phone, tourismemail, web, capacity,restaurant,autocaravana,store, imagen FROM alojamientos_fac.alojamientos WHERE lodgingtype = @idTipo AND municipality = @idMuni AND territory = @idPro AND restaurant = @idRest AND autocaravana = @idCaravan AND store = @idTienda AND activo = @idActivo ORDER BY documentname DESC"
-            End If
+            Dim sqlQuery As String = crearQuery()
             Using sqlComm As New MySqlCommand()
                 With sqlComm
                     .Connection = conexion
                     .CommandText = sqlQuery
                     .CommandType = CommandType.Text
-                    .Parameters.AddWithValue("@idTipo", DropTipo.SelectedItem)
-                    .Parameters.AddWithValue("@idMuni", DropMunicipio.SelectedItem)
-                    .Parameters.AddWithValue("@idPro", CInt(DropProvincia.SelectedValue))
-                    .Parameters.AddWithValue("@idActivo", 1)
-                    If RBsi.Checked Then
-                        .Parameters.AddWithValue("@idRest", 1)
-                    Else
-                        .Parameters.AddWithValue("@idRest", 0)
-                    End If
-                    If RBcsi.Checked Then
-                        .Parameters.AddWithValue("@idCaravan", 1)
-                    Else
-                        .Parameters.AddWithValue("@idCaravan", 0)
-                    End If
-                    If RBtsi.Checked Then
-                        .Parameters.AddWithValue("@idTienda", 1)
-                    Else
-                        .Parameters.AddWithValue("@idTienda", 0)
-                    End If
                 End With
                 Try
                     Dim sqlReader As MySqlDataReader = sqlComm.ExecuteReader()
@@ -179,6 +131,95 @@ Public Class WebForm3
             'MessageBox.Show(ex.Message, "ERROR CON LA BASE DE DATOS", MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
     End Sub
+
+    Function crearQuery() As String
+        Dim sqlQuery As String = "SELECT signatura, documentname, turismdescription, address, phone, tourismemail, web, postalcode, capacity, imagen, restaurant, store, autocaravana FROM alojamientos_fac.alojamientos WHERE"
+        Dim tipos As String = crearQueryTipos()
+        Dim provincias As String = crearQueryProvincias()
+        Dim caracteristicas As String = crearQueryCaracteristicas()
+        Dim orden As String = crearQueryOrden()
+        If Not tipos.Equals("") Then
+            sqlQuery += tipos
+        End If
+        If Not provincias.Equals("") Then
+            sqlQuery += provincias
+        End If
+        If Not caracteristicas.Equals("") Then
+            sqlQuery += caracteristicas
+        End If
+        If Not orden.Equals("") Then
+            sqlQuery += orden
+        End If
+        Return sqlQuery
+    End Function
+
+    Function crearQueryTipos() As String
+        Dim sqlQuery As String = ""
+        Dim tipos As String = ""
+        Dim count As Integer = 0
+        For Each i In CheckBoxTipo.Items
+            If i.Selected Then
+                tipos += i.Value & ","
+                count += 1
+            End If
+        Next
+        If count > 0 Then
+            sqlQuery = " lodgingtype in (\'" & tipos.Trim().Remove(tipos.Length - 1) & "\')"
+        End If
+        If count = 0 Then
+            sqlQuery = " lodgingtype in (\'Albergues\', \'Agroturismos\', \'Casas Rurales\', \'Campings\')"
+        End If
+        Return sqlQuery
+    End Function
+
+    Function crearQueryProvincias() As String
+        Dim sqlQuery As String = ""
+        Dim provincias As String = ""
+        Dim count As Integer = 0
+        For Each i In CheckBoxProvincia.Items
+            If i.Selected Then
+                provincias += i.Value & ","
+                count += 1
+            End If
+        Next
+        If count > 0 Then
+            sqlQuery = " territory in (" & provincias.Trim().Remove(provincias.Length - 1) & ")"
+        End If
+        If count = 0 Then
+            sqlQuery = " territory in (1,2,3)"
+        End If
+        Return sqlQuery
+    End Function
+
+    Function crearQueryCaracteristicas() As String
+        Dim sqlQuery As String = ""
+        For Each i In CheckBoxCarac.Items
+            If i.Selected Then
+                If i.Selected Then
+                    If i.value.Equals("restaurante") Then
+                        sqlQuery += " AND restaurant = 1"
+                    End If
+                    If i.value.Equals("autocaravana") Then
+                        sqlQuery += " AND autocaravana = 1"
+                    End If
+                    If i.value.Equals("tienda") Then
+                        sqlQuery += " AND store = 1"
+                    End If
+                End If
+            End If
+        Next
+        Return sqlQuery
+    End Function
+
+    Function crearQueryOrden() As String
+        Dim sqlQuery As String = ""
+        If RBAsc.Checked = True Then
+            sqlQuery = " AND activo = 1 ORDER BY documentname ASC"
+        Else
+            sqlQuery = " AND activo = 1 ORDER BY documentname DESC"
+        End If
+        Return sqlQuery
+    End Function
 
     Sub renderItems(sqlReader As MySqlDataReader)
         Dim idAlojamiento As String
