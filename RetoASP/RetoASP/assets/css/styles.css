@@ -74,15 +74,29 @@ nav a:hover {
 /*=======================================================================
   LOGIN Y REGISTRO
 ========================================================================*/
-.login-wrap {
-    position: relative;
-    top: 50%;
-    transform: translateY(-50%);
+.login, .registro {
+    width: 100%;
+    text-align: center;
+    padding-top: 10%;
+}
+
+.registro {
+    width: 100%;
+    text-align: center;
+    padding-top: 5%;
+}
+
+.login-wrap, .registro-wrap {
     display: inline-block;
 }
 
-.login {
+.login-inner, .registro-inner {
     padding: 30px 0;
+}
+
+.ir-a-registro {
+    color: #fc7b03;
+    text-decoration: underline;
 }
 
 /*=======================================================================

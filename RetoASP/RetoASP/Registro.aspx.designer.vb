@@ -264,13 +264,4 @@ Partial Public Class WebForm1
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
     Protected WithEvents BtnRegistro As Global.System.Web.UI.WebControls.Button
-
-    '''<summary>
-    '''Control btVolver.
-    '''</summary>
-    '''<remarks>
-    '''Campo generado automáticamente.
-    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-    '''</remarks>
-    Protected WithEvents btVolver As Global.System.Web.UI.WebControls.Button
 End Class

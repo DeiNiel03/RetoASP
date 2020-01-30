@@ -59,11 +59,11 @@ Partial Public Class WebForm2
     Protected WithEvents btnLogin As Global.System.Web.UI.WebControls.Button
 
     '''<summary>
-    '''Control btRegistro.
+    '''Control btnRegistro.
     '''</summary>
     '''<remarks>
     '''Campo generado automáticamente.
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
-    Protected WithEvents btRegistro As Global.System.Web.UI.WebControls.Button
+    Protected WithEvents btnRegistro As Global.System.Web.UI.WebControls.LinkButton
 End Class

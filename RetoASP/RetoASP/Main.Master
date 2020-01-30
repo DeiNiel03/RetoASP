@@ -34,7 +34,7 @@
                           <asp:LinkButton runat="server" CssClass="nav-link" OnClick="Login_Click">Login</asp:LinkButton>
                       </li>
                       <li class="nav-item">
-                        <asp:LinkButton runat="server" CssClass="nav-link" OnClick="Registro_Click">Registro</asp:LinkButton>
+                          <asp:LinkButton runat="server" CssClass="nav-link" OnClick="Registro_Click">Registro</asp:LinkButton>
                       </li>
                     </ul>
                   </div>
