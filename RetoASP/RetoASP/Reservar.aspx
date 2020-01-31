@@ -29,7 +29,7 @@
                     <asp:Label ID="Label3" runat="server" Text="Caracteristicas"></asp:Label>
                     <asp:CheckBoxList ID="CheckBoxCarac" runat="server" AutoPostBack="True">
                         <asp:ListItem Value="restaurante">Restaurante</asp:ListItem>
-                        <asp:ListItem Value="autocarava">Autocaravana</asp:ListItem>
+                        <asp:ListItem Value="autocaravana">Autocaravana</asp:ListItem>
                         <asp:ListItem Value="tienda">Tienda</asp:ListItem>
                     </asp:CheckBoxList>
                     <!-- orden -->

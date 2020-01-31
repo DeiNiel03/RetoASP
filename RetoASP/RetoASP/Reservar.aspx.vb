@@ -10,7 +10,7 @@ Public Class WebForm3
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
         lblUsuario.Text = Request.Params("usuario")
         panel = Panel1
-        lblNO.Visible = False
+        lblNO.Visible = True
         If conexion.State = ConnectionState.Closed Then
             conexion.Open()
         End If
@@ -104,7 +104,7 @@ Public Class WebForm3
     End Sub
 
     Function crearQuery() As String
-        Dim sqlQuery As String = "SELECT signatura, documentname, turismdescription, address, phone, tourismemail, web, postalcode, capacity, imagen, restaurant, store, autocaravana FROM alojamientos_fac.alojamientos WHERE"
+        Dim sqlQuery As String = "SELECT signatura, documentname, turismdescription, address, phone, tourismemail, web, territory, municipality, postalcode, capacity, imagen, restaurant, store, autocaravana FROM alojamientos_fac.alojamientos WHERE"
         Dim tipos As String = crearQueryTipos()
         Dim provincias As String = crearQueryProvincias()
         Dim caracteristicas As String = crearQueryCaracteristicas()
@@ -198,6 +198,7 @@ Public Class WebForm3
         Dim html As String = ""
         Dim div As New HtmlGenericControl("div")
         Dim boton As New Button
+        Dim provincia As String = Nothing
         div.Attributes.Add("class", "item")
         div.Attributes.Add("class", "row")
         boton.Text = "Reservar"
@@ -211,12 +212,20 @@ Public Class WebForm3
             lblNO.Visible = False
             While sqlReader.Read()
                 idAlojamiento = sqlReader("signatura")
+                If sqlReader("territory") = 1 Then
+                    provincia = "Bizkaia/Vizcaya"
+                ElseIf sqlReader("territory") = 2 Then
+                    provincia = "Araba/Alava"
+                Else
+                    provincia = "Gipuzkoa/Guipuzcoa"
+                End If
                 html = html + "<div class='col-sm-5'>"
                 html = html + "<img src='" + "data:image/jpg;base64," & Convert.ToBase64String(sqlReader("imagen")) + "'>"
                 html = html + "</div>"
                 html = html + "<div class='col-sm-7'>"
                 html = html + "<h2 class='lblnombre'>" + sqlReader("documentname").ToString + "</h2>"
-                html = html + "<p class='lbldescripcion'>" + sqlReader("turismdescription") + "</p>"
+                    html = html + "<p class='lbllocalicacion'>" + sqlReader("municipality") + ", " + provincia + "</p>"
+                    html = html + "<p class='lbldescripcion'>" + sqlReader("turismdescription") + "</p>"
                 html = html + "<p class='lbldireccion'>Dirección: " + sqlReader("address").ToString + "</p>"
                 html = html + "<p class='lblcodpostal'>" + sqlReader("postalcode").ToString + "</p>"
                 html = html + "<p class='lbltelefono'>Telefono: " + sqlReader("phone").ToString + "</p>"
