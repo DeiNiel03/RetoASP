@@ -16,14 +16,14 @@
     <form id="form1" runat="server">
           
     </form>
-    <script>  
+    <script>
+        mapboxgl.accessToken = 'pk.eyJ1Ijoiam9zZW1lbG9ycmlldGEiLCJhIjoiY2s2Mjl3MThtMDlobDNsdDZkeHIwcGZ4cCJ9.NyW3KGVedov9bJrd3Wn3JQ';
         var map = new mapboxgl.Map({
             container: 'mapdiv',
             style: 'mapbox://styles/mapbox/streets-v11',
-            center: [-74.50, 40],
-            zoom: 9
+            center: [-2.9646428, 43.2842863],
+            zoom: 15
         });
-        google.maps.event.addDomListener(window, 'load', initialize);
     </script>
 </body>
     
