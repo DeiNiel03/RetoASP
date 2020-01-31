@@ -17,8 +17,7 @@ Public Class WebForm3
         If Not IsPostBack Then
             cargarDatos()
         End If
-        Response.Write("<script>window.alert('" & crearQuery() & "');</script>")
-        sacarNombresConFiltros()
+        mostrarAlojamientos()
     End Sub
 
     Sub irAReservar(sender As Object, e As EventArgs)
@@ -29,7 +28,6 @@ Public Class WebForm3
     End Sub
 
     Protected Sub SelectedIndexChanged(sender As Object, e As EventArgs) Handles CheckBoxProvincia.SelectedIndexChanged, CheckBoxTipo.SelectedIndexChanged, CheckBoxCarac.SelectedIndexChanged, RBAsc.CheckedChanged, RBDesc.CheckedChanged
-        Response.Write("<script>window.alert('" & crearQuery() & "');</script>")
         mostrarAlojamientos()
     End Sub
 
@@ -83,33 +81,6 @@ Public Class WebForm3
         sacarNombresConFiltros()
     End Sub
 
-    Sub sacarNombresSinfiltros()
-        Dim comando As String = Nothing
-        Dim sqlReader As MySqlDataReader = Nothing
-        mostrarOrden()
-        Try
-            If RBAsc.Checked = True Then
-                comando = "SELECT signatura, documentname, turismdescription, address, phone, tourismemail, web, postalcode, capacity, imagen, restaurant, store, autocaravana FROM alojamientos_fac.alojamientos WHERE lodgingtype = @idTipo AND territory = @idPro AND activo = @idActivo ORDER BY documentname ASC"
-            ElseIf RBDesc.Checked = True Then
-                comando = "SELECT signatura, documentname, turismdescription, address, phone, tourismemail, web, postalcode, capacity, imagen, restaurant, store, autocaravana FROM alojamientos_fac.alojamientos WHERE lodgingtype = @idTipo AND territory = @idPro AND activo = @idActivo ORDER BY documentname DESC"
-            End If
-            Using sqlComm As New MySqlCommand()
-                With sqlComm
-                    .Connection = conexion
-                    .CommandText = comando
-                    .CommandType = CommandType.Text
-                    .Parameters.Add("@idTipo", MySqlDbType.VarChar).Value = CheckBoxTipo.SelectedItem
-                    .Parameters.Add("@idPro", MySqlDbType.Int16).Value = CheckBoxProvincia.SelectedValue
-                    .Parameters.Add("@idActivo", MySqlDbType.Int16).Value = 1
-                End With
-                sqlReader = sqlComm.ExecuteReader()
-                renderItems(sqlReader)
-            End Using
-        Catch ex As MySqlException
-            'MessageBox.Show("El alojamiento no esta disponible", "ERROR DE ALOJAMIENTO", MessageBoxButtons.OK, MessageBoxIcon.Error)
-        End Try
-    End Sub
-
     Sub sacarNombresConFiltros()
         mostrarOrden()
         Try
@@ -159,15 +130,16 @@ Public Class WebForm3
         Dim count As Integer = 0
         For Each i In CheckBoxTipo.Items
             If i.Selected Then
-                tipos += i.Value & ","
+                tipos += "'" & i.Value & "',"
                 count += 1
             End If
         Next
         If count > 0 Then
-            sqlQuery = " lodgingtype in (\'" & tipos.Trim().Remove(tipos.Length - 1) & "\')"
+            tipos = tipos.Trim().Substring(0, tipos.Length - 1)
+            sqlQuery = " lodgingtype in (" & tipos & ")"
         End If
         If count = 0 Then
-            sqlQuery = " lodgingtype in (\'Albergues\', \'Agroturismos\', \'Casas Rurales\', \'Campings\')"
+            sqlQuery = " lodgingtype in ('Albergues', 'Agroturismos', 'Casas Rurales', 'Campings')"
         End If
         Return sqlQuery
     End Function
@@ -183,10 +155,10 @@ Public Class WebForm3
             End If
         Next
         If count > 0 Then
-            sqlQuery = " territory in (" & provincias.Trim().Remove(provincias.Length - 1) & ")"
+            sqlQuery = " AND territory in (" & provincias.Trim().Remove(provincias.Length - 1) & ")"
         End If
         If count = 0 Then
-            sqlQuery = " territory in (1,2,3)"
+            sqlQuery = " AND territory in (1,2,3)"
         End If
         Return sqlQuery
     End Function
@@ -214,9 +186,9 @@ Public Class WebForm3
     Function crearQueryOrden() As String
         Dim sqlQuery As String = ""
         If RBAsc.Checked = True Then
-            sqlQuery = " AND activo = 1 ORDER BY documentname ASC"
+            sqlQuery = " AND activo = 1 ORDER BY documentname ASC LIMIT 30"
         Else
-            sqlQuery = " AND activo = 1 ORDER BY documentname DESC"
+            sqlQuery = " AND activo = 1 ORDER BY documentname DESC LIMIT 30"
         End If
         Return sqlQuery
     End Function
