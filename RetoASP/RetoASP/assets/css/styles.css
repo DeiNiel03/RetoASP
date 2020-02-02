@@ -181,3 +181,133 @@ nav::-webkit-scrollbar-thumb {
         max-width: 1450px;
     }
 }
+
+/*=======================================================================
+  CUSTOM CHECKBOX AND RADIO BUTTONS
+========================================================================*/
+.filter-title {
+    margin-bottom: 10px;
+    font-weight: 900;
+    display: block;
+}
+
+/* Base for label styling */
+[type="checkbox"]:not(:checked),
+[type="checkbox"]:checked {
+    position: absolute;
+    left: -9999px;
+}
+
+[type="checkbox"]:not(:checked) + label,
+[type="checkbox"]:checked + label {
+    position: relative;
+    padding-left: 1.95em;
+    cursor: pointer;
+}
+
+/* checkbox aspect */
+[type="checkbox"]:not(:checked) + label:before,
+[type="checkbox"]:checked + label:before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 1.25em;
+    height: 1.25em;
+    border: 2px solid rgba(0, 0, 0, 0.3);
+    background: #fff;
+    border-radius: 2px;
+    box-shadow: inset 0 1px 3px rgba(0,0,0,.1);
+}
+[type="checkbox"]:checked + label:before {
+    background: #fc7b03;
+    border: none;
+}
+/* checked mark aspect */
+    [type="checkbox"]:not(:checked) + label:after,
+    [type="checkbox"]:checked + label:after {
+        content: '';
+        position: absolute;
+        top: .15em;
+        left: .22em;
+        font-size: 1.3em;
+        line-height: 0.8;
+        color: #fff;
+        transition: all .2s;
+        height: 7px;
+        width: 12px;
+        border-left: 2px solid;
+        border-bottom: 2px solid;
+        transform: rotate(-45deg);
+        left: 4px;
+        top: 5px;
+    }
+/* checked mark aspect changes */
+[type="checkbox"]:not(:checked) + label:after {
+    opacity: 0;
+    //transform: scale(0);
+}
+
+[type="checkbox"]:checked + label:after {
+    opacity: 1;
+    //transform: scale(1);
+}
+
+
+/* Base for label styling */
+[type="radio"]:not(:checked),
+[type="radio"]:checked {
+    position: absolute;
+    left: -9999px;
+}
+
+[type="radio"]:not(:checked) + label,
+[type="radio"]:checked + label {
+position: relative;
+padding-left: 1.95em;
+cursor: pointer;
+}
+
+/* checkbox aspect */
+[type="radio"]:not(:checked) + label:before,
+[type="radio"]:checked + label:before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 1.25em;
+    height: 1.25em;
+    border: 2px solid rgba(0, 0, 0, 0.3);
+    background: #fff;
+    border-radius: 100%;
+    box-shadow: inset 0 1px 3px rgba(0,0,0,.1);
+}
+
+[type="radio"]:checked + label:before {
+    background: #fc7b03;
+    border: none;
+}
+
+/* checked mark aspect changes */
+[type="radio"]:not(:checked) + label:after {
+    opacity: 0;
+    //transform: scale(0);
+}
+
+[type="radio"]:checked + label:after {
+    opacity: 1;
+    //transform: scale(1);
+}
+
+/*=======================================================================
+  LISTA DE ALOJAMIENTOS
+========================================================================*/
+.lodging-img {
+    width: 100%;
+    height: 200px;
+    background-size: cover;
+}
+
+.lbldescripcion {
+    text-align: justify;
+}

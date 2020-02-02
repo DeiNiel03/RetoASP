@@ -199,6 +199,7 @@ Public Class WebForm3
         Dim div As New HtmlGenericControl("div")
         Dim boton As New Button
         Dim provincia As String = Nothing
+        Dim description As String = Nothing
         div.Attributes.Add("class", "item")
         div.Attributes.Add("class", "row")
         boton.Text = "Reservar"
@@ -212,6 +213,7 @@ Public Class WebForm3
             lblNO.Visible = False
             While sqlReader.Read()
                 idAlojamiento = sqlReader("signatura")
+                'Territory
                 If sqlReader("territory") = 1 Then
                     provincia = "Bizkaia/Vizcaya"
                 ElseIf sqlReader("territory") = 2 Then
@@ -219,15 +221,20 @@ Public Class WebForm3
                 Else
                     provincia = "Gipuzkoa/Guipuzcoa"
                 End If
+                'Description
+                description = HttpUtility.HtmlDecode(sqlReader("turismdescription"))
+                description = Regex.Replace(description, "<[^>]*(>|$)", "")
+                If description.Length > 400 Then
+                    description = description.Trim().Remove(400)
+                End If
                 html = html + "<div class='col-sm-5'>"
-                html = html + "<img src='" + "data:image/jpg;base64," & Convert.ToBase64String(sqlReader("imagen")) + "'>"
+                html = html + "<img class='lodging-img' src='" + "data:image/jpg;base64," & Convert.ToBase64String(sqlReader("imagen")) + "'>"
                 html = html + "</div>"
                 html = html + "<div class='col-sm-7'>"
                 html = html + "<h2 class='lblnombre'>" + sqlReader("documentname").ToString + "</h2>"
-                    html = html + "<p class='lbllocalicacion'>" + sqlReader("municipality") + ", " + provincia + "</p>"
-                    html = html + "<p class='lbldescripcion'>" + sqlReader("turismdescription") + "</p>"
-                html = html + "<p class='lbldireccion'>Dirección: " + sqlReader("address").ToString + "</p>"
-                html = html + "<p class='lblcodpostal'>" + sqlReader("postalcode").ToString + "</p>"
+                html = html + "<p class='lbllocalicacion'>" + sqlReader("municipality") + ", " + provincia + "</p>"
+                html = html + "<p class='lbldescripcion'>" + description + "</p>"
+                html = html + "<p class='lbldireccion'>Dirección: " + sqlReader("address").ToString + " " + sqlReader("postalcode").ToString + "</p>"
                 html = html + "<p class='lbltelefono'>Telefono: " + sqlReader("phone").ToString + "</p>"
                 html = html + "<p class='lblemail'> Email: " + sqlReader("tourismemail").ToString + "</p>"
                 html = html + "<a class='lblweb' href='" + sqlReader("web").ToString + "'>Web: " + sqlReader("web").ToString + "</a>"
