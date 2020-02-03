@@ -18,12 +18,12 @@
     </form>
     <script>
         mapboxgl.accessToken = 'pk.eyJ1Ijoiam9zZW1lbG9ycmlldGEiLCJhIjoiY2s2Mjl3MThtMDlobDNsdDZkeHIwcGZ4cCJ9.NyW3KGVedov9bJrd3Wn3JQ';
-        var map = new mapboxgl.Map({
+        /*var map = new mapboxgl.Map({
             container: 'mapdiv',
             style: 'mapbox://styles/mapbox/streets-v11',
             center: [-2.9646428, 43.2842863],
             zoom: 15
-        });
+        });*/
     </script>
 </body>
     
