@@ -42,7 +42,7 @@ Public Class DetallesAlojamiento
 		Dim idAlojamiento As String
 		Dim html As String = ""
 		Dim div As New HtmlGenericControl("div")
-		'Dim divMapa As New HtmlGenericControl("div")
+		Dim divMapa As New HtmlGenericControl("div")
 		Dim botonReserva As New Button
 		Dim botonMapa As New Button
 		Dim provincia As String = Nothing
@@ -52,9 +52,6 @@ Public Class DetallesAlojamiento
 		botonReserva.Text = "Reservar"
 		botonReserva.Attributes.Add("class", "btn")
 		AddHandler botonReserva.Click, AddressOf irAReservar
-		'botonMapa.Text = "Ver en Mapa"
-		'botonMapa.Attributes.Add("class", "btn")
-		'AddHandler botonMapa.Click, AddressOf irAMapa
 		Panel1.Controls.Clear()
 		If Not sqlReader.HasRows Then
 			lblNO.Visible = True
@@ -114,22 +111,16 @@ Public Class DetallesAlojamiento
 				html = html + "</div>"
 				div.InnerHtml = html
 				botonReserva.ID = idAlojamiento
+				div.Controls.Add(divMapa)
 				div.Controls.Add(botonReserva)
-				'divMapa.ID = "mapDiv"
-				'botonReserva.ID = idAlojamiento
-				'div.Controls.Add(botonReserva)
+				divMapa.ID = "mapDiv"
+				divMapa.Attributes.Add("class", "mapa")
 				Panel1.Controls.Add(div)
-				'Panel1.Controls.Add(divMapa)
 			End While
 		End If
 		conexion.Close()
 	End Sub
 
-	'Sub irAMapa(sender As Object, e As EventArgs)
-	'	Dim lat As String = "?lat=" + latitud
-	'	Dim lon As String = "?lon=" + longitud
-	'	Response.Redirect("DetallesAlojamiento.aspx" + latitud + longitud)
-	'End Sub
 	Sub irAReservar(sender As Object, e As EventArgs)
         Dim params As String = "?signatura=" + signatura
         Response.Redirect("Realizar.aspx" + params)
