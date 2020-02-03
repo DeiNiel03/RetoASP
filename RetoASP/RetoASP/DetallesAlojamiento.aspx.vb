@@ -19,7 +19,7 @@ Public Class DetallesAlojamiento
 
     Sub mostrarAlojamiento()
         Try
-			Dim sqlQuery As String = "SELECT signatura, documentname, turismdescription, address, phone, tourismemail, web, territory, municipality, postalcode, capacity, imagen, restaurant, store, autocaravana, latwgs84, longwgs84 FROM alojamientos_fac.alojamientos WHERE signatura = '" + signatura + "'"
+			Dim sqlQuery As String = "SELECT signatura, documentname, turismdescription, address, phone, tourismemail, web, territory, municipality, postalcode, capacity, imagen, restaurant, store, autocaravana, latwgs84, lonwgs84 FROM alojamientos_fac.alojamientos WHERE signatura = '" + signatura + "'"
 			Using sqlComm As New MySqlCommand()
                 With sqlComm
                     .Connection = conexion
@@ -62,8 +62,8 @@ Public Class DetallesAlojamiento
 			lblNO.Visible = False
 			While sqlReader.Read()
 				idAlojamiento = sqlReader("signatura")
-				Me.HiddenLat = sqlReader("latwgs84")
-				Me.HiddenLon = sqlReader("lonwgs84")
+				Me.HiddenLat.Value = sqlReader("latwgs84").ToString
+				Me.HiddenLon.Value = sqlReader("lonwgs84").ToString
 				'Territory
 				If sqlReader("territory") = 1 Then
 					provincia = "Bizkaia/Vizcaya"
