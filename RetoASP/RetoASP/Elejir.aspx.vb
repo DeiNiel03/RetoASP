@@ -10,6 +10,6 @@
 	End Sub
 
 	Protected Sub btnVer_Click(sender As Object, e As EventArgs) Handles btnVer.Click
-		Response.Redirect("")
+		Response.Redirect("MisReservas.aspx?usuario=" + lblUsuario.Text)
 	End Sub
 End Class
