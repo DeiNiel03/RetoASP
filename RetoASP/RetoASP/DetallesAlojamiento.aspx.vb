@@ -38,9 +38,9 @@ Public Class DetallesAlojamiento
         End Try
     End Sub
 
-    Sub renderItems(sqlReader As MySqlDataReader)
-        Dim idAlojamiento As String
-        Dim html As String = ""
+	Sub renderItems(sqlReader As MySqlDataReader)
+		Dim idAlojamiento As String
+		Dim html As String = ""
 		Dim div As New HtmlGenericControl("div")
 		'Dim divMapa As New HtmlGenericControl("div")
 		Dim botonReserva As New Button
@@ -118,7 +118,6 @@ Public Class DetallesAlojamiento
 				'divMapa.ID = "mapDiv"
 				'botonReserva.ID = idAlojamiento
 				'div.Controls.Add(botonReserva)
-
 				Panel1.Controls.Add(div)
 				'Panel1.Controls.Add(divMapa)
 			End While
@@ -126,14 +125,13 @@ Public Class DetallesAlojamiento
 		conexion.Close()
 	End Sub
 
-	Sub irAReservar(sender As Object, e As EventArgs)
-		Response.Redirect("Realizar.aspx")
-	End Sub
-
 	'Sub irAMapa(sender As Object, e As EventArgs)
 	'	Dim lat As String = "?lat=" + latitud
 	'	Dim lon As String = "?lon=" + longitud
 	'	Response.Redirect("DetallesAlojamiento.aspx" + latitud + longitud)
 	'End Sub
-
+	Sub irAReservar(sender As Object, e As EventArgs)
+        Dim params As String = "?signatura=" + signatura
+        Response.Redirect("Realizar.aspx" + params)
+    End Sub
 End Class
