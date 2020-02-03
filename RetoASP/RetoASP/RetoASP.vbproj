@@ -169,6 +169,7 @@
     <Content Include="assets\js\bootstrap.min.js" />
     <Content Include="assets\js\jquery-3.4.1.min.js" />
     <Content Include="assets\js\scripts.js" />
+    <Content Include="DetallesAlojamiento.aspx" />
     <Content Include="Prueba.aspx" />
     <Content Include="Web.config" />
     <Content Include="Registro.aspx" />
@@ -179,6 +180,13 @@
     <Content Include="Mapa.aspx" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DetallesAlojamiento.aspx.designer.vb">
+      <DependentUpon>DetallesAlojamiento.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="DetallesAlojamiento.aspx.vb">
+      <DependentUpon>DetallesAlojamiento.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
     <Compile Include="Main.Master.designer.vb">
       <DependentUpon>Main.Master</DependentUpon>
     </Compile>

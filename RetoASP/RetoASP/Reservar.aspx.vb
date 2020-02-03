@@ -1,5 +1,4 @@
-﻿Imports System.IO
-Imports MySql.Data.MySqlClient
+﻿Imports MySql.Data.MySqlClient
 
 Public Class WebForm3
 	Inherits System.Web.UI.Page
@@ -20,10 +19,9 @@ Public Class WebForm3
         mostrarAlojamientos()
     End Sub
 
-    Sub irAReservar(sender As Object, e As EventArgs)
-        Dim btn As Button = CType(sender, Button)
-        Dim s As String = "?usuario=" + lblUsuario.Text + "&id=" + btn.ID
-        Response.Redirect("Realizar.aspx" + s)
+    Sub irAReservar(idAlojamiento As String)
+        Dim s As String = "?signatura=" + idAlojamiento
+        Response.Redirect("DetallesAlojamiento.aspx" + s)
         conexion.Close()
     End Sub
 
@@ -194,7 +192,7 @@ Public Class WebForm3
     End Function
 
     Sub renderItems(sqlReader As MySqlDataReader)
-        Dim idAlojamiento As String
+        Dim idAlojamiento As String = Nothing
         Dim html As String = ""
         Dim div As New HtmlGenericControl("div")
         Dim boton As New Button
@@ -202,9 +200,9 @@ Public Class WebForm3
         Dim description As String = Nothing
         div.Attributes.Add("class", "item")
         div.Attributes.Add("class", "row")
-        boton.Text = "Reservar"
+        boton.Text = "Ver Detalles"
         boton.Attributes.Add("class", "btn")
-        AddHandler boton.Click, AddressOf irAReservar
+        AddHandler boton.Click, Sub(sender, e) irAReservar(idAlojamiento)
         Panel1.Controls.Clear()
         If Not sqlReader.HasRows Then
             lblNO.Visible = True
@@ -234,32 +232,6 @@ Public Class WebForm3
                 html = html + "<h2 class='lblnombre'>" + sqlReader("documentname").ToString + "</h2>"
                 html = html + "<p class='lbllocalicacion'>" + sqlReader("municipality") + ", " + provincia + "</p>"
                 html = html + "<p class='lbldescripcion'>" + description + "</p>"
-                html = html + "<p class='lbldireccion'>Dirección: " + sqlReader("address").ToString + " " + sqlReader("postalcode").ToString + "</p>"
-                html = html + "<p class='lbltelefono'>Telefono: " + sqlReader("phone").ToString + "</p>"
-                html = html + "<p class='lblemail'> Email: " + sqlReader("tourismemail").ToString + "</p>"
-                html = html + "<a class='lblweb' href='" + sqlReader("web").ToString + "'>Web: " + sqlReader("web").ToString + "</a>"
-                html = html + "<p class='lblrestaurante'>Restaurante: "
-                If sqlReader("restaurant") = 1 Then
-                    html = html + "Si"
-                Else
-                    html = html + "No"
-                End If
-                html = html + "</p>"
-                html = html + "<p class='lblautocaravana'>Caravana: "
-                If sqlReader("autocaravana") = 1 Then
-                    html = html + "Si"
-                Else
-                    html = html + "No"
-                End If
-                html = html + "</p>"
-                html = html + "<p class='lblstore'>Tienda: "
-                If sqlReader("store") = 1 Then
-                    html = html + "Si"
-                Else
-                    html = html + "No"
-                End If
-                html = html + "</p>"
-                html = html + "<p class='lblcapacidad'>Capacidad: " + sqlReader("capacity").ToString + "</p>"
                 html = html + "</div>"
                 div.InnerHtml = html
                 boton.ID = idAlojamiento
