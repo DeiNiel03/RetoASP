@@ -311,3 +311,14 @@ cursor: pointer;
 .lbldescripcion {
     text-align: justify;
 }
+
+.item {
+    margin-bottom: 80px;
+    position: relative;
+}
+
+.item .btn {
+    position: absolute;
+    right: 0;
+    bottom: -30px;
+}

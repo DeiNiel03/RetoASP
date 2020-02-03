@@ -219,8 +219,7 @@ Public Class WebForm3
                 End If
                 Dim html As String = ""
                 Dim div As New HtmlGenericControl("div")
-                div.Attributes.Add("class", "item")
-                div.Attributes.Add("class", "row")
+                div.Attributes.Add("class", "row item")
                 html = html + "<div class='col-sm-5'>"
                 html = html + "<img class='lodging-img' src='" + "data:image/jpg;base64," & Convert.ToBase64String(sqlReader("imagen")) + "'>"
                 html = html + "</div>"
