@@ -13,10 +13,10 @@ Public Class WebForm4
 	Dim fechaEnt, fechaSal As Date
 	Dim fechaEntrada, fechaSalida As String
 	Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
-		id = Request.Params("id").ToString
-		usuario = Request.Params("usuario").ToString
-		lblUsuario.Text = usuario
-		lblid.Text = id
+        id = Request.Params("signatura").ToString
+        'usuario = Request.Params("usuario").ToString
+        'lblUsuario.Text = usuario
+        lblid.Text = id
 
 		If conexion.State = ConnectionState.Closed Then
 			conexion.Open()

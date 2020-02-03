@@ -112,7 +112,8 @@ Public Class DetallesAlojamiento
     End Sub
 
     Sub irAReservar(sender As Object, e As EventArgs)
-        Response.Redirect("Realizar.aspx")
+        Dim params As String = "?signatura=" + signatura
+        Response.Redirect("Realizar.aspx" + params)
     End Sub
 
 End Class

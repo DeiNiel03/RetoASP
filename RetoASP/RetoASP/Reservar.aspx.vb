@@ -19,9 +19,9 @@ Public Class WebForm3
         mostrarAlojamientos()
     End Sub
 
-    Sub irAReservar(idAlojamiento As String)
-        Dim s As String = "?signatura=" + idAlojamiento
-        Response.Redirect("DetallesAlojamiento.aspx" + s)
+    Sub irADetalles(idAlojamiento As String)
+        Dim params As String = "?signatura=" + idAlojamiento
+        Response.Redirect("DetallesAlojamiento.aspx" + params)
         conexion.Close()
     End Sub
 
@@ -193,16 +193,8 @@ Public Class WebForm3
 
     Sub renderItems(sqlReader As MySqlDataReader)
         Dim idAlojamiento As String = Nothing
-        Dim html As String = ""
-        Dim div As New HtmlGenericControl("div")
-        Dim boton As New Button
         Dim provincia As String = Nothing
         Dim description As String = Nothing
-        div.Attributes.Add("class", "item")
-        div.Attributes.Add("class", "row")
-        boton.Text = "Ver Detalles"
-        boton.Attributes.Add("class", "btn")
-        AddHandler boton.Click, Sub(sender, e) irAReservar(idAlojamiento)
         Panel1.Controls.Clear()
         If Not sqlReader.HasRows Then
             lblNO.Visible = True
@@ -225,6 +217,10 @@ Public Class WebForm3
                 If description.Length > 400 Then
                     description = description.Trim().Remove(400)
                 End If
+                Dim html As String = ""
+                Dim div As New HtmlGenericControl("div")
+                div.Attributes.Add("class", "item")
+                div.Attributes.Add("class", "row")
                 html = html + "<div class='col-sm-5'>"
                 html = html + "<img class='lodging-img' src='" + "data:image/jpg;base64," & Convert.ToBase64String(sqlReader("imagen")) + "'>"
                 html = html + "</div>"
@@ -234,6 +230,10 @@ Public Class WebForm3
                 html = html + "<p class='lbldescripcion'>" + description + "</p>"
                 html = html + "</div>"
                 div.InnerHtml = html
+                Dim boton As New Button
+                boton.Text = "Ver Detalles"
+                boton.Attributes.Add("class", "btn")
+                AddHandler boton.Click, Sub(sender, e) irADetalles(idAlojamiento)
                 boton.ID = idAlojamiento
                 div.Controls.Add(boton)
                 Panel1.Controls.Add(div)
