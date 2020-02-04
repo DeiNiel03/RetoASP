@@ -32,6 +32,24 @@ Partial Public Class DetallesAlojamiento
     Protected WithEvents HiddenLon As Global.System.Web.UI.WebControls.HiddenField
     
     '''<summary>
+    '''Control HiddenNombre.
+    '''</summary>
+    '''<remarks>
+    '''Campo generado automáticamente.
+    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    '''</remarks>
+    Protected WithEvents HiddenNombre As Global.System.Web.UI.WebControls.HiddenField
+    
+    '''<summary>
+    '''Control HiddenMunic.
+    '''</summary>
+    '''<remarks>
+    '''Campo generado automáticamente.
+    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    '''</remarks>
+    Protected WithEvents HiddenMunic As Global.System.Web.UI.WebControls.HiddenField
+    
+    '''<summary>
     '''Control Panel1.
     '''</summary>
     '''<remarks>
