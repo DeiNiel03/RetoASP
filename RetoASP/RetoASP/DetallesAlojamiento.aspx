@@ -7,6 +7,8 @@
     <div class="container">
         <asp:HiddenField ID="HiddenLat" runat="server" />
         <asp:HiddenField ID="HiddenLon" runat="server" />
+        <asp:HiddenField ID="HiddenNombre" runat="server" />
+        <asp:HiddenField ID="HiddenMunic" runat="server" />
         <div class="row">
             <div class="col-sm-12">
                 <asp:Panel ID="Panel1" runat="server" CssClass="space">
@@ -20,6 +22,8 @@
 
         var lat = parseFloat(document.getElementById("ContentPlaceHolder1_HiddenLat").value.replace(",", "."));
         var lon = parseFloat(document.getElementById("ContentPlaceHolder1_HiddenLon").value.replace(",", "."));
+        var nombre = document.getElementById("ContentPlaceHolder1_HiddenNombre").value;
+        var municipio = document.getElementById("ContentPlaceHolder1_HiddenMunic").value;
         var map = new mapboxgl.Map({
             container: 'ContentPlaceHolder1_mapDiv',
             style: 'mapbox://styles/mapbox/satellite-streets-v9',
@@ -30,7 +34,7 @@
         new mapboxgl.Marker()
             .setLngLat([lon, lat])
             .setPopup(new mapboxgl.Popup({ offset: 25 }) // add popups
-                .setHTML('<h3>' + 'Alojamiento' + '</h3><p>' + 'Mu gonico' + '</p>'))
+                .setHTML('<h3>' + nombre + '</h3><p>' + municipio + '</p>'))
             .addTo(map);
     </script>
 </asp:Content>

@@ -75,12 +75,8 @@ Public Class WebForm3
     End Sub
 
     Sub mostrarAlojamientos()
-        Panel1.Controls.Clear()
-        sacarNombresConFiltros()
-    End Sub
-
-    Sub sacarNombresConFiltros()
-        mostrarOrden()
+		Panel1.Controls.Clear()
+		mostrarOrden()
         Try
             Dim sqlQuery As String = crearQuery()
             Using sqlComm As New MySqlCommand()
@@ -106,20 +102,24 @@ Public Class WebForm3
         Dim tipos As String = crearQueryTipos()
         Dim provincias As String = crearQueryProvincias()
         Dim caracteristicas As String = crearQueryCaracteristicas()
-        Dim orden As String = crearQueryOrden()
-        If Not tipos.Equals("") Then
+		Dim orden As String = crearQueryOrden()
+		Dim texto As String = crearQueryTexto()
+		If Not tipos.Equals("") Then
             sqlQuery += tipos
         End If
         If Not provincias.Equals("") Then
             sqlQuery += provincias
         End If
-        If Not caracteristicas.Equals("") Then
-            sqlQuery += caracteristicas
-        End If
-        If Not orden.Equals("") Then
-            sqlQuery += orden
-        End If
-        Return sqlQuery
+		If Not caracteristicas.Equals("") Then
+			sqlQuery += caracteristicas
+		End If
+		If Not Search.Text = "" Then
+			sqlQuery += texto
+		End If
+		If Not orden.Equals("") Then
+			sqlQuery += orden
+		End If
+		Return sqlQuery
     End Function
 
     Function crearQueryTipos() As String
@@ -181,17 +181,23 @@ Public Class WebForm3
         Return sqlQuery
     End Function
 
-    Function crearQueryOrden() As String
-        Dim sqlQuery As String = ""
-        If RBAsc.Checked = True Then
-            sqlQuery = " AND activo = 1 ORDER BY documentname ASC LIMIT 30"
-        Else
-            sqlQuery = " AND activo = 1 ORDER BY documentname DESC LIMIT 30"
-        End If
-        Return sqlQuery
-    End Function
+	Function crearQueryOrden() As String
+		Dim sqlQuery As String = ""
+		If RBAsc.Checked = True Then
+			sqlQuery = " AND activo = 1 ORDER BY documentname ASC LIMIT 30"
+		Else
+			sqlQuery = " AND activo = 1 ORDER BY documentname DESC LIMIT 30"
+		End If
+		Return sqlQuery
+	End Function
 
-    Sub renderItems(sqlReader As MySqlDataReader)
+	Function crearQueryTexto() As String
+		Dim sqlQuery As String = ""
+		sqlQuery = " AND (UPPER(documentname) LIKE '%" + Search.Text.ToUpper + "%' OR UPPER(municipality) LIKE '%" + Search.Text.ToUpper + "%')"
+		Return sqlQuery
+	End Function
+
+	Sub renderItems(sqlReader As MySqlDataReader)
         Dim idAlojamiento As String = Nothing
         Dim provincia As String = Nothing
         Dim description As String = Nothing
@@ -220,7 +226,7 @@ Public Class WebForm3
                 Dim html As String = ""
                 Dim div As New HtmlGenericControl("div")
                 div.Attributes.Add("class", "row item")
-                html = html + "<div class='col-sm-5'>"
+                html = html + "<div Class='col-sm-5'>"
                 html = html + "<img class='lodging-img' src='" + "data:image/jpg;base64," & Convert.ToBase64String(sqlReader("imagen")) + "'>"
                 html = html + "</div>"
                 html = html + "<div class='col-sm-7'>"
@@ -240,116 +246,15 @@ Public Class WebForm3
         End If
     End Sub
 
+	Protected Sub Search_TextChanged(sender As Object, e As EventArgs) Handles Search.TextChanged
+		filtrarPorTexto()
+	End Sub
 
-    'Protected Sub btnBuscar_Click(sender As Object, e As EventArgs) Handles btnBuscar.Click
-    '	mostrarOrden()
-    '	Try
-    '		Dim comando As String
-    '		If RBAsc.Checked = True Then
-    '			comando = "SELECT signatura, documentname, turismdescription, address, phone, tourismemail, web, postalcode, capacity, imagen, restaurant, store, autocaravana FROM alojamientos_fac.alojamientos WHERE UPPER(documentname) = UPPER(@idNombre) ORDER BY documentname ASC"
-    '		ElseIf RBDesc.Checked = True Then
-    '			comando = "SELECT signatura, documentname, turismdescription, address, phone, tourismemail, web, postalcode, capacity, imagen, restaurant, store, autocaravana FROM alojamientos_fac.alojamientos WHERE UPPER(documentname) = UPPER(@idNombre) ORDER BY documentname DESC"
-    '		End If
-    '		Using sqlComm As New MySqlCommand()
-    '			With sqlComm
-    '				.Connection = conexion
-    '				.CommandText = comando
-    '				.CommandType = CommandType.Text
-    '				.Parameters.Add("@idNombre", MySqlDbType.VarChar).Value = TBBuscar.Text
+	Protected Sub btnSearch_Click(sender As Object, e As EventArgs) Handles btnSearch.Click
+		filtrarPorTexto()
+	End Sub
 
-    '			End With
-    '			Dim sqlReader As MySqlDataReader = sqlComm.ExecuteReader()
+	Sub filtrarPorTexto()
 
-    '			Panel1.Controls.Clear()
-
-    '			While sqlReader.Read()
-
-    '				id = sqlReader("signatura")
-
-    '				Dim div As New HtmlGenericControl("div")
-    '				div.Attributes.Add("class", "item")
-    '				Dim html As String = ""
-    '				html = html + "<img src='" + "data:image/jpg;base64," & Convert.ToBase64String(sqlReader("imagen")) + "'>"
-    '				html = html + "<label class='lblnombre'>" + sqlReader("documentname").ToString + "</label>"
-    '				html = html + "<label class='lbldescripcion'>" + sqlReader("turismdescription") + "</label>"
-    '				html = html + "<label class='lbldireccion'>" + sqlReader("address").ToString + "</label>"
-    '				html = html + "<label class='lblcodpostal'>" + sqlReader("postalcode").ToString + "</label>"
-    '				html = html + "<label class='lbltelefono'>" + sqlReader("phone").ToString + "</label>"
-    '				html = html + "<label class='lblemail'>" + sqlReader("tourismemail").ToString + "</label>"
-    '				html = html + "<label class='lblweb'>" + sqlReader("web").ToString + "</label>"
-
-    '				If sqlReader("restaurant") = 1 Then
-    '					html = html + "Si"
-    '				Else
-    '					html = html + "No"
-    '				End If
-    '				html = html + "</label>"
-
-    '				html = html + "<label class='lblautocaravana'>"
-    '				If sqlReader("autocaravana") = 1 Then
-    '					html = html + "Si"
-    '				Else
-    '					html = html + "No"
-    '				End If
-
-    '				html = html + "<label class='lblstore'>"
-    '				If sqlReader("store") = 1 Then
-    '					html = html + "Si"
-    '				Else
-    '					html = html + "No"
-    '				End If
-    '				html = html + "</label>"
-    '				html = html + "<label class='lblcapacidad'>" + sqlReader("capacity").ToString + "</label>"
-
-
-    '				div.InnerHtml = html
-
-    '				Dim boton As New Button
-    '				boton.ID = id
-    '				boton.Text = "Reservar"
-    '				'boton.Attributes.Add("onclick", "return false")
-    '				AddHandler boton.Click, AddressOf irAReservar
-    '				Panel1.Controls.Add(div)
-    '				Panel1.Controls.Add(boton)
-    '			End While
-    '			If Not sqlReader.HasRows Then
-    '				lblNO.Visible = True
-    '				ocultarOrden()
-    '			Else
-    '				lblNO.Visible = False
-    '			End If
-    '		End Using
-    '	Catch ex As MySqlException
-    '		'MessageBox.Show("El alojamiento no esta disponible", "ERROR DE ALOJAMIENTO", MessageBoxButtons.OK, MessageBoxIcon.Error)
-    '	End Try
-    'End Sub
-
-    'Sub sacarImagen()
-    '	Try
-    '		Dim sqlQuery As String = "SELECT imagen FROM alojamientos_fac.alojamientos WHERE documentname = @idNombre"
-
-
-    '		Using sqlComm As New MySqlCommand() 'hay que usar un comando por cada select
-    '			With sqlComm
-    '				.Connection = conexion
-    '				.CommandText = sqlQuery
-    '				.CommandType = CommandType.Text
-    '				.Parameters.AddWithValue("@idNombre", listNombres.SelectedItem.ToString)
-    '			End With
-    '			Try
-    '				conexion.Open()
-    '				Dim sqlReader As MySqlDataReader = sqlComm.ExecuteReader()
-    '				While sqlReader.Read()
-    '					Dim imageUrl As String = "data:image/jpg;base64," & Convert.ToBase64String(sqlReader("imagen"))
-    '					Me.Imagen.ImageUrl = imageUrl
-    '				End While
-
-    '			Catch ex As MySqlException
-    '				MessageBox.Show(ex.Message, "ERROR DE IMAGEN", MessageBoxButtons.OK, MessageBoxIcon.Error)
-    '			End Try
-    '		End Using
-    '	Catch ex As MySql.Data.MySqlClient.MySqlException
-    '		MessageBox.Show(ex.Message, "ERROR CON LA BASE DE DATOS", MessageBoxButtons.OK, MessageBoxIcon.Error)
-    '	End Try
-    'End Sub
+	End Sub
 End Class

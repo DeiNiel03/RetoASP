@@ -5,8 +5,6 @@ Public Class DetallesAlojamiento
 
     Dim conexion As MySqlConnection
 	Dim signatura As String
-	'Dim latitud As String
-	'Dim longitud As String
 
 	Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
         conexion = New MySqlConnection("datasource=188.213.5.150;port=3306;username=ldmj;password=ladamijo;CharSet=UTF8")
@@ -61,6 +59,8 @@ Public Class DetallesAlojamiento
 				idAlojamiento = sqlReader("signatura")
 				Me.HiddenLat.Value = sqlReader("latwgs84").ToString
 				Me.HiddenLon.Value = sqlReader("lonwgs84").ToString
+				Me.HiddenNombre.Value = sqlReader("documentname").ToString
+				Me.HiddenMunic.Value = sqlReader("municipality").ToString
 				'Territory
 				If sqlReader("territory") = 1 Then
 					provincia = "Bizkaia/Vizcaya"
