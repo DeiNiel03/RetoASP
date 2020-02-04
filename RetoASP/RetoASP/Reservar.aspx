@@ -18,7 +18,6 @@
         <div class="row">
             <div class="filtros col-sm-3">
                 <asp:Panel ID="Panel2" runat="server" CssClass="space">
-                    <asp:Label ID="lblUsuario" runat="server"></asp:Label>
                     <!-- tipo de alojamiento -->
                     <asp:Label ID="Label1" runat="server" Text="Tipo de alojamiento" CssClass="filter-title"></asp:Label>
                     <asp:CheckBoxList ID="CheckBoxTipo" runat="server" AutoPostBack="True"></asp:CheckBoxList>

@@ -7,8 +7,6 @@ Public Class WebForm3
     Dim modelo = New Modelo()
 
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
-        lblUsuario.Text = Request.Params("usuario")
-        panel = Panel1
         lblNO.Visible = True
         If conexion.State = ConnectionState.Closed Then
             conexion.Open()

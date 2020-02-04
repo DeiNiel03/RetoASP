@@ -13,6 +13,7 @@ Public Class DetallesAlojamiento
         End If
         signatura = Request.Params("signatura").ToString
         mostrarAlojamiento()
+        'comprobar si el usuario esta logeado
         If Session("email") <> Nothing Then
             Master.FindControl("btnLogin").Visible = False
             Master.FindControl("btnRegistro").Visible = False
