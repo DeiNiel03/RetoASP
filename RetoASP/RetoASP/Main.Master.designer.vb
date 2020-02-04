@@ -32,6 +32,33 @@ Partial Public Class Main
     Protected WithEvents form1 As Global.System.Web.UI.HtmlControls.HtmlForm
     
     '''<summary>
+    '''Control btnPerfil.
+    '''</summary>
+    '''<remarks>
+    '''Campo generado automáticamente.
+    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    '''</remarks>
+    Protected WithEvents btnPerfil As Global.System.Web.UI.WebControls.LinkButton
+    
+    '''<summary>
+    '''Control btnLogin.
+    '''</summary>
+    '''<remarks>
+    '''Campo generado automáticamente.
+    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    '''</remarks>
+    Protected WithEvents btnLogin As Global.System.Web.UI.WebControls.LinkButton
+    
+    '''<summary>
+    '''Control btnRegistro.
+    '''</summary>
+    '''<remarks>
+    '''Campo generado automáticamente.
+    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    '''</remarks>
+    Protected WithEvents btnRegistro As Global.System.Web.UI.WebControls.LinkButton
+    
+    '''<summary>
     '''Control ContentPlaceHolder1.
     '''</summary>
     '''<remarks>

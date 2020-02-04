@@ -27,6 +27,8 @@ Public Class WebForm2
                         If (sqlReader.HasRows) Then
                             While sqlReader.Read()
                                 If sqlReader("contrasena").ToString().Equals(getMd5Hash(Me.TBPass.Text)) Then
+                                    Session("Email") = TBEmail.Text
+                                    Session("Password") = TBPass.Text
                                     Response.Write("<script>window.alert('Se ha logeado correctamente');</script>")
                                     Response.Redirect("Elejir.aspx?usuario=" + TBEmail.Text)
                                 Else

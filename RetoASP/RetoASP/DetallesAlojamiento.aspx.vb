@@ -15,6 +15,11 @@ Public Class DetallesAlojamiento
         End If
         signatura = Request.Params("signatura").ToString
         mostrarAlojamiento()
+        If Session("email") <> Nothing Then
+            Master.FindControl("btnLogin").Visible = False
+            Master.FindControl("btnRegistro").Visible = False
+            Master.FindControl("btnPerfil").Visible = True
+        End If
     End Sub
 
     Sub mostrarAlojamiento()
@@ -114,8 +119,8 @@ Public Class DetallesAlojamiento
 				div.Controls.Add(divMapa)
 				div.Controls.Add(botonReserva)
 				divMapa.ID = "mapDiv"
-				divMapa.Attributes.Add("class", "mapa")
-				Panel1.Controls.Add(div)
+                divMapa.Attributes.Add("class", "mapa col-sm-12")
+                Panel1.Controls.Add(div)
 			End While
 		End If
 		conexion.Close()

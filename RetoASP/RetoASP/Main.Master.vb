@@ -16,4 +16,8 @@
     Protected Sub Login_Click(sender As Object, e As EventArgs)
         Response.Redirect("Login.aspx")
     End Sub
+
+    Protected Sub Perfil_Click(sender As Object, e As EventArgs) Handles btnPerfil.Click
+        Response.Redirect("Perfil.aspx")
+    End Sub
 End Class

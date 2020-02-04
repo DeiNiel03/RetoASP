@@ -17,10 +17,17 @@ Public Class WebForm3
             cargarDatos()
         End If
         mostrarAlojamientos()
+        'comprobar si el usuario esta logeado
+        If Session("email") <> Nothing Then
+            Master.FindControl("btnLogin").Visible = False
+            Master.FindControl("btnRegistro").Visible = False
+            Master.FindControl("btnPerfil").Visible = True
+        End If
     End Sub
 
-    Sub irADetalles(idAlojamiento As String)
-        Dim params As String = "?signatura=" + idAlojamiento
+    Sub irADetalles(sender As Object, e As EventArgs)
+        Dim btn As Button = CType(sender, Button)
+        Dim params As String = "?signatura=" + btn.ID
         Response.Redirect("DetallesAlojamiento.aspx" + params)
         conexion.Close()
     End Sub
@@ -232,7 +239,7 @@ Public Class WebForm3
                 Dim boton As New Button
                 boton.Text = "Ver Detalles"
                 boton.Attributes.Add("class", "btn")
-                AddHandler boton.Click, Sub(sender, e) irADetalles(idAlojamiento)
+                AddHandler boton.Click, AddressOf irADetalles
                 boton.ID = idAlojamiento
                 div.Controls.Add(boton)
                 Panel1.Controls.Add(div)
