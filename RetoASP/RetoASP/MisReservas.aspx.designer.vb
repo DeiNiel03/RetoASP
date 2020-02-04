@@ -32,24 +32,6 @@ Partial Public Class WebForm7
 	Protected WithEvents lblId As Global.System.Web.UI.WebControls.Label
 
 	'''<summary>
-	'''Control Label1.
-	'''</summary>
-	'''<remarks>
-	'''Campo generado automáticamente.
-	'''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-	'''</remarks>
-	Protected WithEvents Label1 As Global.System.Web.UI.WebControls.Label
-
-	'''<summary>
-	'''Control Label2.
-	'''</summary>
-	'''<remarks>
-	'''Campo generado automáticamente.
-	'''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-	'''</remarks>
-	Protected WithEvents Label2 As Global.System.Web.UI.WebControls.Label
-
-	'''<summary>
 	'''Control Label3.
 	'''</summary>
 	'''<remarks>
@@ -57,33 +39,6 @@ Partial Public Class WebForm7
 	'''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
 	'''</remarks>
 	Protected WithEvents Label3 As Global.System.Web.UI.WebControls.Label
-
-	'''<summary>
-	'''Control Label4.
-	'''</summary>
-	'''<remarks>
-	'''Campo generado automáticamente.
-	'''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-	'''</remarks>
-	Protected WithEvents Label4 As Global.System.Web.UI.WebControls.Label
-
-	'''<summary>
-	'''Control Label5.
-	'''</summary>
-	'''<remarks>
-	'''Campo generado automáticamente.
-	'''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-	'''</remarks>
-	Protected WithEvents Label5 As Global.System.Web.UI.WebControls.Label
-
-	'''<summary>
-	'''Control Label6.
-	'''</summary>
-	'''<remarks>
-	'''Campo generado automáticamente.
-	'''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-	'''</remarks>
-	Protected WithEvents Label6 As Global.System.Web.UI.WebControls.Label
 
 	'''<summary>
 	'''Control Label7.
