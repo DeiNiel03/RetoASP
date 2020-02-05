@@ -92,28 +92,50 @@ Public Class DetallesAlojamiento
 				html = html + "<p class='lbltelefono'>Telefono: " + sqlReader("phone").ToString + "</p>"
 				html = html + "<p class='lblemail'> Email: " + sqlReader("tourismemail").ToString + "</p>"
 				html = html + "<a class='lblweb' href='" + sqlReader("web").ToString + "'>Web: " + sqlReader("web").ToString + "</a>"
-				html = html + "<p class='lblrestaurante'>Restaurante: "
-				If sqlReader("restaurant") = 1 Then
-					html = html + "Si"
+				html = html + "<div class='servicios'>"
+				html = html + "<img class='imgservicio' src='assets/images/baseline_face_black_48dp.png'/>"
+				html = html + "<p class='textoservicio'>" + sqlReader("capacity").ToString + "</p>"
+				html = html + "<img class='imgservicio' src='"
+				If sqlReader("restaurant").ToString = "1" Then
+					html = html + "assets/images/baseline_restaurant_black_48dp.png'/>"
 				Else
-					html = html + "No"
+					html = html + "assets/images/baseline_restaurant_grey_48dp.png'/>"
 				End If
-				html = html + "</p>"
-				html = html + "<p class='lblautocaravana'>Caravana: "
-				If sqlReader("autocaravana") = 1 Then
-					html = html + "Si"
+				html = html + "<img class='imgservicio' src='"
+				If sqlReader("store").ToString = "1" Then
+					html = html + "assets/images/baseline_shopping_cart_black_48dp.png'/>"
 				Else
-					html = html + "No"
+					html = html + "assets/images/baseline_shopping_cart_grey_48dp.png'/>"
 				End If
-				html = html + "</p>"
-				html = html + "<p class='lblstore'>Tienda: "
-				If sqlReader("store") = 1 Then
-					html = html + "Si"
+				html = html + "<img class='imgservicio' src='"
+				If sqlReader("autocaravana").ToString = "1" Then
+					html = html + "assets/images/baseline_rv_hookup_black_48dp.png'/>"
 				Else
-					html = html + "No"
+					html = html + "assets/images/baseline_rv_hookup_grey_48dp.png'/>"
 				End If
-				html = html + "</p>"
-				html = html + "<p class='lblcapacidad'>Capacidad: " + sqlReader("capacity").ToString + "</p>"
+				html = html + "</div>"
+				'html = html + "<p class='lblrestaurante'>Restaurante: "
+				'If sqlReader("restaurant") = 1 Then
+				'	html = html + "Si"
+				'Else
+				'	html = html + "No"
+				'End If
+				'html = html + "</p>"
+				'html = html + "<p class='lblautocaravana'>Caravana: "
+				'If sqlReader("autocaravana") = 1 Then
+				'	html = html + "Si"
+				'Else
+				'	html = html + "No"
+				'End If
+				'html = html + "</p>"
+				'html = html + "<p class='lblstore'>Tienda: "
+				'If sqlReader("store") = 1 Then
+				'	html = html + "Si"
+				'Else
+				'	html = html + "No"
+				'End If
+				'html = html + "</p>"
+				'html = html + "<p class='lblcapacidad'>Capacidad: " + sqlReader("capacity").ToString + "</p>"
 				html = html + "</div>"
 				div.InnerHtml = html
 				botonReserva.ID = idAlojamiento
