@@ -13,27 +13,30 @@ Public Class WebForm4
     Dim fechaEnt, fechaSal As Date
     Dim fechaEntrada, fechaSalida As String
 
-    Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
-        idAlojamiento = Request.Params("signatura").ToString
-        lblid.Text = idAlojamiento
-        If conexion.State = ConnectionState.Closed Then
-            conexion.Open()
-        End If
-        If Not IsPostBack Then
-            CalendarEntrada.SelectedDate = Date.Today
-            CalendarSalida.SelectedDate = Date.Today.AddDays(1)
-        End If
-        mostrarInfo()
-        obtenerDNIdelUsuario()
-        'comprobar si el usuario esta logeado
-        If Session("email") <> Nothing Then
-            Master.FindControl("btnLogin").Visible = False
-            Master.FindControl("btnRegistro").Visible = False
-            Master.FindControl("btnPerfil").Visible = True
-        End If
-    End Sub
+	Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
+		If Session("Dni") <> Nothing Then
+			idAlojamiento = Request.Params("signatura").ToString
+			lblid.Text = idAlojamiento
+			If conexion.State = ConnectionState.Closed Then
+				conexion.Open()
+			End If
+			If Not IsPostBack Then
+				CalendarEntrada.SelectedDate = Date.Today
+				CalendarSalida.SelectedDate = Date.Today.AddDays(1)
+			End If
+			'mostrarInfo()
+			'obtenerDNIdelUsuario()
+			dni = Session("Dni")
+			'comprobar si el usuario esta logeado
+			Master.FindControl("btnLogin").Visible = False
+			Master.FindControl("btnRegistro").Visible = False
+			Master.FindControl("btnPerfil").Visible = True
+		Else
+			Response.Redirect("Login.aspx?page=" + Request.Url.LocalPath)
+		End If
+	End Sub
 
-    Protected Sub CalendarEntrada_DayRender(sender As Object, e As DayRenderEventArgs) Handles CalendarEntrada.DayRender
+	Protected Sub CalendarEntrada_DayRender(sender As Object, e As DayRenderEventArgs) Handles CalendarEntrada.DayRender
         MinDate = Date.Today
         MaxDate = CalendarSalida.SelectedDate
         If e.Day.Date < MinDate OrElse e.Day.Date > MaxDate Then
@@ -110,9 +113,9 @@ Public Class WebForm4
 
     Sub obtenerDNIdelUsuario()
         Try
-            Dim sqlQuery As String = "SELECT dni FROM alojamientos_fac.usuarios WHERE email = @idUsuario"
+			Dim sqlQuery As String = "SELECT dni FROM alojamientos_fac.usuarios WHERE email = @idUsuario"
 
-            Using sqlComm As New MySqlCommand()
+			Using sqlComm As New MySqlCommand()
                 With sqlComm
                     .Connection = conexion
                     .CommandText = sqlQuery

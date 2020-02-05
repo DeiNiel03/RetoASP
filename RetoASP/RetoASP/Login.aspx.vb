@@ -12,8 +12,8 @@ Public Class WebForm2
     Protected Sub btnLogin_Click(sender As Object, e As EventArgs) Handles btnLogin.Click
         Try
             Dim connString As String = "server=188.213.5.150;Port=3306; user id=ldmj; password=ladamijo; database=alojamientos_fac"
-            Dim sqlQuery As String = "SELECT contrasena FROM usuarios WHERE email = @idemail"
-            Using sqlConn As New MySqlConnection(connString)
+			Dim sqlQuery As String = "SELECT contrasena, dni FROM usuarios WHERE email = @idemail"
+			Using sqlConn As New MySqlConnection(connString)
                 Using sqlComm As New MySqlCommand() 'hay que usar un comando por cada select
                     With sqlComm
                         .Connection = sqlConn
@@ -28,8 +28,8 @@ Public Class WebForm2
                             While sqlReader.Read()
                                 If sqlReader("contrasena").ToString().Equals(getMd5Hash(Me.TBPass.Text)) Then
                                     Session("Email") = TBEmail.Text
-                                    Session("Password") = TBPass.Text
-                                    Response.Write("<script>window.alert('Se ha logeado correctamente');</script>")
+									Session("Dni") = sqlReader("dni")
+									Response.Write("<script>window.alert('Se ha logeado correctamente');</script>")
                                     Response.Redirect("Elejir.aspx?usuario=" + TBEmail.Text)
                                 Else
                                     MessageBox.Show("Email y/o contraseña incorrectos.", "ERROR DE LOGIN", MessageBoxButtons.OK, MessageBoxIcon.Error)
