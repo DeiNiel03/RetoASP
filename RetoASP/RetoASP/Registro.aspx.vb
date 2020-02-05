@@ -39,9 +39,8 @@ Public Class WebForm1
 					End With
 					Try
 						sqlConn.Open()
-						Dim sqlReader As MySqlDataReader = sqlComm.ExecuteReader()
-                        'While sqlReader.Read()
-                        'End While
+                        Dim sqlReader As MySqlDataReader = sqlComm.ExecuteReader()
+                        Session("Email") = TBEmail.Text
                         Response.Write("<script>window.alert('Se ha registrado correctamente');</script>")
                         Response.Redirect("Reservar.aspx")
                         vaciarCampos()
