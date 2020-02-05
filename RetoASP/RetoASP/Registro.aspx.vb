@@ -3,7 +3,13 @@ Imports System.Windows.Forms
 Imports MySql.Data.MySqlClient
 
 Public Class WebForm1
-	Inherits System.Web.UI.Page
+    Inherits System.Web.UI.Page
+
+    Dim page As String
+
+    Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
+        page = Request.Params("page").ToString
+    End Sub
 
     Protected Sub BtnRegistro_Click(sender As Object, e As EventArgs) Handles BtnRegistro.Click
         If comprobarDNI() = False Then
@@ -41,8 +47,11 @@ Public Class WebForm1
 						sqlConn.Open()
                         Dim sqlReader As MySqlDataReader = sqlComm.ExecuteReader()
                         Session("Email") = TBEmail.Text
-                        Response.Write("<script>window.alert('Se ha registrado correctamente');</script>")
-                        Response.Redirect("Reservar.aspx")
+                        If page = "/Realizar.aspx" Or page = "/DetallesAlojamiento.aspx" Then
+                            Response.Redirect(page + "?signatura=" + Request.Params("signatura").ToString)
+                        Else
+                            Response.Redirect(page)
+                        End If
                         vaciarCampos()
                     Catch ex As MySqlException
                         MessageBox.Show(ex.Message, "ERROR DE REGISTRO", MessageBoxButtons.OK, MessageBoxIcon.Error)
