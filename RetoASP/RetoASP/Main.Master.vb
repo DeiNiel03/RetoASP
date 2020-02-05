@@ -10,7 +10,7 @@
     End Sub
 
     Protected Sub Registro_Click(sender As Object, e As EventArgs)
-        Response.Redirect("Registro.aspx")
+        Response.Redirect("Registro.aspx?page=" + Request.Url.LocalPath)
     End Sub
 
     Protected Sub Login_Click(sender As Object, e As EventArgs)
