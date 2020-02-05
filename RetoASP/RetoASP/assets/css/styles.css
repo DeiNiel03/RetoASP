@@ -298,6 +298,26 @@ cursor: pointer;
     bottom: -30px;
 }
 
+.servicios {
+    margin-top: 20px;
+}
+
+.imgservicio {
+    display: inline-block;
+    width: 32px;
+    height: 32px;
+    margin-right: 32px;
+}
+
+.textoservicio {
+    display: inline-block;
+    font-size: 22px;
+    margin-left: -24px;
+    margin-right:32px;
+    position: relative;
+    top: 3px;
+}
+
 /*=======================================================================
   MAPA
 ========================================================================*/
@@ -305,6 +325,7 @@ cursor: pointer;
     display: inline-block;
     width: 50%;
     height: 400px;
+    margin-top: 30px;
     margin-bottom: 40px;
 }
 

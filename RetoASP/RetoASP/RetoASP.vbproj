@@ -166,6 +166,13 @@
     <Content Include="assets\fonts\fa-brands-400.svg" />
     <Content Include="assets\fonts\fa-regular-400.svg" />
     <Content Include="assets\fonts\fa-solid-900.svg" />
+    <Content Include="assets\images\baseline_face_black_48dp.png" />
+    <Content Include="assets\images\baseline_restaurant_black_48dp.png" />
+    <Content Include="assets\images\baseline_restaurant_grey_48dp.png" />
+    <Content Include="assets\images\baseline_rv_hookup_black_48dp.png" />
+    <Content Include="assets\images\baseline_rv_hookup_grey_48dp.png" />
+    <Content Include="assets\images\baseline_shopping_cart_black_48dp.png" />
+    <Content Include="assets\images\baseline_shopping_cart_grey_48dp.png" />
     <Content Include="assets\js\bootstrap.min.js" />
     <Content Include="assets\js\jquery-3.4.1.min.js" />
     <Content Include="assets\js\scripts.js" />
