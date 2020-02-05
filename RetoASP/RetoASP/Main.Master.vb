@@ -14,14 +14,16 @@
     End Sub
 
     Protected Sub Login_Click(sender As Object, e As EventArgs)
-        If Request.Url.LocalPath = "/DetallesAlojamiento.aspx" Then
-            Response.Redirect("Login.aspx?page=" + Request.Url.LocalPath + "?signatura=") Then
-        Else
-            Response.Redirect("Login.aspx?page=" + Request.Url.LocalPath)
-        End If
+        Response.Redirect("Login.aspx?page=" + Request.Url.LocalPath)
     End Sub
 
     Protected Sub Perfil_Click(sender As Object, e As EventArgs) Handles btnPerfil.Click
         Response.Redirect("Perfil.aspx")
+    End Sub
+
+    Protected Sub CerrarSesion_Click(sender As Object, e As EventArgs) Handles btnCerrarSesion.Click
+        Session("Email") = ""
+        Session("Dni") = ""
+        Response.Redirect(Request.Url.LocalPath)
     End Sub
 End Class

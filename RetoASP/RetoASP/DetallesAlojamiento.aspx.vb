@@ -4,27 +4,31 @@ Public Class DetallesAlojamiento
     Inherits System.Web.UI.Page
 
     Dim conexion As MySqlConnection
-	Dim signatura As String
 
-	Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
+    Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
         conexion = New MySqlConnection("datasource=188.213.5.150;port=3306;username=ldmj;password=ladamijo;CharSet=UTF8")
         If conexion.State = ConnectionState.Closed Then
             conexion.Open()
         End If
-        signatura = Request.Params("signatura").ToString
         mostrarAlojamiento()
         'comprobar si el usuario esta logeado
-        If Session("email") <> Nothing Then
+        If Session("Email") <> Nothing Then
             Master.FindControl("btnLogin").Visible = False
             Master.FindControl("btnRegistro").Visible = False
             Master.FindControl("btnPerfil").Visible = True
+            Master.FindControl("btnCerrarSesion").Visible = True
+        Else
+            Master.FindControl("btnLogin").Visible = True
+            Master.FindControl("btnRegistro").Visible = True
+            Master.FindControl("btnPerfil").Visible = False
+            Master.FindControl("btnCerrarSesion").Visible = False
         End If
     End Sub
 
     Sub mostrarAlojamiento()
         Try
-			Dim sqlQuery As String = "SELECT signatura, documentname, turismdescription, address, phone, tourismemail, web, territory, municipality, postalcode, capacity, imagen, restaurant, store, autocaravana, latwgs84, lonwgs84 FROM alojamientos_fac.alojamientos WHERE signatura = '" + signatura + "'"
-			Using sqlComm As New MySqlCommand()
+            Dim sqlQuery As String = "SELECT signatura, documentname, turismdescription, address, phone, tourismemail, web, territory, municipality, postalcode, capacity, imagen, restaurant, store, autocaravana, latwgs84, lonwgs84 FROM alojamientos_fac.alojamientos WHERE signatura = '" + Session("signatura") + "'"
+            Using sqlComm As New MySqlCommand()
                 With sqlComm
                     .Connection = conexion
                     .CommandText = sqlQuery
@@ -96,47 +100,25 @@ Public Class DetallesAlojamiento
 				html = html + "<img class='imgservicio' src='assets/images/baseline_face_black_48dp.png'/>"
 				html = html + "<p class='textoservicio'>" + sqlReader("capacity").ToString + "</p>"
 				html = html + "<img class='imgservicio' src='"
-				If sqlReader("restaurant").ToString = "1" Then
-					html = html + "assets/images/baseline_restaurant_black_48dp.png'/>"
-				Else
-					html = html + "assets/images/baseline_restaurant_grey_48dp.png'/>"
+                If sqlReader("restaurant") = 1 Then
+                    html = html + "assets/images/baseline_restaurant_black_48dp.png'/>"
+                Else
+                    html = html + "assets/images/baseline_restaurant_grey_48dp.png'/>"
 				End If
 				html = html + "<img class='imgservicio' src='"
-				If sqlReader("store").ToString = "1" Then
-					html = html + "assets/images/baseline_shopping_cart_black_48dp.png'/>"
-				Else
-					html = html + "assets/images/baseline_shopping_cart_grey_48dp.png'/>"
+                If sqlReader("store") = 1 Then
+                    html = html + "assets/images/baseline_shopping_cart_black_48dp.png'/>"
+                Else
+                    html = html + "assets/images/baseline_shopping_cart_grey_48dp.png'/>"
 				End If
 				html = html + "<img class='imgservicio' src='"
-				If sqlReader("autocaravana").ToString = "1" Then
-					html = html + "assets/images/baseline_rv_hookup_black_48dp.png'/>"
-				Else
-					html = html + "assets/images/baseline_rv_hookup_grey_48dp.png'/>"
+                If sqlReader("autocaravana") = 1 Then
+                    html = html + "assets/images/baseline_rv_hookup_black_48dp.png'/>"
+                Else
+                    html = html + "assets/images/baseline_rv_hookup_grey_48dp.png'/>"
 				End If
-				html = html + "</div>"
-				'html = html + "<p class='lblrestaurante'>Restaurante: "
-				'If sqlReader("restaurant") = 1 Then
-				'	html = html + "Si"
-				'Else
-				'	html = html + "No"
-				'End If
-				'html = html + "</p>"
-				'html = html + "<p class='lblautocaravana'>Caravana: "
-				'If sqlReader("autocaravana") = 1 Then
-				'	html = html + "Si"
-				'Else
-				'	html = html + "No"
-				'End If
-				'html = html + "</p>"
-				'html = html + "<p class='lblstore'>Tienda: "
-				'If sqlReader("store") = 1 Then
-				'	html = html + "Si"
-				'Else
-				'	html = html + "No"
-				'End If
-				'html = html + "</p>"
-				'html = html + "<p class='lblcapacidad'>Capacidad: " + sqlReader("capacity").ToString + "</p>"
-				html = html + "</div>"
+                html = html + "</div>"
+                html = html + "</div>"
 				div.InnerHtml = html
 				botonReserva.ID = idAlojamiento
 				div.Controls.Add(divMapa)
@@ -149,8 +131,7 @@ Public Class DetallesAlojamiento
 		conexion.Close()
 	End Sub
 
-	Sub irAReservar(sender As Object, e As EventArgs)
-        Dim params As String = "?signatura=" + signatura
-        Response.Redirect("Realizar.aspx" + params)
+    Sub irAReservar(sender As Object, e As EventArgs)
+        Response.Redirect("Reservar.aspx")
     End Sub
 End Class

@@ -177,15 +177,14 @@
     <Content Include="assets\js\jquery-3.4.1.min.js" />
     <Content Include="assets\js\scripts.js" />
     <Content Include="DetallesAlojamiento.aspx" />
-    <Content Include="Prueba.aspx" />
     <Content Include="Web.config" />
     <Content Include="Registro.aspx" />
     <Content Include="Login.aspx" />
+    <Content Include="ListaAlojamientos.aspx" />
     <Content Include="Reservar.aspx" />
-    <Content Include="Realizar.aspx" />
     <Content Include="Elejir.aspx" />
     <Content Include="Mapa.aspx" />
-    <Content Include="MisReservas.aspx" />
+    <Content Include="Perfil.aspx" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DetallesAlojamiento.aspx.designer.vb">
@@ -202,7 +201,6 @@
       <DependentUpon>Main.Master</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Modelo.vb" />
     <Compile Include="My Project\AssemblyInfo.vb" />
     <Compile Include="My Project\Application.Designer.vb">
       <AutoGen>True</AutoGen>
@@ -222,13 +220,6 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <Compile Include="Prueba.aspx.designer.vb">
-      <DependentUpon>Prueba.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Prueba.aspx.vb">
-      <DependentUpon>Prueba.aspx</DependentUpon>
-      <SubType>ASPXCodebehind</SubType>
-    </Compile>
     <Compile Include="Registro.aspx.designer.vb">
       <DependentUpon>Registro.aspx</DependentUpon>
     </Compile>
@@ -243,18 +234,18 @@
       <DependentUpon>Login.aspx</DependentUpon>
       <SubType>ASPXCodebehind</SubType>
     </Compile>
+    <Compile Include="ListaAlojamientos.aspx.designer.vb">
+      <DependentUpon>ListaAlojamientos.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ListaAlojamientos.aspx.vb">
+      <DependentUpon>ListaAlojamientos.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
     <Compile Include="Reservar.aspx.designer.vb">
       <DependentUpon>Reservar.aspx</DependentUpon>
     </Compile>
     <Compile Include="Reservar.aspx.vb">
       <DependentUpon>Reservar.aspx</DependentUpon>
-      <SubType>ASPXCodebehind</SubType>
-    </Compile>
-    <Compile Include="Realizar.aspx.designer.vb">
-      <DependentUpon>Realizar.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Realizar.aspx.vb">
-      <DependentUpon>Realizar.aspx</DependentUpon>
       <SubType>ASPXCodebehind</SubType>
     </Compile>
     <Compile Include="Elejir.aspx.designer.vb">
@@ -264,7 +255,6 @@
       <DependentUpon>Elejir.aspx</DependentUpon>
       <SubType>ASPXCodebehind</SubType>
     </Compile>
-    <Compile Include="Usuario.vb" />
     <Compile Include="Mapa.aspx.designer.vb">
       <DependentUpon>Mapa.aspx</DependentUpon>
     </Compile>
@@ -272,11 +262,11 @@
       <DependentUpon>Mapa.aspx</DependentUpon>
       <SubType>ASPXCodebehind</SubType>
     </Compile>
-    <Compile Include="MisReservas.aspx.designer.vb">
-      <DependentUpon>MisReservas.aspx</DependentUpon>
+    <Compile Include="Perfil.aspx.designer.vb">
+      <DependentUpon>Perfil.aspx</DependentUpon>
     </Compile>
-    <Compile Include="MisReservas.aspx.vb">
-      <DependentUpon>MisReservas.aspx</DependentUpon>
+    <Compile Include="Perfil.aspx.vb">
+      <DependentUpon>Perfil.aspx</DependentUpon>
       <SubType>ASPXCodebehind</SubType>
     </Compile>
   </ItemGroup>

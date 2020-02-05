@@ -33,6 +33,9 @@
                         <li class="nav-item">   
                             <asp:LinkButton runat="server" ID="btnPerfil" CssClass="nav-link" OnClick="Perfil_Click" Visible="False">Perfil</asp:LinkButton>
                         </li>
+                        <li class="nav-item">   
+                            <asp:LinkButton runat="server" ID="btnCerrarSesion" CssClass="nav-link" OnClick="CerrarSesion_Click" Visible="False">Cerrar Sesion</asp:LinkButton>
+                        </li>
                         <li class="nav-item active">
                             <asp:LinkButton runat="server" ID="btnLogin" CssClass="nav-link" OnClick="Login_Click">Login</asp:LinkButton>
                         </li>

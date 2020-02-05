@@ -47,11 +47,7 @@ Public Class WebForm1
 						sqlConn.Open()
                         Dim sqlReader As MySqlDataReader = sqlComm.ExecuteReader()
                         Session("Email") = TBEmail.Text
-                        If page = "/Realizar.aspx" Or page = "/DetallesAlojamiento.aspx" Then
-                            Response.Redirect(page + "?signatura=" + Request.Params("signatura").ToString)
-                        Else
-                            Response.Redirect(page)
-                        End If
+                        Response.Redirect(page)
                         vaciarCampos()
                     Catch ex As MySqlException
                         MessageBox.Show(ex.Message, "ERROR DE REGISTRO", MessageBoxButtons.OK, MessageBoxIcon.Error)

@@ -35,11 +35,7 @@ Public Class WebForm2
                                 If sqlReader("contrasena").ToString().Equals(getMd5Hash(Me.TBPass.Text)) Then
                                     Session("Email") = TBEmail.Text
                                     Session("Dni") = sqlReader("dni")
-                                    If page = "/Realizar.aspx" Or page = "/DetallesAlojamiento.aspx" Then
-                                        Response.Redirect(page + "?signatura=" + Request.Params("signatura").ToString)
-                                    Else
-                                        Response.Redirect(page)
-                                    End If
+                                    Response.Redirect(page)
                                 Else
                                     MessageBox.Show("Email y/o contraseña incorrectos.", "ERROR DE LOGIN", MessageBoxButtons.OK, MessageBoxIcon.Error)
                                 End If
