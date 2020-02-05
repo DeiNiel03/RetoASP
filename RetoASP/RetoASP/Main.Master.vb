@@ -14,7 +14,11 @@
     End Sub
 
     Protected Sub Login_Click(sender As Object, e As EventArgs)
-        Response.Redirect("Login.aspx?page=" + Request.Url.LocalPath)
+        If Request.Url.LocalPath = "/DetallesAlojamiento.aspx" Then
+            Response.Redirect("Login.aspx?page=" + Request.Url.LocalPath + "?signatura=") Then
+        Else
+            Response.Redirect("Login.aspx?page=" + Request.Url.LocalPath)
+        End If
     End Sub
 
     Protected Sub Perfil_Click(sender As Object, e As EventArgs) Handles btnPerfil.Click
