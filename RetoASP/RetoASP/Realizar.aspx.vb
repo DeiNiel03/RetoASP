@@ -14,8 +14,8 @@ Public Class WebForm4
     Dim fechaEntrada, fechaSalida As String
 
 	Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
+		idAlojamiento = Request.Params("signatura").ToString
 		If Session("Dni") <> Nothing Then
-			idAlojamiento = Request.Params("signatura").ToString
 			lblid.Text = idAlojamiento
 			If conexion.State = ConnectionState.Closed Then
 				conexion.Open()
@@ -27,12 +27,11 @@ Public Class WebForm4
 			'mostrarInfo()
 			'obtenerDNIdelUsuario()
 			dni = Session("Dni")
-			'comprobar si el usuario esta logeado
 			Master.FindControl("btnLogin").Visible = False
 			Master.FindControl("btnRegistro").Visible = False
 			Master.FindControl("btnPerfil").Visible = True
 		Else
-			Response.Redirect("Login.aspx?page=" + Request.Url.LocalPath)
+			Response.Redirect("Login.aspx?page=" + Request.Url.LocalPath + "?signatura=" + idAlojamiento)
 		End If
 	End Sub
 

@@ -5,38 +5,43 @@ Imports MySql.Data.MySqlClient
 Public Class WebForm2
     Inherits System.Web.UI.Page
 
-    Dim page As String
+	Dim page As String
 
-    Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
-        page = Request.Params("page").ToString
-    End Sub
+	Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
+		page = Request.Params("page").ToString
+	End Sub
 
-    Protected Sub btnRegistro_Click(sender As Object, e As EventArgs) Handles btnRegistro.Click
-        Response.Redirect("Registro.aspx")
-    End Sub
+	Protected Sub btnRegistro_Click(sender As Object, e As EventArgs) Handles btnRegistro.Click
+		Response.Redirect("Registro.aspx")
+	End Sub
 
-    Protected Sub btnLogin_Click(sender As Object, e As EventArgs) Handles btnLogin.Click
-        Try
-            Dim connString As String = "server=188.213.5.150;Port=3306; user id=ldmj; password=ladamijo; database=alojamientos_fac"
+	Protected Sub btnLogin_Click(sender As Object, e As EventArgs) Handles btnLogin.Click
+		Try
+			Dim connString As String = "server=188.213.5.150;Port=3306; user id=ldmj; password=ladamijo; database=alojamientos_fac"
 			Dim sqlQuery As String = "SELECT contrasena, dni FROM usuarios WHERE email = @idemail"
 			Using sqlConn As New MySqlConnection(connString)
-                Using sqlComm As New MySqlCommand() 'hay que usar un comando por cada select
-                    With sqlComm
-                        .Connection = sqlConn
-                        .CommandText = sqlQuery
-                        .CommandType = CommandType.Text
-                        .Parameters.AddWithValue("@idemail", Me.TBEmail.Text)
-                    End With
-                    Try
-                        sqlConn.Open()
-                        Dim sqlReader As MySqlDataReader = sqlComm.ExecuteReader()
-                        If (sqlReader.HasRows) Then
-                            While sqlReader.Read()
-                                If sqlReader("contrasena").ToString().Equals(getMd5Hash(Me.TBPass.Text)) Then
-                                    Session("Email") = TBEmail.Text
-                                    Response.Redirect(page + "?usuario=" + TBEmail.Text)
-                                    Session("Dni") = sqlReader("dni")
-                                Else
+				Using sqlComm As New MySqlCommand() 'hay que usar un comando por cada select
+					With sqlComm
+						.Connection = sqlConn
+						.CommandText = sqlQuery
+						.CommandType = CommandType.Text
+						.Parameters.AddWithValue("@idemail", Me.TBEmail.Text)
+					End With
+					Try
+						sqlConn.Open()
+						Dim sqlReader As MySqlDataReader = sqlComm.ExecuteReader()
+						If (sqlReader.HasRows) Then
+							While sqlReader.Read()
+								If sqlReader("contrasena").ToString().Equals(getMd5Hash(Me.TBPass.Text)) Then
+									Session("Email") = TBEmail.Text
+									Session("Dni") = sqlReader("dni")
+									If Request.Params("page") = "/Realizar.aspx" Then
+										Response.Redirect(page + "?signatura=" + Request.Params("signatura"))
+									Else
+										Response.Redirect(page)
+									End If
+
+								Else
                                     MessageBox.Show("Email y/o contraseña incorrectos.", "ERROR DE LOGIN", MessageBoxButtons.OK, MessageBoxIcon.Error)
                                 End If
                             End While
