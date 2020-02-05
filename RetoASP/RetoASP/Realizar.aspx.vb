@@ -24,7 +24,7 @@ Public Class WebForm4
 				CalendarEntrada.SelectedDate = Date.Today
 				CalendarSalida.SelectedDate = Date.Today.AddDays(1)
 			End If
-			'mostrarInfo()
+			mostrarInfo()
 			'obtenerDNIdelUsuario()
 			dni = Session("Dni")
 			Master.FindControl("btnLogin").Visible = False
@@ -51,14 +51,15 @@ Public Class WebForm4
     End Sub
     Protected Sub btnRealizar_Click(sender As Object, e As EventArgs) Handles btnRealizar.Click
 
-        fechaEnt = CalendarEntrada.SelectedDate.ToShortDateString
+		fechaEnt = CalendarEntrada.SelectedDate.ToShortDateString
         fechaSal = CalendarSalida.SelectedDate.Date.ToShortDateString
         personas = TBPersonas.Text
 
         fechaEntrada = Format(fechaEnt, "yyyy-MM-dd")
-        fechaSalida = Format(fechaSal, "yyyy-MM-dd")
+		fechaSalida = Format(fechaSal, "yyyy-MM-dd")
+		'Dim sqlQuery As String = SELECT fecha_entrada, fecha_salida, capacity FROM alojamientos_fac.reservas WHERE signatura = idAlojamiento
 
-        Dim sqlQuery As String = "INSERT INTO alojamientos_fac.reservas (dni, fecha_entrada, fecha_salida, alojamiento, personas) VALUES ('" & dni & "','" & fechaEntrada & "', '" & fechaSalida & "', '" & idAlojamiento & "','" & personas & "')"
+		Dim sqlQuery As String = "INSERT INTO alojamientos_fac.reservas (dni, fecha_entrada, fecha_salida, alojamiento, personas) VALUES ('" & dni & "','" & fechaEntrada & "', '" & fechaSalida & "', '" & idAlojamiento & "','" & personas & "')"
         Try
             Using sqlComm As New MySqlCommand()
                 With sqlComm
