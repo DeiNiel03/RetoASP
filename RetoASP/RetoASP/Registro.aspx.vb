@@ -46,10 +46,10 @@ Public Class WebForm1
 					Try
 						sqlConn.Open()
                         Dim sqlReader As MySqlDataReader = sqlComm.ExecuteReader()
-                        Session("Email") = TBEmail.Text
-                        Response.Redirect(page)
-                        vaciarCampos()
-                    Catch ex As MySqlException
+						Session("Email") = TBEmail.Text
+						vaciarCampos()
+						Response.Redirect(page)
+					Catch ex As MySqlException
                         MessageBox.Show(ex.Message, "ERROR DE REGISTRO", MessageBoxButtons.OK, MessageBoxIcon.Error)
                         vaciarCampos()
                     End Try
