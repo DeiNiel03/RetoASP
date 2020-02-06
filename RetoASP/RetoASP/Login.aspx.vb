@@ -12,8 +12,8 @@ Public Class WebForm2
     End Sub
 
     Protected Sub btnRegistro_Click(sender As Object, e As EventArgs) Handles btnRegistro.Click
-        Response.Redirect("Registro.aspx?page=" + Request.Url.LocalPath)
-    End Sub
+		Response.Redirect("Registro.aspx?page=" + page)
+	End Sub
 
     Protected Sub btnLogin_Click(sender As Object, e As EventArgs) Handles btnLogin.Click
         Try

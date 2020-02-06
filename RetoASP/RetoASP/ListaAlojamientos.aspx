@@ -46,5 +46,4 @@
             </div>
         </div>
     </div>
-    <asp:Button ID="Button1" runat="server" Text="Button" />
-</asp:Content>
+    </asp:Content>
