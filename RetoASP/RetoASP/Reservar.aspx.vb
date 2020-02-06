@@ -20,8 +20,8 @@ Public Class WebForm4
                 CalendarEntrada.SelectedDate = Date.Today
                 CalendarSalida.SelectedDate = Date.Today.AddDays(1)
             End If
-            mostrarInfo()
-            dni = Session("Dni")
+			mostrarInfo()
+			dni = Session("Dni")
             Master.FindControl("btnLogin").Visible = False
             Master.FindControl("btnRegistro").Visible = False
             Master.FindControl("btnPerfil").Visible = True
@@ -34,10 +34,10 @@ Public Class WebForm4
     Protected Sub CalendarEntrada_DayRender(sender As Object, e As DayRenderEventArgs) Handles CalendarEntrada.DayRender
         MinDate = Date.Today
         MaxDate = CalendarSalida.SelectedDate
-        If e.Day.Date < MinDate OrElse e.Day.Date > MaxDate Then
-            e.Day.IsSelectable = False
-        End If
-    End Sub
+		If e.Day.Date < MinDate Then
+			e.Day.IsSelectable = False
+		End If
+	End Sub
 
     Protected Sub CalendarSalida_DayRender(sender As Object, e As DayRenderEventArgs) Handles CalendarSalida.DayRender
         MinDate = CalendarEntrada.SelectedDate
@@ -46,41 +46,113 @@ Public Class WebForm4
         End If
     End Sub
 
-    Protected Sub btnRealizar_Click(sender As Object, e As EventArgs) Handles btnRealizar.Click
+	Protected Sub btnRealizar_Click(sender As Object, e As EventArgs) Handles btnRealizar.Click
 
-        fechaEnt = CalendarEntrada.SelectedDate.ToShortDateString
-        fechaSal = CalendarSalida.SelectedDate.Date.ToShortDateString
-        personas = TBPersonas.Text
+		If poderReservar() Then
+			fechaEnt = CalendarEntrada.SelectedDate.ToShortDateString
+			fechaSal = CalendarSalida.SelectedDate.Date.ToShortDateString
+			personas = TBPersonas.Text
 
-        fechaEntrada = Format(fechaEnt, "yyyy-MM-dd")
-        fechaSalida = Format(fechaSal, "yyyy-MM-dd")
-        'Dim sqlQuery As String = SELECT fecha_entrada, fecha_salida, capacity FROM alojamientos_fac.reservas WHERE signatura = idAlojamiento
+			fechaEntrada = Format(fechaEnt, "yyyy-MM-dd")
+			fechaSalida = Format(fechaSal, "yyyy-MM-dd")
+			'Dim sqlQuery As String = SELECT fecha_entrada, fecha_salida, capacity FROM alojamientos_fac.reservas WHERE signatura = idAlojamiento
 
-        Dim sqlQuery As String = "INSERT INTO alojamientos_fac.reservas (dni, fecha_entrada, fecha_salida, alojamiento, personas) VALUES ('" & dni & "','" & fechaEntrada & "', '" & fechaSalida & "', '" & Session("signatura") & "','" & personas & "')"
-        Try
-            Using sqlComm As New MySqlCommand()
-                With sqlComm
-                    .Connection = conexion
-                    .CommandText = sqlQuery
-                    .CommandType = CommandType.Text
-                    '.Parameters.AddWithValue("@idUsuario", usuario)
-                End With
-                Try
-                    Dim sqlReader As MySqlDataReader = sqlComm.ExecuteReader()
-                    While sqlReader.Read()
+			Dim sqlQuery As String = "INSERT INTO alojamientos_fac.reservas (dni, fecha_entrada, fecha_salida, alojamiento, personas) VALUES ('" & dni & "','" & fechaEntrada & "', '" & fechaSalida & "', '" & Session("signatura") & "','" & personas & "')"
+			Try
+				Using sqlComm As New MySqlCommand()
+					With sqlComm
+						.Connection = conexion
+						.CommandText = sqlQuery
+						.CommandType = CommandType.Text
+						'.Parameters.AddWithValue("@idUsuario", usuario)
+					End With
+					Try
+						Dim sqlReader As MySqlDataReader = sqlComm.ExecuteReader()
+						While sqlReader.Read()
 
-                    End While
-                Catch ex As MySqlException
-                    MessageBox.Show(ex.Message, "ERROR EN LA INSERT", MessageBoxButtons.OK, MessageBoxIcon.Error)
-                End Try
-            End Using
-        Catch ex As MySql.Data.MySqlClient.MySqlException
-            MessageBox.Show(ex.Message, "ERROR CON LA BASE DE DATOS", MessageBoxButtons.OK, MessageBoxIcon.Error)
-        End Try
-        Response.Write("<script>window.alert('Se ha insertado');</script>")
-    End Sub
+						End While
+					Catch ex As MySqlException
+						MessageBox.Show(ex.Message, "ERROR, NO SE PUEDE REALIZAR LA RESERVA", MessageBoxButtons.OK, MessageBoxIcon.Error)
+					End Try
+				End Using
+			Catch ex As MySql.Data.MySqlClient.MySqlException
+				MessageBox.Show(ex.Message, "ERROR CON LA BASE DE DATOS", MessageBoxButtons.OK, MessageBoxIcon.Error)
+			End Try
+			'Response.Write("<script>window.alert('Se ha insertado');</script>")
 
-    Sub mostrarInfo()
+			MessageBox.Show("Reserva realizada", "RESERVA", MessageBoxButtons.OK, MessageBoxIcon.Information)
+			Response.Redirect("ListaAlojamientos.aspx")
+
+		Else
+			Response.Write("<script>window.alert('RESERVA NO DISPONIBLE EN ESAS FECHAS');</script>")
+		End If
+
+	End Sub
+
+	Function poderReservar() As Boolean
+		Dim personasReserva As Integer = TBPersonas.Text
+		Dim personasAlojamiento As Integer = 0
+		Dim idAlojamiento As String = Session("signatura")
+		Dim capacidadAlojamiento As Integer
+		fechaEnt = CalendarEntrada.SelectedDate.ToShortDateString
+		fechaSal = CalendarSalida.SelectedDate.Date.ToShortDateString
+
+		fechaEntrada = Format(fechaEnt, "yyyy-MM-dd")
+		fechaSalida = Format(fechaSal, "yyyy-MM-dd")
+
+		Dim sqlQuery As String = "SELECT capacity FROM alojamientos_fac.alojamientos WHERE signatura = '" + idAlojamiento + "'"
+		Try
+			Using sqlComm As New MySqlCommand()
+				With sqlComm
+					.Connection = conexion
+					.CommandText = sqlQuery
+					.CommandType = CommandType.Text
+				End With
+				Try
+					Dim sqlReader As MySqlDataReader = sqlComm.ExecuteReader()
+					While sqlReader.Read()
+						capacidadAlojamiento = sqlReader("capacity")
+					End While
+				Catch ex As MySqlException
+					MessageBox.Show(ex.Message, "ERROR EN LA INSERT", MessageBoxButtons.OK, MessageBoxIcon.Error)
+				End Try
+			End Using
+		Catch ex As MySql.Data.MySqlClient.MySqlException
+			MessageBox.Show(ex.Message, "ERROR CON LA BASE DE DATOS", MessageBoxButtons.OK, MessageBoxIcon.Error)
+		End Try
+
+		sqlQuery = "SELECT fecha_entrada, fecha_salida, personas FROM alojamientos_fac.reservas WHERE alojamiento = '" + idAlojamiento + "'"
+		Try
+			Using sqlComm As New MySqlCommand()
+				With sqlComm
+					.Connection = conexion
+					.CommandText = sqlQuery
+					.CommandType = CommandType.Text
+				End With
+				Try
+					Dim sqlReader As MySqlDataReader = sqlComm.ExecuteReader()
+					While sqlReader.Read()
+
+						If (fechaSal.CompareTo(sqlReader("fecha_entrada")) >= 0 And fechaEnt.CompareTo(sqlReader("fecha_salida")) <= 0) Then
+							personasAlojamiento += sqlReader("personas")
+						End If
+					End While
+				Catch ex As MySqlException
+					MessageBox.Show(ex.Message, "ERROR PARA REALIZAR SU RESERVA", MessageBoxButtons.OK, MessageBoxIcon.Error)
+				End Try
+			End Using
+		Catch ex As MySql.Data.MySqlClient.MySqlException
+			MessageBox.Show(ex.Message, "ERROR CON LA BASE DE DATOS", MessageBoxButtons.OK, MessageBoxIcon.Error)
+		End Try
+
+		If capacidadAlojamiento > (personasReserva + personasAlojamiento) Then
+			Return True
+		Else
+			Return False
+		End If
+	End Function
+
+	Sub mostrarInfo()
         Try
             Dim sqlQuery As String = "SELECT documentname, address, capacity, municipality, imagen FROM alojamientos_fac.alojamientos WHERE signatura = @id"
             Using sqlComm As New MySqlCommand()
