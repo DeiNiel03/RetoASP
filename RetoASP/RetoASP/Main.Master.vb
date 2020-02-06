@@ -6,7 +6,7 @@
     End Sub
 
     Protected Sub Home_Click(sender As Object, e As EventArgs)
-        Response.Redirect("Reservar.aspx")
+        Response.Redirect("ListaAlojamientos.aspx")
     End Sub
 
     Protected Sub Registro_Click(sender As Object, e As EventArgs)

@@ -325,6 +325,14 @@ cursor: pointer;
     text-align: center;
     margin-right: 10px;
     border-radius: 2px;
+    border: 2px solid #fc7b03;
+    background: #fff;
+    color: #fc7b03;
+}
+
+.act {
+    background: #fc7b03;
+    color: #fff;
 }
 
 /*=======================================================================

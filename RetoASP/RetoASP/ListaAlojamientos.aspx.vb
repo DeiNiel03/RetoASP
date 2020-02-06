@@ -321,11 +321,21 @@ Public Class WebForm3
         pageNums = count / 30
         pageNums = pageNums + 1
         lastPageNum = count Mod 30
+        Dim currentPage As Integer
+        If Request.Params("pageNum") Is Nothing Then
+            currentPage = 1
+        Else
+            currentPage = Request.Params("pageNum").ToString
+        End If
         For index As Integer = 1 To pageNums
             Dim boton As New Button
             boton.Text = index
             boton.ID = index
-            boton.Attributes.Add("class", "btn pag")
+            If boton.ID = currentPage Then
+                boton.Attributes.Add("class", "btn pag act")
+            Else
+                boton.Attributes.Add("class", "btn pag")
+            End If
             AddHandler boton.Click, AddressOf masResultados
             Pagination.Controls.Add(boton)
         Next
