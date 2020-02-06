@@ -140,6 +140,15 @@ Partial Public Class WebForm3
     Protected WithEvents lblNO As Global.System.Web.UI.WebControls.Label
     
     '''<summary>
+    '''Control Pagination.
+    '''</summary>
+    '''<remarks>
+    '''Campo generado automáticamente.
+    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    '''</remarks>
+    Protected WithEvents Pagination As Global.System.Web.UI.WebControls.Panel
+    
+    '''<summary>
     '''Control Button1.
     '''</summary>
     '''<remarks>

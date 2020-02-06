@@ -318,6 +318,15 @@ cursor: pointer;
     top: 3px;
 }
 
+.pag {
+    width: 28px;
+    height: 28px;
+    padding: 0;
+    text-align: center;
+    margin-right: 10px;
+    border-radius: 2px;
+}
+
 /*=======================================================================
   DETALLES ALOJAMIENTO
 ========================================================================*/

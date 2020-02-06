@@ -17,6 +17,7 @@
     <div class="container">
         <div class="row">
             <div class="filtros col-sm-4 col-md-3">
+
                 <asp:Panel ID="Panel2" runat="server" CssClass="space">
                     <!-- tipo de alojamiento -->
                     <asp:Label ID="Label1" runat="server" Text="Tipo de alojamiento" CssClass="filter-title"></asp:Label>
@@ -41,6 +42,7 @@
                 <asp:Panel ID="Panel1" runat="server" CssClass="space">
                     <asp:Label ID="lblNO" runat="server" Font-Bold="True" ForeColor="Red" Text="Sin Resultados De Busqueda" Font-Size="XX-Large"></asp:Label>
                 </asp:Panel>
+                <asp:Panel ID="Pagination" runat="server" CssClass="space"></asp:Panel>
             </div>
         </div>
     </div>

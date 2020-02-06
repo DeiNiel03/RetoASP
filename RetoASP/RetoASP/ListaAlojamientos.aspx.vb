@@ -12,7 +12,8 @@ Public Class WebForm3
 		If Not IsPostBack Then
 			cargarDatos()
 		End If
-		mostrarAlojamientos()
+        mostrarAlojamientos()
+        crearPaginacion()
         'comprobar si el usuario esta logeado
         If Session("Email") <> Nothing Then
             Master.FindControl("btnLogin").Visible = False
@@ -25,7 +26,7 @@ Public Class WebForm3
             Master.FindControl("btnPerfil").Visible = False
             Master.FindControl("btnCerrarSesion").Visible = False
         End If
-	End Sub
+    End Sub
 
 	Sub irADetalles(sender As Object, e As EventArgs)
         Dim btn As Button = CType(sender, Button)
@@ -112,8 +113,9 @@ Public Class WebForm3
 		Dim provincias As String = crearQueryProvincias()
 		Dim caracteristicas As String = crearQueryCaracteristicas()
 		Dim orden As String = crearQueryOrden()
-		Dim texto As String = crearQueryTexto()
-		If Not tipos.Equals("") Then
+        Dim texto As String = crearQueryTexto()
+        Dim pageNum As Integer
+        If Not tipos.Equals("") Then
 			sqlQuery += tipos
 		End If
 		If Not provincias.Equals("") Then
@@ -125,10 +127,17 @@ Public Class WebForm3
 		If Not Search.Text = "" Then
 			sqlQuery += texto
 		End If
-		If Not orden.Equals("") Then
-			sqlQuery += orden
-		End If
-		Return sqlQuery
+        If Not orden.Equals("") Then
+            sqlQuery += orden
+        End If
+        If Request.Params("pageNum") Is Nothing Then
+            pageNum = 1
+        Else
+            pageNum = Request.Params("pageNum").ToString
+        End If
+        Dim offset As Integer = (pageNum - 1) * 30
+        sqlQuery += " LIMIT " & offset.ToString & ", 30"
+        Return sqlQuery
 	End Function
 
 	Function crearQueryTipos() As String
@@ -193,10 +202,10 @@ Public Class WebForm3
 	Function crearQueryOrden() As String
 		Dim sqlQuery As String = ""
 		If RBAsc.Checked = True Then
-			sqlQuery = " AND activo = 1 ORDER BY documentname ASC LIMIT 30"
-		Else
-			sqlQuery = " AND activo = 1 ORDER BY documentname DESC LIMIT 30"
-		End If
+            sqlQuery = " AND activo = 1 ORDER BY documentname ASC"
+        Else
+            sqlQuery = " AND activo = 1 ORDER BY documentname DESC"
+        End If
 		Return sqlQuery
 	End Function
 
@@ -206,86 +215,128 @@ Public Class WebForm3
 		Return sqlQuery
 	End Function
 
-	Sub renderItems(sqlReader As MySqlDataReader)
-		Dim idAlojamiento As String = Nothing
-		Dim provincia As String = Nothing
-		Dim description As String = Nothing
-		Panel1.Controls.Clear()
-		If Not sqlReader.HasRows Then
-			lblNO.Visible = True
-			ocultarOrden()
-		Else
-			lblNO.Visible = False
-			While sqlReader.Read()
-				idAlojamiento = sqlReader("signatura")
-				'Territory
-				If sqlReader("territory") = 1 Then
-					provincia = "Bizkaia/Vizcaya"
-				ElseIf sqlReader("territory") = 2 Then
-					provincia = "Araba/Alava"
-				Else
-					provincia = "Gipuzkoa/Guipuzcoa"
-				End If
-				'Description
-				description = HttpUtility.HtmlDecode(sqlReader("turismdescription"))
-				description = Regex.Replace(description, "<[^>]*(>|$)", "")
-				If description.Length > 400 Then
-					description = description.Trim().Remove(400)
-				End If
-				Dim html As String = ""
-				Dim div As New HtmlGenericControl("div")
-				div.Attributes.Add("class", "row item")
+    Sub renderItems(sqlReader As MySqlDataReader)
+        Dim idAlojamiento As String = Nothing
+        Dim provincia As String = Nothing
+        Dim description As String = Nothing
+        Panel1.Controls.Clear()
+        If Not sqlReader.HasRows Then
+            lblNO.Visible = True
+            ocultarOrden()
+        Else
+            lblNO.Visible = False
+            While sqlReader.Read()
+                idAlojamiento = sqlReader("signatura")
+                'Territory
+                If sqlReader("territory") = 1 Then
+                    provincia = "Bizkaia/Vizcaya"
+                ElseIf sqlReader("territory") = 2 Then
+                    provincia = "Araba/Alava"
+                Else
+                    provincia = "Gipuzkoa/Guipuzcoa"
+                End If
+                'Description
+                description = HttpUtility.HtmlDecode(sqlReader("turismdescription"))
+                description = Regex.Replace(description, "<[^>]*(>|$)", "")
+                If description.Length > 400 Then
+                    description = description.Trim().Remove(400)
+                End If
+                Dim html As String = ""
+                Dim div As New HtmlGenericControl("div")
+                div.Attributes.Add("class", "row item")
                 html = html + "<div Class='col-md-12 col-lg-5'>"
                 html = html + "<img class='lodging-img' src='" + "data:image/jpg;base64," & Convert.ToBase64String(sqlReader("imagen")) + "'>"
-				html = html + "</div>"
+                html = html + "</div>"
                 html = html + "<div class='col-md-12 col-lg-7'>"
                 html = html + "<h2 class='lblnombre'>" + sqlReader("documentname").ToString + "</h2>"
-				html = html + "<p class='lbllocalicacion'>" + sqlReader("municipality") + ", " + provincia + "</p>"
-				html = html + "<p class='lbldescripcion'>" + description + "</p>"
-				html = html + "<div class='servicios'>"
-				html = html + "<img class='imgservicio' src='assets/images/baseline_face_black_48dp.png'/>"
-				html = html + "<p class='textoservicio'>" + sqlReader("capacity").ToString + "</p>"
-				html = html + "<img class='imgservicio' src='"
-				If sqlReader("restaurant").ToString = "1" Then
-					html = html + "assets/images/baseline_restaurant_black_48dp.png'/>"
-				Else
-					html = html + "assets/images/baseline_restaurant_grey_48dp.png'/>"
-				End If
-				html = html + "<img class='imgservicio' src='"
-				If sqlReader("store").ToString = "1" Then
-					html = html + "assets/images/baseline_shopping_cart_black_48dp.png'/>"
-				Else
-					html = html + "assets/images/baseline_shopping_cart_grey_48dp.png'/>"
-				End If
-				html = html + "<img class='imgservicio' src='"
-				If sqlReader("autocaravana").ToString = "1" Then
-					html = html + "assets/images/baseline_rv_hookup_black_48dp.png'/>"
-				Else
-					html = html + "assets/images/baseline_rv_hookup_grey_48dp.png'/>"
-				End If
-				html = html + "</div>"
-				html = html + "</div>"
-				div.InnerHtml = html
-				Dim boton As New Button
-				boton.Text = "Ver Detalles"
-				boton.Attributes.Add("class", "btn")
-				AddHandler boton.Click, AddressOf irADetalles
-				boton.ID = idAlojamiento
+                html = html + "<p class='lbllocalicacion'>" + sqlReader("municipality") + ", " + provincia + "</p>"
+                html = html + "<p class='lbldescripcion'>" + description + "</p>"
+                html = html + "<div class='servicios'>"
+                html = html + "<img class='imgservicio' src='assets/images/baseline_face_black_48dp.png'/>"
+                html = html + "<p class='textoservicio'>" + sqlReader("capacity").ToString + "</p>"
+                html = html + "<img class='imgservicio' src='"
+                If sqlReader("restaurant").ToString = "1" Then
+                    html = html + "assets/images/baseline_restaurant_black_48dp.png'/>"
+                Else
+                    html = html + "assets/images/baseline_restaurant_grey_48dp.png'/>"
+                End If
+                html = html + "<img class='imgservicio' src='"
+                If sqlReader("store").ToString = "1" Then
+                    html = html + "assets/images/baseline_shopping_cart_black_48dp.png'/>"
+                Else
+                    html = html + "assets/images/baseline_shopping_cart_grey_48dp.png'/>"
+                End If
+                html = html + "<img class='imgservicio' src='"
+                If sqlReader("autocaravana").ToString = "1" Then
+                    html = html + "assets/images/baseline_rv_hookup_black_48dp.png'/>"
+                Else
+                    html = html + "assets/images/baseline_rv_hookup_grey_48dp.png'/>"
+                End If
+                html = html + "</div>"
+                html = html + "</div>"
+                div.InnerHtml = html
+                Dim boton As New Button
+                boton.Text = "Ver Detalles"
+                boton.Attributes.Add("class", "btn")
+                AddHandler boton.Click, AddressOf irADetalles
+                boton.ID = idAlojamiento
                 div.Controls.Add(boton)
                 Panel1.Controls.Add(div)
             End While
         End If
     End Sub
 
-	Protected Sub Search_TextChanged(sender As Object, e As EventArgs) Handles Search.TextChanged
-		filtrarPorTexto()
-	End Sub
+    Function contarAlojamientos() As Integer
+        Dim count As Integer = 0
+        Dim pageNums As Integer = 0
+        Dim lastPageNum As Integer = 0
+        Try
+            Dim sqlQuery As String = "SELECT COUNT(*) AS num FROM alojamientos_fac.alojamientos"
+            Using sqlComm As New MySqlCommand()
+                With sqlComm
+                    .Connection = conexion
+                    .CommandText = sqlQuery
+                    .CommandType = CommandType.Text
+                End With
+                Try
+                    Dim sqlReader As MySqlDataReader = sqlComm.ExecuteReader()
+                    While sqlReader.Read()
+                        count = sqlReader("num")
+                    End While
+                    Return count
+                Catch ex As MySqlException
+                    'MessageBox.Show("El alojamiento no esta disponible", "ERROR DE ALOJAMIENTO", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                End Try
+            End Using
+        Catch ex As MySql.Data.MySqlClient.MySqlException
+            'MessageBox.Show(ex.Message, "ERROR CON LA BASE DE DATOS", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        End Try
+        Return count
+    End Function
 
-	Protected Sub btnSearch_Click(sender As Object, e As EventArgs) Handles btnSearch.Click
-		filtrarPorTexto()
-	End Sub
+    Sub crearPaginacion()
+        Dim count As Integer = contarAlojamientos()
+        Dim pageNums As Integer = 0
+        Dim lastPageNum As Integer = 0
+        pageNums = count / 30
+        pageNums = pageNums + 1
+        lastPageNum = count Mod 30
+        For index As Integer = 1 To pageNums
+            Dim boton As New Button
+            boton.Text = index
+            boton.ID = index
+            boton.Attributes.Add("class", "btn pag")
+            AddHandler boton.Click, AddressOf masResultados
+            Pagination.Controls.Add(boton)
+        Next
 
-	Sub filtrarPorTexto()
+    End Sub
 
-	End Sub
+    Sub masResultados(sender As Object, e As EventArgs)
+        Dim btn As Button = CType(sender, Button)
+        Dim pageNum As Integer = btn.ID
+        Response.Redirect("ListaAlojamientos.aspx?pageNum=" + pageNum.ToString)
+        conexion.Close()
+    End Sub
+
 End Class
